@@ -1,0 +1,19 @@
+{
+  "name": "workport",
+  "version": "1.0.0",
+  "description": "On boarding online platform for hiring employee and employers",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acquahsamuel/workport.git"
+  },
+  "author": "Acquah Samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acquahsamuel/workport/issues"
+  },
+  "homepage": "https://github.com/acquahsamuel/workport#readme"
+}
