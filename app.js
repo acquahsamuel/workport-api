@@ -1,24 +1,20 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-app.use(bodyParser({urlencoded : false}));
-app.use(bodyParser.json());
-
-
-
+app.use(express.static(path.join(__dirname, "public")));
 
 
 
-// console.log(app);
-// console.log(bodyParser());
-
-
-
-
-
+//Might change the template engine
+const exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 
 
 
