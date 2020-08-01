@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -19,7 +19,11 @@ app.set('view engine', 'handlebars');
 
 
 
+const home = require("./routes/home/index");
+const admin = require("./routes/admin/index");
 
+app.use("/" , home);
+app.use("/admin" ,admin);
 
 
 
