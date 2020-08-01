@@ -4,6 +4,7 @@
   "description": "On boarding online platform for hiring employee and employers",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/acquahsamuel/workport/issues"
   },
-  "homepage": "https://github.com/acquahsamuel/workport#readme"
+  "homepage": "https://github.com/acquahsamuel/workport#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
 }
