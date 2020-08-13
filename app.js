@@ -12,9 +12,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 //Might change the template engine
-const exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+const pug = require('pug');
+app.engine('pug', exphbs());
+app.set('view engine', 'pug');
 
 
 
