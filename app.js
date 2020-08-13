@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Might change the template engine
 const pug = require('pug');
-app.engine('pug', exphbs());
+app.engine('pug', pug());
 app.set('view engine', 'pug');
 
 
