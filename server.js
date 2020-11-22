@@ -1,66 +1,83 @@
 const path = require('path');
 const express = require('express');
-const colors = require('colors');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const colors = require('colors');
+const fileupload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
+const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
+const cors = require('cors');
 const connectDB = require('./config/db');
-const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload');
-const  mongoSanitize = require('express-mongo-sanitize');
 
-//Load env vars
+// Load env vars
 dotenv.config({ path: './config/config.env' });
 
-//Connect to database
+// Connect to database
 connectDB();
 
-// Route Files
-const home = require('./routes/home/index');
-const admin = require('./routes/admin/index');
-
+// Route files in 
 
 const app = express();
 
-// Routing
+// Body parser
 app.use(express.json());
+
+// Cookie parser
 app.use(cookieParser());
 
+// Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
-	app.use(morgan('dev'));
+  app.use(morgan('dev'));
 }
 
-// Express fileupload
-app.use(fileUpload());
+// File uploading
+app.use(fileupload());
 
-// Sanitize data 
+// Sanitize data
 app.use(mongoSanitize());
 
-//Security header
+// Set security headers
 app.use(helmet());
 
-//Prevent XSS 
+// Prevent XSS attacks
 app.use(xss());
 
-// app.use(express.static(path.join(__dirname, 'public')));
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: 100
+});
+app.use(limiter);
 
-//Might change the template engine
-// const pug = require('pug');
-// app.engine('pug', pug());
-// app.set('view engine', 'pug');
+// Prevent http param pollution
+app.use(hpp());
+
+// Enable CORS
+app.use(cors());
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routers
-app.use('/', home);
-app.use('/admin', admin);
 
 // app.use(errorHandler);
-const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-	console.log(`Sever is runing in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold);
-});
 
-//Handle unhandled promise rejection
+const PORT = process.env.PORT || 5000;
+
+const server = app.listen(
+  PORT,
+  console.log(
+    `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
+);
+
+// Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
-	console.log(`Error : ${err.message}`.red);
+  console.log(`Error: ${err.message}`.red);
+  // Close server & exit process
+  // server.close(() => process.exit(1));
 });
