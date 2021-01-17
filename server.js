@@ -59,8 +59,13 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+
+/**Serving Static files  */
+app.use(express.static(`${__dirname}/public`));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
 // Mount routers
 
