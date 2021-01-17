@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start:prod": "NODE_ENV=production node server",
-    "start:dev": "nodemon server"
+    "start:dev": "nodemon server",
+    "debug" : "ndb server.js"
   },
   "keywords": [
     "startup",
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "ejs": "^3.1.5",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "validator": "^13.5.2"
   }
 }
