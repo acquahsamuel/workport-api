@@ -8,7 +8,7 @@ process.on('uncaughtException' , err =>{
 })
 
 
-dotenv.config({path : './config.env'});
+dotenv.config({path : './config/config.env'});
 const app = require('./app');
 
 connectDB();
@@ -25,4 +25,4 @@ process.on('unhandledRejection' , err =>{
   server.close(() =>{
     process.exit(1);
   })
-})
+});
