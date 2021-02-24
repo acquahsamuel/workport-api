@@ -22,7 +22,7 @@ const jobs = JSON.parse(
 const importData = async () => {
   try {
     await Job.create(jobs);
-    console.log("Data imported...".gray.inverse);
+    console.log("Data imported...");
     process.exit();
   } catch (err) {
     console.log(err);
@@ -32,7 +32,7 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await Job.deleteMany();
-    console.log("Data destroyed...".red.inverse);
+    console.log("Data destroyed...");
     process.exit();
   } catch (err) {
     console.log(err);
