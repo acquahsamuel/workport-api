@@ -12,6 +12,8 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 
+const router = express.Router();
+
 // Route files in
 const app = express();
 
@@ -60,43 +62,28 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+
+
+
+const Jobs = require("./routes/home/jobs");
+const home = require('./routes/home/index');
+const admin = require('./routes/admin/index');
+
+
+// Mount routers_API
+app.use("/api/v1/workport", Jobs);
+
+
 /**
  * @Rendering_pages
  */
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/", home);
+app.use("/admin", admin);
 
-app.get("/about", (req, res) => {
-  res.render("about");
-});
 
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
 
-app.get("/job-listing", (req, res) => {
-  res.render("job-listing");
-});
-
-app.get("/job-details", (req, res) => {
-  res.render("job-details");
-});
-
-app.get("/main", (req, res) => {
-  res.render("main");
-});
-
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.get("/about", (req, res) => {
-  res.render("about");
-});
 
 module.exports = app;
+
+
+
