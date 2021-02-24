@@ -1,0 +1,82 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+   
+    <%- include('layouts/header') -%>
+
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="/img/logo/logo.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <%- include('layouts/navbar') -%>
+        <!-- Header End -->
+    </header>
+    <!-- Hero Area Start-->
+    <!-- <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Contact us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+        <!-- Hero Area End -->
+    <!-- ================ contact section start ================= -->
+    <section class="contact-section">
+            <div class="container">
+        
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="contact-title"> Register Account </h2>
+                    </div>
+                    <div class="col-lg-8">
+                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                            <div class="row">
+                             
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Password">
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="genric-btn primary radius"> Register </button>
+                                <!-- <a href="#" class="genric-btn primary radius">Primary</a> -->
+                            </div>
+                        </form>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+    <!-- ================ contact section end ================= -->
+
+
+
+    
+    <!-- footer-bottom area -->
+    <%- include('layouts/footer') -%>
+    
