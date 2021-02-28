@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-
- <%- include('layouts/header') -%>
+    
+    <%- include('layouts/header') -%>
 
 <body>
     <!-- ============================================================== -->
@@ -97,7 +97,7 @@
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/admin-vendors/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/admin-vendors/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
@@ -111,8 +111,6 @@
                 </div>
             </nav>
         </header>
-
-
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
@@ -121,19 +119,27 @@
         <!-- ============================================================== -->
         <aside class="left-sidebar" data-sidebarbg="skin5">
             <!-- Sidebar scroll-->
-            <%- include('layouts/sidebar') -%>
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <%- include('layouts/sidebar') -%>
+                <!-- End Sidebar navigation -->
+            </div>
             <!-- End Sidebar scroll-->
         </aside>
-       
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
-         
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Dashboard</h4>
+                        <h4 class="page-title"> Post Jobs  </h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
@@ -142,57 +148,81 @@
                                     <li class="breadcrumb-item">
                                         <a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                    <!-- <li class="breadcrumb-item active" aria-current="page">Basic Table</li> -->
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
             </div>
-         
-            
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Email campaign chart -->
+                <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title m-b-5"> Total Post  </h5>
-                                <h3 class="font-light"> 1 </h3>
-                                <div class="m-t-20 text-center">
-                                    <div id="earnings"></div>
+                    <div class="col-12">
+                        <div class="card card-body">
+                         
+                            <form class="form-horizontal m-t-30">
+                                <div class="form-group">
+                                    <label > Position  </label>
+                                    <input type="text" class="form-control" value="e.g. web Developer">
                                 </div>
-                            </div>
-                        </div>
+                                <div class="form-group">
+                                    <label> Company name </label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Company.inc">
+                                </div>
+                                <div class="form-group">
+                                    <label> Location Allowed  </label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Anywhere">
+                                </div>
+                                <div class="form-group">
+                                    <label> Industry/ job tags  </label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Company.inc">
+                                </div>
+                                
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title m-b-0"> Invoice</h4>
-                                <h2 class="font-light">1 <span class="font-16 text-success font-medium">+23%</span></h2>
-                                <div class="m-t-30">
-                                    <div class="row text-center">
-                                        <div class="col-6 border-right">
-                                            <h4 class="m-b-0"> 1 </h4>
-                                            <span class="font-14 text-muted">New Users</span>
+                                <div class="form-group">
+                                    <label>Input Select</label>
+                                    <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                        <option selected>Choose...</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                
+                             
+                                <div class="form-group">
+                                    <label> Custom File upload </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"> Upload </span>
                                         </div>
-                                        <div class="col-6">
-                                            <h4 class="m-b-0">42%</h4>
-                                            <span class="font-14 text-muted">Repeat Users</span>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                            <label class="custom-file-label" for="inputGroupFile01"> Choose file </label>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>                        
+                                <div class="form-group">
+                                    <label>Helping text</label>
+                                    <input type="text" class="form-control" placeholder="Helping text">
+                                    <span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span> </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- ============================================================== -->
-                <!-- Email campaign chart -->
-                <!-- ============================================================== -->
             </div>
-        
-            <!-- footer -->
             <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
             <%- include('layouts/footer') -%>
