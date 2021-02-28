@@ -10,13 +10,23 @@ router.get("/", (req, res, next) => {
   res.render("admin/index");
 });
 
-router.get("/profile", (req, res) => {
-  res.render("admin/profile");
+router.get('/blank' ,(req, res , next) =>{
+  res.render('admin/blank');
+})
+
+router.get("/post-job", (req, res) => {
+  res.render("admin/post-job");
 });
 
-router.get("/form-basic", (req, res) => {
-  res.render("admin/form-basic");
+
+router.get("/manage-job", (req, res) => {
+  res.render("admin/manage-job");
 });
+
+router.get("/invoice", (req, res) => {
+  res.render("admin/invoice");
+});
+
 
 
 module.exports = router;
