@@ -1,2 +1,0 @@
-A middleware is basically a function that will the receive the Request and Response objects, just like your route Handlers do.
-As a third argument you have another function which you should call once your middleware code completed. 
