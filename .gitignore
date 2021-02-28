@@ -94,3 +94,8 @@ typings/
 data.js
 
 
+#Personal data
+_data
+
+#configuration page
+config
