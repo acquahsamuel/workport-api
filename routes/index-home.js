@@ -4,7 +4,7 @@ const router = express.Router();
 /**
  * @Testing_
  */
-const Jobs = require('../../models/Job');
+const Jobs = require('../models/Job');
 
 
 router.all("/*", (req, res, next) => {
