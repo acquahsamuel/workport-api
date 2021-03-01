@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+
 // File uploading
 app.use(fileupload());
 
@@ -64,12 +65,18 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-const Jobs = require("./routes/home/jobs");
-const home = require("./routes/home/index");
-const admin = require("./routes/admin/index");
+
+
+const jobs = require("./routes/jobs");
+const users = require('./routes/users');
+
+const home = require("./routes/index-home");
+const admin = require("./routes/index-admin");
 
 // Mount routers_API
-app.use("/api/v1/workport", Jobs);
+app.use("/api/v1/jobs", jobs);
+app.use("/api/v1/users" , users);
+
 
 /**
  * @Rendering_pages
@@ -77,21 +84,21 @@ app.use("/api/v1/workport", Jobs);
 app.use("/", home);
 app.use("/admin", admin);
 
-process.on("uncaughtException", err => {
-  console.log("UNCAUGHT EXCEPTION Shutting down");
-  console.log(err.name, err.message);
-  process.exit(1);
-});
+// process.on("uncaughtException", err => {
+//   console.log("UNCAUGHT EXCEPTION Shutting down");
+//   console.log(err.name, err.message);
+//   process.exit(1);
+// });
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`App runing on port ${port}`);
 });
 
-process.on("unhandledRejection", err => {
-  console.log("UNHANDLED REJECTION Shutting down");
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+// process.on("unhandledRejection", err => {
+//   console.log("UNHANDLED REJECTION Shutting down");
+//   console.log(err.name, err.message);
+//   server.close(() => {
+//     process.exit(1);
+//   });
+// });
