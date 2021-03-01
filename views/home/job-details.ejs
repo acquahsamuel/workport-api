@@ -42,6 +42,8 @@
         <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
+                <% for(let i=0; i< job.length; i++ ) {  %>
+
                 <div class="row justify-content-between">
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
@@ -53,7 +55,7 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>Digital Marketer</h4>
+                                        <h4><%= job[i].position %> </h4>
                                     </a>
                                     <ul>
                                         <li>Creative Agency</li>
@@ -136,9 +138,15 @@
                        </div>
                     </div>
                 </div>
+
+                <% } %>
+
+
             </div>
         </div>
         <!-- job post company End -->
+
+
 
     </main>
 

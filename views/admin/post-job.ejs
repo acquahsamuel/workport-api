@@ -111,10 +111,7 @@
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
+      
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <aside class="left-sidebar" data-sidebarbg="skin5">
@@ -126,10 +123,7 @@
             </div>
             <!-- End Sidebar scroll-->
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
+       
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
         <div class="page-wrapper">
@@ -156,51 +150,96 @@
                 </div>
             </div>
             <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card card-body">
                          
                             <form class="form-horizontal m-t-30">
+
                                 <div class="form-group">
                                     <label > Position  </label>
-                                    <input type="text" class="form-control" value="e.g. web Developer">
+                                    <input type="text" class="form-control" value="">
+                                    <small>eg. Web Developer </small>
                                 </div>
+
                                 <div class="form-group">
                                     <label> Company name </label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Company.inc">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="">
+                                    <small>eg. Company.inc </small>
                                 </div>
                                 <div class="form-group">
                                     <label> Location Allowed  </label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Anywhere">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="">
+                                    <small>eg. Anywhere </small>
                                 </div>
                                 <div class="form-group">
                                     <label> Industry/ job tags  </label>
-                                    <input type="email" id="email" name="email" class="form-control" placeholder="Company.inc">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="">
+                                    <small> eg. Node.js, Angular  </small>
                                 </div>
-                                
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">
+                                            Minimum salary
+                                        </label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                        <small> eg. 1,000  </small>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputZip">
+                                            Maximum salary
+                                        </label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                        <small> eg. 5,000  </small>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputState">
+                                            Salary interval
+                                        </label>
+                                        <select id="inputState" class="form-control">
+                                            <option> Annual </option>
+                                            <option> Hourly </option>
+                                        </select>
+                                       
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
-                                    <label>Input Select</label>
-                                    <select class="custom-select col-12" id="inlineFormCustomSelect">
-                                        <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
+                                    <label> Job description * <span class="text-danger"> Uses markdown format - click the ? icon for a guide </span> </label>
+                                    <textarea class="form-control"  name="editor1" id="editor1" rows="7"></textarea>
+                                    <!-- <textarea name="editor1" id="editor1" rows="10" cols="80"> This is my textarea to be replaced with CKEditor 4.   </textarea> -->
                                 </div>
+
                                 
-                             
+                                <div class="alert alert-danger"> One of the following is required. This is the email or link where we will send applicants. </div>
+                                <br>
+                                
                                 <div class="form-group">
-                                    <label> Custom File upload </label>
+                                    <label> Application URL <span class="text-danger"></span>  * </label>
+                                    <input type="text" id="" name="" class="form-control" placeholder="">
+                                    <small> https://mycompany.com/application/job/1  </small>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label> Apply-to email  </label>
+                                    <input type="text" id="" name="" class="form-control" placeholder="">
+                                    <small> eg. companyemail.gmail.com  </small>
+                                </div>
+
+                                <br>
+                                     <div class="alert alert-danger">   Company details </div>
+                                <br>
+
+                                <div class="form-group">
+                                    <label> Upload company logo </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"> Upload </span>
@@ -211,18 +250,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Helping text</label>
-                                    <input type="text" class="form-control" placeholder="Helping text">
-                                    <span class="help-block"><small>A block of help text that breaks onto a new line and may extend beyond one line.</small></span> </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">
+                                            Company Twitter
+                                        </label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputZip">
+                                            Company contact email 
+                                        </label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                    </div>         
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">
+                                            PO # / invoice notes
+                                        </label>
+                                        <input type="text" class="form-control" id="inputCity">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputZip">
+                                            Accounting email
+                                        </label>
+                                        <input type="text" class="form-control" id="inputZip">
+                                    </div>                                    
+                                </div>
+
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
+           
+
             <!-- ============================================================== -->
             <!-- footer -->
             <%- include('layouts/footer') -%>

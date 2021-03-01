@@ -211,85 +211,31 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
+                        
+                            <% for(let i=0; i< job.length; i++ ) {  %>
+                            <div class="single-job-items mb-30">
                             <div class="job-items">
                                 <div class="company-img">
-                                    <a href="/job-details"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
+                                    <a href="/job-details/<%=job[i]._id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="/job-details"><h4>Digital Marketer</h4></a>
+                                    <a href="#"><h4> <%= job[i].position %>  </h4></a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
+                                        <!-- <li>Creative Agency</li> -->
+                                           <li> <%=job[i].companyName %> </li>
+                                        <li><i class="fas fa-map-marker-alt"></i> <%= job[i].locationAllowed %>  </li>
                                         <li>$3500 - $4000</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="items-link f-right">
-                                <a href="/job-details">Full Time</a>
-                                <span>7 hours ago</span>
+                                <!-- <a href="/job-details">Full Time</a> -->
+                                <a href="/job-details/<%=job[i]._id %>"> <%= job[i].jobStatus[i] %></a>
+                                <span> 7 hours ago </span>
                             </div>
-                        </div>
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="/job-details"><img src="/homepage-vendors/img/icon/job-list2.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="/job-details"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="/job-details">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="/job-details"><img src="/homepage-vendors/img/icon/job-list3.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="/job-details"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="/job-details">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="/job-details"><img src="/homepage-vendors/img/icon/job-list4.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="/job-details"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="/job-details">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
+                        </div>  
+                            <% } %>
+                       
                     </div>
                 </div>
             </div>
