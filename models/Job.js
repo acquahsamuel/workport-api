@@ -5,20 +5,24 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  company: {
-    /**Insert ObjectId */
-    type: mongoose.Schema.ObjectId,
-    ref: "Company",
-    required: true
-  },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: true
-  },
+  // company : mongoose.Types.ObjectId(),
+  // user : mongoose.Types.ObjectId(),
+
+
+  // company: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "Company",
+  //   required: true
+  // },
+  // user: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "User",
+  //   required: true
+  // },
+
   position: {
-    type: String,
-    enum: ["admin", "publisher"]
+    type: String
+    // enum: ["admin", "publisher"]
   },
 
   companyName: {
@@ -63,10 +67,16 @@ const JobSchema = new mongoose.Schema({
     type: [String]
   },
 
+  jobStatus: {
+    type: [String],
+    required: true,
+    enum: ["Part time", "Full time", "Contract", "Internship"]
+  },
+
   slug: String,
   jobDescription: {
     type: String,
-    required: [true, "Please add a description"],
+    required: [true, "Please add a description"]
   },
   publicationDate: {
     type: Date,
