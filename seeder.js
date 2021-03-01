@@ -1,19 +1,11 @@
 const fs = require("fs");
 const dotenv = require("dotenv");
-const mongoose = require("mongoose");
-
-dotenv.config({ path: "./config/config.env" });
-
+const connectDB = require('./config/db');
 const Job = require("./models/Job");
 
-// Connect to DB                                                                                                                                                                                                                                                                                                                      
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  });
-  
+// Connect to DB             
+dotenv.config({ path: "./config/config.env" });                                                                                                                                                                                                                                                                                                         
+connectDB();
 
 const jobs = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/jobs.json`, "utf-8")
@@ -44,3 +36,4 @@ if (process.argv[2] === "-i") {
 } else if (process.argv[2] === "-d") {
   deleteData();
 }
+
