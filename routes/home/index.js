@@ -1,13 +1,30 @@
 const express = require("express");
 const router = express.Router();
 
+/**
+ * @Testing_
+ */
+const Jobs = require('../../models/Job');
+
+
 router.all("/*", (req, res, next) => {
   req.app.locals.layout = "home";
   next();
 });
 
+
 router.get("/", (req, res, next) => {
-  res.render("home/index");
+  Jobs.find({})
+  .lean()
+  // .populate("")
+  .then(job => {
+    res.render("home/index", {
+      job
+    });
+  })
+  .catch(error => {
+    console.log("There was something wrong" + error);
+  });
 });
 
 router.get("/about", (req, res) => {
@@ -23,7 +40,18 @@ router.get("/job-listing", (req, res) => {
 });
 
 router.get("/job-details", (req, res) => {
-  res.render("home/job-details");
+
+  Jobs.find({})
+  .lean()
+  // .populate("")
+  .then(job => {
+    res.render("home/job-details", {
+      job
+    });
+  })
+  .catch(error => {
+    console.log("There was something wrong" + error);
+  });
 });
 
 router.get("/login", (req, res) => {
