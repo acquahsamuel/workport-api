@@ -12,6 +12,7 @@ const rateLimit = require("express-rate-limit");
 const hpp = require("hpp");
 const cors = require("cors");
 
+
 const router = express.Router();
 
 // Route files in
@@ -61,7 +62,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
 
 
 
