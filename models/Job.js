@@ -8,7 +8,6 @@ const JobSchema = new mongoose.Schema({
   // company : mongoose.Types.ObjectId(),
   // user : mongoose.Types.ObjectId(),
 
-
   // company: {
   //   type: mongoose.Schema.ObjectId,
   //   ref: "Company",
@@ -20,9 +19,9 @@ const JobSchema = new mongoose.Schema({
   //   required: true
   // },
 
+  // slug: String,
   position: {
-    type: String
-    // enum: ["admin", "publisher"]
+    type: String,
   },
 
   companyName: {
@@ -54,14 +53,19 @@ const JobSchema = new mongoose.Schema({
   },
 
   jobTags: {
-    type: [String]
+    type: [String],
+    required  : true
   },
   minimumSalary: {
-    type: Number
+    type: Number,
+    maxlength : [15],
+    required  : true
   },
 
   maximumSalary: {
-    type: Number
+    type: Number,
+    maxlength : [15],
+    required  : true
   },
   salaryInterval: {
     type: [String]
@@ -73,10 +77,11 @@ const JobSchema = new mongoose.Schema({
     enum: ["Part time", "Full time", "Contract", "Internship"]
   },
 
-  slug: String,
+
   jobDescription: {
     type: String,
-    required: [true, "Please add a description"]
+    required: [true, "Please add a description"],
+    required  : true
   },
   publicationDate: {
     type: Date,
@@ -102,3 +107,4 @@ const JobSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Job", JobSchema);
+
