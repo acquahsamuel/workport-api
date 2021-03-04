@@ -211,7 +211,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-10">
                         <!-- single-job-content -->
-                        
+                          
                             <% for(let i=0; i< job.length; i++ ) {  %>
                             <div class="single-job-items mb-30">
                             <div class="job-items">
@@ -219,12 +219,12 @@
                                     <a href="/job-details/<%=job[i]._id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="#"><h4> <%= job[i].position %>  </h4></a>
+                                    <a href="#"><h4> <%=job[i].position %></h4></a>
                                     <ul>
                                         <!-- <li>Creative Agency</li> -->
                                            <li> <%=job[i].companyName %> </li>
                                         <li><i class="fas fa-map-marker-alt"></i> <%= job[i].locationAllowed %>  </li>
-                                        <li>$3500 - $4000</li>
+                                        <li>$<%= job[i].minimumSalary %> -  $<%= job[i].maximumSalary %></li>
                                     </ul>
                                 </div>
                             </div>
@@ -235,7 +235,8 @@
                             </div>
                         </div>  
                             <% } %>
-                       
+                        </a>
+
                     </div>
                 </div>
             </div>

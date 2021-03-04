@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>UI/UX Designer</h2>
+                            <h2><%=job.position %> </h2>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,6 @@
         <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
-                <% for(let i=0; i< job.length; i++ ) {  %>
-
                 <div class="row justify-content-between">
                     <!-- Left Content -->
                     <div class="col-xl-7 col-lg-8">
@@ -55,12 +53,12 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4><%= job[i].position %> </h4>
+                                        <h4> <%=job.position %> </h4>
                                     </a>
                                     <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
+                                        <li><%=job.companyName %> </li>
+                                        <li><i class="fas fa-map-marker-alt"></i> <%= job.locationAllowed %> </li>
+                                        <li> $<%= job.minimumSalary %> -  $<%= job.maximumSalary %></li>
                                     </ul>
                                 </div>
                             </div>
@@ -73,8 +71,11 @@
                                 <div class="small-section-tittle">
                                     <h4>Job Description</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>
+
+                                <!-- <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p> -->
+                                <p> <%=job.jobDescription %> </p>
                             </div>
+                            
                             <div class="post-details2  mb-50">
                                  <!-- Small Section Tittle -->
                                 <div class="small-section-tittle">
@@ -117,7 +118,7 @@
                               <li>Vacancy : <span>02</span></li>
                               <li>Job nature : <span>Full time</span></li>
                               <li>Salary :  <span>$7,800 yearly</span></li>
-                              <li>Application date : <span>12 Sep 2020</span></li>
+                              <li>Application date : <span> <%=job.publicationDate.toDateString() %></span></li>
                           </ul>
                          <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
@@ -138,9 +139,6 @@
                        </div>
                     </div>
                 </div>
-
-                <% } %>
-
 
             </div>
         </div>
