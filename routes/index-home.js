@@ -14,9 +14,7 @@ router.all("/*", (req, res, next) => {
 
 
 router.get("/", (req, res, next) => {
-  Jobs.find({})
-  .lean()
-  // .populate("")
+  Jobs.find()
   .then(job => {
     res.render("home/index", {
       job
@@ -26,6 +24,22 @@ router.get("/", (req, res, next) => {
     console.log("There was something wrong" + error);
   });
 });
+
+
+router.get("/job-details/:id", (req, res) => {
+  Jobs.findById(req.params.id)
+ .then(job => {
+   res.render("home/job-details", {
+     job
+   });
+ })
+ .catch(error => {
+   console.log("There was something wrong" + error);
+ });
+});
+
+
+
 
 router.get("/about", (req, res) => {
   res.render("home/about");
@@ -39,20 +53,7 @@ router.get("/job-listing", (req, res) => {
   res.render("home/job-listing");
 });
 
-router.get("/job-details", (req, res) => {
 
-  Jobs.find({})
-  .lean()
-  // .populate("")
-  .then(job => {
-    res.render("home/job-details", {
-      job
-    });
-  })
-  .catch(error => {
-    console.log("There was something wrong" + error);
-  });
-});
 
 router.get("/login", (req, res) => {
   res.render("home/login");
