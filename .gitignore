@@ -47,8 +47,6 @@ typings/
 # TypeScript cache
 *.tsbuildinfo
 
-#config 
-# /config
 
 # Optional npm cache directory
 .npm
@@ -98,4 +96,8 @@ data.js
 _data
 
 #configuration page
-config
+# config
+
+#config 
+# /config
+
