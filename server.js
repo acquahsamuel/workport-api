@@ -78,27 +78,25 @@ app.use("/api/v1/jobs", jobs);
 app.use("/api/v1/users" , users);
 
 
-/**
- * @Rendering_pages
- */
+
+// @Rendering_pages
 app.use("/", home);
 app.use("/admin", admin);
 
-// process.on("uncaughtException", err => {
-//   console.log("UNCAUGHT EXCEPTION Shutting down");
-//   console.log(err.name, err.message);
-//   process.exit(1);
-// });
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`App runing on port ${port}`);
 });
 
-// process.on("unhandledRejection", err => {
-//   console.log("UNHANDLED REJECTION Shutting down");
-//   console.log(err.name, err.message);
-//   server.close(() => {
-//     process.exit(1);
-//   });
-// });
+// Handle unhandled Rejection
+process.on("unhandledRejection", err => {
+  console.log("UNHANDLED REJECTION Shutting down");
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+
+

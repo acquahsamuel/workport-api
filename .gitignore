@@ -48,7 +48,7 @@ typings/
 *.tsbuildinfo
 
 #config 
-/config
+# /config
 
 # Optional npm cache directory
 .npm
