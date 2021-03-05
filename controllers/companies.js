@@ -1,14 +1,15 @@
 const Company = require('../models/Company');
 
+
 // @desc          Create a  company profile
 // @route         POST /api/v1/company
 // @access        Private
-exports.createCompany = (req, res , next) =>{
-    const company = Company.create(req.body.data);
+exports.createCompany = async (req, res , next) =>{
+    const company = await Company.create(req.body.data);
 
     res.status(200).json({
         success : ture ,
-        message : " Company created "
+        message : "Company created"
     })
 }
 
@@ -16,8 +17,8 @@ exports.createCompany = (req, res , next) =>{
 // @desc          Get all company profile
 // @route         GET /api/v1/company
 // @access        Private
-exports.getAllCompany = (req, res , next ) => {
-    const company = Company.find();
+exports.getAllCompanies = async(req, res , next ) => {
+    const company = await Company.find();
 
     res.status(200).json({
         message : "List of all companies ",
@@ -29,12 +30,43 @@ exports.getAllCompany = (req, res , next ) => {
 // @desc          Get a company profile
 // @route         GET /api/v1/company/:id
 // @access        Private
-exports.getCompany = (req , res , next) =>{
-    const commany = Company.findById(req.params.id);
+exports.getCompany = async(req , res , next) =>{
+    const company = await Company.findById(req.params.id);
 
     res.status(200).json({
-        message : "",
+        message : "success",
         success : true,
         data
     })
 }
+
+
+
+// @desc          Update a single Job
+// @route         PUT /api/v1/job/:id 
+// @access        Public
+exports.updateCompany = async(req, res ,next) =>{
+    const company = await Company.findByIdAndUpdate(req.params.id);
+  
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message : "success",
+      data: job
+    });
+  }
+  
+  
+  // @desc          Delete a single Job
+  // @route         DELETE /api/v1/job/:id 
+  // @access        Private
+  exports.deleteCompany = async(req, res ,next) =>{
+    const company = await Company.findByIdAndDelete(req.params.id);
+  
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message : "success",
+    });
+  }
+  
