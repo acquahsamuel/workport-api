@@ -69,17 +69,22 @@ app.set("views", path.join(__dirname, "views"));
 
 const jobs = require("./routes/jobs");
 const users = require('./routes/users');
+const companies = require('./routes/companies');
 
-const home = require("./routes/index-home");
-const admin = require("./routes/index-admin");
 
 // Mount routers_API
 app.use("/api/v1/jobs", jobs);
 app.use("/api/v1/users" , users);
+app.use("/api/v1/companies" ,companies);
 
 
 
-// @Rendering_pages
+//@des        Mounting rendering pages-routes
+const home = require("./routes/index-home");
+const admin = require("./routes/index-admin");
+
+
+//@desc       Rendering_pages
 app.use("/", home);
 app.use("/admin", admin);
 
@@ -89,7 +94,10 @@ const server = app.listen(port, () => {
   console.log(`App runing on port ${port}`);
 });
 
-// Handle unhandled Rejection
+
+
+
+//@desc  Handle unhandled Rejection
 process.on("unhandledRejection", err => {
   console.log("UNHANDLED REJECTION Shutting down");
   console.log(err.name, err.message);
