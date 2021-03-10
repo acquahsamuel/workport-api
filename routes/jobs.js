@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 //@desc      from => jobs controller
 const {
   createJob,
@@ -8,10 +9,12 @@ const {
   updateJob,
   deleteJob
 } = require("../controllers/jobs");
-
 const router = express.Router();
 
+
+
 /*
+*
  * @desc  slash( / ) means route which is 
  * 
  * /api/v1/jobs
@@ -19,8 +22,9 @@ const router = express.Router();
  * 
 */
 
-router.route("/").get(getJobs).post(createJob);
+router.route('/').get(getJobs).post(createJob);
+router.route('/:id').get(getJob).put(updateJob).delete(deleteJob);
 
-router.route("/:id").get(getJob).put(updateJob).delete(deleteJob);
+
 
 module.exports = router;
