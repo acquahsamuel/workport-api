@@ -17,7 +17,7 @@ exports.createCompany = async (req, res , next) =>{
 // @desc          Get all company profile
 // @route         GET /api/v1/company
 // @access        Private
-exports.getAllCompanies = async(req, res , next ) => {
+exports.getCompanies = async(req, res , next ) => {
     const company = await Company.find();
 
     res.status(200).json({

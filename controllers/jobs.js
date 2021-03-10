@@ -18,7 +18,7 @@ exports.createJob = async (req, res, next) => {
 // @desc          Get all  Jobs
 // @route         GET /api/v1/job/:id 
 // @access        Public
-exports.getAllJobs = async (req, res, next) => {
+exports.getJobs = async (req, res, next) => {
   const job = await Job.find({});
 
   res.status(200).json({
@@ -72,3 +72,7 @@ exports.deleteJob = async(req, res ,next) =>{
     data: job
   });
 }
+
+
+
+
