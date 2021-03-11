@@ -42,6 +42,8 @@ exports.getJob = async (req, res, next) => {
     message : "success",
     data: job
   });
+
+ 
 };
 
 // @desc          Update a single Job
