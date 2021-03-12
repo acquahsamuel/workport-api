@@ -1,5 +1,3 @@
-const errorHandler = require("../middleware/error");
-
 class ErrorResponse extends Error {
     constructor(message , statusCode ){
         super(message);
@@ -8,4 +6,4 @@ class ErrorResponse extends Error {
 }
 
 
-module.exports = errorHandler;
+module.exports = ErrorResponse;
