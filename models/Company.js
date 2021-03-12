@@ -1,93 +1,19 @@
 const mongoose = require("mongoose");
 
-const JobSchema = new mongoose.Schema({
+const CompanySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  // company : mongoose.Types.ObjectId(),
-  // user : mongoose.Types.ObjectId(),
 
-  // company: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "Company",
-  //   required: true
-  // },
-  // user: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "User",
-  //   required: true
-  // },
+  slug: String,
 
-  // slug: String,
-  position: {
+  companyLogo: {
     type: String,
+    default: "no-photo.jpg"
   },
 
-  companyName: {
-    type: String
-  },
-  locationAllowed: {
-    type: String
-  },
-
-  jobCategory: {
-    type: [String],
-    required: true,
-    enum: [
-      "Web Development",
-      "Design ",
-      " Product",
-      "Customer Service",
-      "Data",
-      "Sales",
-      "DevOps/SysAdmin",
-      "Business",
-      "Finance",
-      "Legal",
-      "Human Resources",
-      "Medical",
-      "Teaching",
-      "Everything Else"
-    ]
-  },
-
-  jobTags: {
-    type: [String],
-    required  : true
-  },
-  minimumSalary: {
-    type: Number,
-    maxlength : [15],
-    required  : true
-  },
-
-  maximumSalary: {
-    type: Number,
-    maxlength : [15],
-    required  : true
-  },
-  salaryInterval: {
-    type: [String]
-  },
-
-  jobStatus: {
-    type: [String],
-    required: true,
-    enum: ["Part time", "Full time", "Contract", "Internship"]
-  },
-
-
-  jobDescription: {
-    type: String,
-    required: [true, "Please add a description"],
-    required  : true
-  },
-  publicationDate: {
-    type: Date,
-    default: Date.now
-  },
-  applicationURL: {
+  companyTwitter: {
     type: String,
     match: [
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
@@ -95,7 +21,14 @@ const JobSchema = new mongoose.Schema({
     ]
   },
 
-  applyToEmail: {
+  companylinkedin: {
+    type: String,
+    match: [
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+      "Please use a valid URL with HTTP or HTTPS"
+    ]
+  },
+  companyEmail: {
     type: String,
     required: [true, "Please add an email"],
     unique: true,
@@ -106,5 +39,4 @@ const JobSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("Company", JobSchema);
-
+module.exports = mongoose.model("Company", CompanySchema);

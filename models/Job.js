@@ -5,21 +5,8 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  // company : mongoose.Types.ObjectId(),
-  // user : mongoose.Types.ObjectId(),
-
-  // company: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "Company",
-  //   required: true
-  // },
-  // user: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "User",
-  //   required: true
-  // },
-
-  // slug: String,
+ 
+  slug: String,
   position: {
     type: String,
   },
@@ -58,7 +45,7 @@ const JobSchema = new mongoose.Schema({
   },
   minimumSalary: {
     type: Number,
-    maxlength : [15],
+    minlength : [2],
     required  : true
   },
 
