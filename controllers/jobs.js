@@ -1,4 +1,5 @@
 const Job = require("../models/Job");
+const ErrorResponse = require('../utils/errorResponse');
 
 
 // @desc          Create a  Job
@@ -9,72 +10,72 @@ exports.createJob = async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message : "Job Created",
+    message: "Job Created",
     data: job
   });
 };
-
 
 // @desc          Get all  Jobs
-// @route         GET /api/v1/job/:id 
+// @route         GET /api/v1/job/:id
 // @access        Public
 exports.getJobs = async (req, res, next) => {
-  const job = await Job.find({});
+  try {
+    const job = await Job.find({});
 
-  res.status(200).json({
-    success: true,
-    count: job.length,
-    message : "success",
-    data: job
-  });
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message: "success",
+      data: job
+    });
+  } catch (err) {
+    next(err);
+  }
 };
-
 
 // @desc          Get a single Job
-// @route         GET /api/v1/job/:id 
+// @route         GET /api/v1/job/:id
 // @access        Public
 exports.getJob = async (req, res, next) => {
-  const job = await Job.findById(req.params.id);
+  try {
+    const job = await Job.findById(req.params.id);
 
-  res.status(200).json({
-    success: true,
-    count: job.length,
-    message : "success",
-    data: job
-  });
-
- 
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message: "success",
+      data: job
+    });
+  } catch (err) {
+    next(new ErrorResponse(`Job not found with id of ${req.params.id}` ));
+  }
 };
 
+
 // @desc          Update a single Job
-// @route         PUT /api/v1/job/:id 
+// @route         PUT /api/v1/job/:id
 // @access        Public
-exports.updateJob = async(req, res ,next) =>{
+exports.updateJob = async (req, res, next) => {
   const job = await Job.findByIdAndUpdate(req.params.id);
 
   res.status(200).json({
     success: true,
     count: job.length,
-    message : "success",
+    message: "success",
     data: job
   });
-}
-
+};
 
 // @desc          Delete a single Job
-// @route         DELETE /api/v1/job/:id 
+// @route         DELETE /api/v1/job/:id
 // @access        Private
-exports.deleteJob = async(req, res ,next) =>{
+exports.deleteJob = async (req, res, next) => {
   const job = await Job.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success: true,
     count: job.length,
-    message : "success",
+    message: "success",
     data: job
   });
-}
-
-
-
-
+};
