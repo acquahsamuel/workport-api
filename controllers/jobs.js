@@ -1,6 +1,5 @@
 const Job = require("../models/Job");
-const ErrorResponse = require('../utils/errorResponse');
-
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc          Create a  Job
 // @route         POST /api/v1/job
@@ -47,36 +46,42 @@ exports.getJob = async (req, res, next) => {
       data: job
     });
   } catch (err) {
-    next(new ErrorResponse(`Job not found with id of ${req.params.id}` ));
+    next(new ErrorResponse(`Job not found with id of ${req.params.id}`));
   }
 };
-
-
 
 // @desc          Update a single Job
 // @route         PUT /api/v1/job/:id
 // @access        Public
 exports.updateJob = async (req, res, next) => {
-  const job = await Job.findByIdAndUpdate(req.params.id);
+  try {
+    const job = await Job.findByIdAndUpdate(req.params.id);
 
-  res.status(200).json({
-    success: true,
-    count: job.length,
-    message: "success",
-    data: job
-  });
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message: "success",
+      data: job
+    });
+  } catch (err) {
+    next(new ErrorResponse(`Job not found with id of ${req.params.id} `));
+  }
 };
 
 // @desc          Delete a single Job
 // @route         DELETE /api/v1/job/:id
 // @access        Private
 exports.deleteJob = async (req, res, next) => {
-  const job = await Job.findByIdAndDelete(req.params.id);
+  try {
+    const job = await Job.findByIdAndDelete(req.params.id);
 
-  res.status(200).json({
-    success: true,
-    count: job.length,
-    message: "success",
-    data: job
-  });
+    res.status(200).json({
+      success: true,
+      count: job.length,
+      message: "success",
+      data: job
+    });
+  } catch (err) {
+    next(new ErrorResponse(`Job not found with id of ${req.params.id}`));
+  }
 };
