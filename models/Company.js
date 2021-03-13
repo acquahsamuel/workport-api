@@ -1,12 +1,11 @@
 const mongoose = require("mongoose");
 
 const CompanySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-
-  slug: String,
+  // name: {
+  //   type: String,
+  //   required: true
+  // },
+  // slug: String,
 
   companyLogo: {
     type: String,
@@ -20,6 +19,8 @@ const CompanySchema = new mongoose.Schema({
       "Please use a valid URL with HTTP or HTTPS"
     ]
   },
+
+  
 
   companylinkedin: {
     type: String,
@@ -38,5 +39,7 @@ const CompanySchema = new mongoose.Schema({
     ]
   }
 });
+
+
 
 module.exports = mongoose.model("Company", CompanySchema);
