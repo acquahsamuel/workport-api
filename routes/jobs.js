@@ -1,6 +1,4 @@
 const express = require("express");
-
-
 //@desc      from => jobs controller
 const {
   createJob,
@@ -10,7 +8,6 @@ const {
   deleteJob
 } = require("../controllers/jobs");
 const router = express.Router();
-
 
 
 /*
