@@ -11,15 +11,22 @@ const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const fileupload = require("express-fileupload");
-const errorHandler = require('./middleware/error');
+const errorHandler = require("./middleware/error");
 const mongoSanitize = require("express-mongo-sanitize");
-
+const app = express();
 
 dotenv.config({ path: "./config/config.env" });
 connectDB();
 
+//@desc      Mounting Routes
+const jobs = require("./routes/jobs");
+const users = require("./routes/users");
+const companies = require("./routes/companies");
 
-const app = express();
+
+//@des     Mounting pages routes
+const home = require("./routes/viewsHome");
+const admin = require("./routes/viewsAdmin");
 
 // Body parser
 app.use(express.json());
@@ -32,7 +39,6 @@ app.use(cookieParser());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
 
 // File uploading
 app.use(fileupload());
@@ -60,47 +66,29 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-//@des Serving Static files  
+//@des Serving Static files
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-
-
-const jobs = require("./routes/jobs");
-const users = require('./routes/users');
-const companies = require('./routes/companies');
-
-
 //@desc  Mount routers_API
 app.use("/api/v1/jobs", jobs);
-app.use("/api/v1/users" , users);
-app.use("/api/v1/companies" ,companies);
-
-
-//@des ErrorHandler 
-app.use(errorHandler);
-
-
-
-//@des     Mounting rendering pages-routes
-const home = require("./routes/index-home");
-const admin = require("./routes/index-admin");
-
+app.use("/api/v1/users", users);
+app.use("/api/v1/companies", companies);
 
 //@desc    Rendering_pages
 app.use("/", home);
 app.use("/admin", admin);
 
-
+//@des ErrorHandler
+app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`App runing on port ${port}`);
 });
-
 
 //@desc  Handle unhandled Rejection
 process.on("unhandledRejection", err => {
@@ -110,6 +98,3 @@ process.on("unhandledRejection", err => {
     process.exit(1);
   });
 });
-
-
-
