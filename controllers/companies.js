@@ -23,7 +23,8 @@ exports.getCompanies = async(req, res , next ) => {
     res.status(200).json({
         message : "List of all companies ",
         success : true,
-        data : company.length
+        count : company.length,
+        data : company
     })
 }
 
@@ -44,8 +45,6 @@ exports.getCompany = async(req , res , next) =>{
     })
 
 }
-
-
 
 
 
