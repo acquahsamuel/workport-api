@@ -78,9 +78,11 @@ app.use("/api/v1/jobs", jobs);
 app.use("/api/v1/users", users);
 app.use("/api/v1/companies", companies);
 
-//@desc    Rendering_pages
+
+//@desc  Rendering_pages
 app.use("/", home);
 app.use("/admin", admin);
+
 
 //@des ErrorHandler
 app.use(errorHandler);
