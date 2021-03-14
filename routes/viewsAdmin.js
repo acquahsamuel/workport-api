@@ -1,7 +1,8 @@
 const express = require('express');
-const viewsAdmin = require('../controllers/viewsAdmin');
+const admin = require('../controllers/viewsAdmin');
 
 const router = express.Router();
+
 
 
 
