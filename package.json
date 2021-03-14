@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server",
     "dev": "nodemon server.js",
-    "debug" : "ndb server.js"
+    "debug": "ndb server.js"
   },
   "keywords": [
     "startup",
