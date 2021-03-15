@@ -35,4 +35,6 @@ exports.getAdminInvoice = async (req, res, next) => {
   res.status(200).render("admin/invoice");
 };
 
-module.exports = router;
+
+
+// module.exports = router;
