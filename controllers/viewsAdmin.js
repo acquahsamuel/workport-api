@@ -7,7 +7,7 @@ router.all("/*", (req, res, next) => {
 });
 
 // @desc          Delete a single Company
-// @route         DELETE /api/v1/company/:id
+// @route         www.workport.com/index
 // @access        Private
 exports.getAdminIndex = async (req, res, next) => {
   res.status(200).render("admin/index");
@@ -15,21 +15,21 @@ exports.getAdminIndex = async (req, res, next) => {
 
 
 // @desc          Delete a single Company
-// @route         DELETE /api/v1/company/:id
+// @route         www.workport.com/index
 // @access        Private
 exports.getAdminPostJob = async (req, res, next) => {
   res.status(200).render("admin/post-job");
 };
 
 // @desc          Delete a single Company
-// @route         DELETE /api/v1/company/:id
+// @route         www.workport.com/index
 // @access        Private
 exports.getAdminManageJob = async (req, res, next) => {
   res.status(200).render("admin/manage-job");
 };
 
 // @desc          Delete a single Company
-// @route         DELETE /api/v1/company/:id
+// @route         www.workport.com/index
 // @access        Private
 exports.getAdminInvoice = async (req, res, next) => {
   res.status(200).render("admin/invoice");

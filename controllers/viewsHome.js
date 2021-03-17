@@ -1,4 +1,6 @@
 const Job = require("../models/Job");
+const Companies = require("../models/Company");
+
 const express = require("express");
 const router = express.Router();
 
@@ -23,10 +25,10 @@ exports.getHomeIndex = async (req, res, next) => {
 // @access        Public
 exports.getHomeJobDetails = async (req, res, next) => {
   const job = await Job.findById(req.params.id);
+
   res.status(200).render(`home/job-details`, {
     job
   });
-  next();
 };
 
 // @desc          Get Job listings
@@ -48,8 +50,11 @@ exports.getHomeBlog = async (req, res, next) => {
 // @desc          Get Job listings
 // @route         www.workport.com/job-listings
 // @access        Public
-exports.getHomeJobListing = async (req, res) => {
-  res.status(200).render("home/job-listing");
+exports.getHomeJobListing = async (req, res, next) => {
+  const job = await Job.find({});
+  res.status(200).render(`home/job-listing`, {
+    job
+  });
   next();
 };
 
@@ -81,13 +86,12 @@ exports.getHomeSingleBlog = async (req, res, next) => {
 
 module.exports = {
   router,
-  getHomeIndex : this.getHomeIndex,
-  getHomeJobDetails : this.getHomeJobDetails,
-  getHomeAbout  : this.getHomeAbout,
-  getHomeBlog : this.getHomeBlog,
-  getHomeJobListing : this.getHomeJobListing,
-  getHomeLogin : this.getHomeLogin,
-  getHomeRegister : this.getHomeRegister,
-  getHomeSingleBlog : this.getHomeSingleBlog
+  getHomeIndex: this.getHomeIndex,
+  getHomeJobDetails: this.getHomeJobDetails,
+  getHomeAbout: this.getHomeAbout,
+  getHomeBlog: this.getHomeBlog,
+  getHomeJobListing: this.getHomeJobListing,
+  getHomeLogin: this.getHomeLogin,
+  getHomeRegister: this.getHomeRegister,
+  getHomeSingleBlog: this.getHomeSingleBlog
 };
-
