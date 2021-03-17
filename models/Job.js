@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const JobSchema = new mongoose.Schema({
   name: {
@@ -17,6 +18,7 @@ const JobSchema = new mongoose.Schema({
   locationAllowed: {
     type: String
   },
+
 
   jobCategory: {
     type: [String],
@@ -93,5 +95,30 @@ const JobSchema = new mongoose.Schema({
   }
 });
 
+
+
+JobSchema.pre('save' , function(){
+  this.populate({
+    path : "jobs",
+    select : "-__v"
+  })
+})
+
+
+JobSchema.pre("save" , function(next) {
+  this.slug = slugify(this.position, {lower : true})
+  next();
+});
+
+
+JobSchema.pre("save" , function(next) {
+  this.trimCompanyName = this.companyName;
+  this.applicationURL = `https://${this.trimCompanyName}.com/application/job/${this.id}`
+  next();
+})
+
+
+
 module.exports = mongoose.model("Job", JobSchema);
+
 
