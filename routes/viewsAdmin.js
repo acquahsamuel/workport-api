@@ -14,3 +14,4 @@ router.get("/manage-job", getAdminManageJob);
 router.get("/invoice", getAdminInvoice);
 
 module.exports = router;
+
