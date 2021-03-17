@@ -216,10 +216,10 @@
                             <div class="single-job-items mb-30">
                             <div class="job-items">
                                 <div class="company-img">
-                                    <a href="/job-details/<%=job[i]._id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
+                                    <a href="/job-details/<%=job[i].id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="#"><h4> <%=job[i].position %></h4></a>
+                                    <a href="/job-details/<%=job[i].id %>"><h4> <%=job[i].position %></h4></a>
                                     <ul>
                                         <!-- <li>Creative Agency</li> -->
                                            <li> <%=job[i].companyName %> </li>
@@ -230,8 +230,8 @@
                             </div>
                             <div class="items-link f-right">
                                 <!-- <a href="/job-details">Full Time</a> -->
-                                <a href="/job-details/<%=job[i]._id %>"> <%= job[i].jobStatus[i] %></a>
-                                <span> 7 hours ago </span>
+                                <a href="/job-details/<%=job[i].id %>"> <%= job[i].jobStatus[i] %></a>
+                                <span> <%= job[i].publicationDate.toLocaleString('en-us') %> </span>
                             </div>
                         </div>  
                             <% } %>

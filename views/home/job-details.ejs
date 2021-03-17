@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2><%=job.position %> </h2>
+                            <h2><%= job.position %> </h2>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4> <%=job.position %> </h4>
+                                        <h4> <%= job.position %> </h4>
                                     </a>
                                     <ul>
                                         <li><%=job.companyName %> </li>
@@ -72,10 +72,9 @@
                                     <h4>Job Description</h4>
                                 </div>
 
-                                <!-- <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p> -->
-                                
-                                
+                                <!-- <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p> -->           
                                 <p> <%- job.jobDescription -%> </p>
+                               
                             </div>
                             
                             <div class="post-details2  mb-50">
@@ -115,12 +114,13 @@
                                <h4>Job Overview</h4>
                            </div>
                           <ul>
-                              <li>Posted date : <span>12 Aug 2019</span></li>
-                              <li>Location : <span>New York</span></li>
-                              <li>Vacancy : <span>02</span></li>
-                              <li>Job nature : <span>Full time</span></li>
-                              <li>Salary :  <span>$7,800 yearly</span></li>
+                              <li>Posted date : <span> <%=job.publicationDate.toLocaleString('en-us') %> </span></li>
+                              <li>Location : <span>   <%=job.locationAllowed %> </span></li>
+                              <li>Vacancy : <span> Hidden  </span></li>
+                              <li>Salary :  <span>$ <%= job.minimumSalary %> -  $ <%= job.maximumSalary %> yearly</span></li>
                               <li>Application date : <span> <%=job.publicationDate.toDateString() %></span></li>
+                              <!-- <li>Job nature : <span> <%=job.jobStatus %> </span></li> -->
+                              
                           </ul>
                          <div class="apply-btn2">
                             <a href="#" class="btn">Apply Now</a>
