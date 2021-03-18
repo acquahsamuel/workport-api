@@ -25,7 +25,6 @@ exports.getHomeIndex = async (req, res, next) => {
 // @access        Public
 exports.getHomeJobDetails = async (req, res, next) => {
   const job = await Job.findById(req.params.id);
-
   res.status(200).render(`home/job-details`, {
     job
   });
