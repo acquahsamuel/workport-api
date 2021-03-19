@@ -1,5 +1,5 @@
 const Job = require("../models/Job");
-const Companies = require("../models/Company");
+
 
 const express = require("express");
 const router = express.Router();
@@ -19,6 +19,8 @@ exports.getHomeIndex = async (req, res, next) => {
   });
   next();
 };
+
+
 
 // @desc          Get Job listings
 // @route         www.workport.com/job-details

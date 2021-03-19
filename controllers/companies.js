@@ -1,6 +1,5 @@
 const Company = require("../models/Company");
-const ErrorResponse = require('../utils/errorResponse');
-
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc          Create a  company profile
 // @route         POST /api/v1/company
@@ -8,43 +7,52 @@ const ErrorResponse = require('../utils/errorResponse');
 exports.createCompany = async (req, res, next) => {
   const company = await Company.create(req.body);
   res.status(201).json({
-    message: "Company created",
+    message: "success",
     success: true,
     count: company.length,
     data: company
   });
 };
-
 
 // @desc          Get all company profile
 // @route         GET /api/v1/company
 // @access        Private
 exports.getCompanies = async (req, res, next) => {
-  const company = await Company.find();
+  try {
+    const company = await Company.find();
 
-  res.status(200).json({
-    message: "List of all companies ",
-    success: true,
-    count: company.length,
-    data: company
-  });
+    res.status(200).json({
+      message: "success ",
+      success: true,
+      count: company.length,
+      data: company
+    });
+  } catch (err) {
+    next(err);
+  }
 };
 
 // @desc          Get a company profile
 // @route         GET /api/v1/company/:id
 // @access        Private
-exports.getCompany = async (req, res, next) => {
-  const company = await Company.findById(req.params.id);
+exports.getCompany = async(req, res, next) => {
+  try {
+    const company = await Company.findById(req.params.id);
 
-  if (!company) {
-    return res.status(400).json({ success: false });
+    if (!company) {
+      return next(
+        new ErrorResponse(`Company not found with id of ${req.params.id}`, 404)
+      );
+    }
+
+    res.status(200).json({
+      message: "success",
+      success: true,
+      data: company
+    });
+  } catch (err) {
+   next(err);
   }
-
-  res.status(200).json({
-    message: "Compnay data",
-    success: true,
-    data : company
-  });
 };
 
 // @desc          Update a single Company
@@ -61,10 +69,11 @@ exports.updateCompany = async (req, res, next) => {
   }
 
   res.status(200).json({
-    message: "Company updated",
+    message: "Success",
     success: true,
     data: company
   });
+  next(err);
 };
 
 // @desc          Delete a single Company
@@ -78,8 +87,9 @@ exports.deleteCompany = async (req, res, next) => {
   }
 
   res.status(200).json({
-    message: "Company deleted",
+    message: "success",
     success: true,
     data: {}
   });
+  next(err);
 };
