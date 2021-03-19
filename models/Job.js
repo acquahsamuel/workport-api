@@ -6,10 +6,11 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: true
   },
- 
+
   slug: String,
+
   position: {
-    type: String,
+    type: String
   },
 
   companyName: {
@@ -18,7 +19,6 @@ const JobSchema = new mongoose.Schema({
   locationAllowed: {
     type: String
   },
-
 
   jobCategory: {
     type: [String],
@@ -43,18 +43,18 @@ const JobSchema = new mongoose.Schema({
 
   jobTags: {
     type: [String],
-    required  : true
+    required: true
   },
   minimumSalary: {
     type: Number,
-    minlength : [2],
-    required  : true
+    minlength: [2],
+    required: true
   },
 
   maximumSalary: {
     type: Number,
-    maxlength : [15],
-    required  : true
+    maxlength: [15],
+    required: true
   },
   salaryInterval: {
     type: [String]
@@ -66,11 +66,10 @@ const JobSchema = new mongoose.Schema({
     enum: ["Part time", "Full time", "Contract", "Internship"]
   },
 
-
   jobDescription: {
     type: String,
     required: [true, "Please add a description"],
-    required  : true
+    required: true
   },
   publicationDate: {
     type: Date,
@@ -95,30 +94,24 @@ const JobSchema = new mongoose.Schema({
   }
 });
 
-
-
-JobSchema.pre('save' , function(){
+JobSchema.pre("save", function() {
   this.populate({
-    path : "jobs",
-    select : "-__v"
-  })
-})
+    path: "jobs",
+    select: "-__v"
+  });
+});
 
-
-JobSchema.pre("save" , function(next) {
-  this.slug = slugify(this.position, {lower : true})
+JobSchema.pre("save", function(next) {
+  this.slug = slugify(this.position, { lower: true });
   next();
 });
 
-
-JobSchema.pre("save" , function(next) {
+JobSchema.pre("save", function(next) {
   this.trimCompanyName = this.companyName;
-  this.applicationURL = `https://${this.trimCompanyName}.com/application/job/${this.id}`
+  this.applicationURL = `https://${this
+    .trimCompanyName}.com/application/job/${this.id}`;
   next();
-})
-
-
+});
 
 module.exports = mongoose.model("Job", JobSchema);
-
 
