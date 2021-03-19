@@ -49,10 +49,8 @@
                                     <div class="select-form">
                                         <div class="select-itms">
                                             <select name="select" id="select1">
-                                                <option value="">Location BD</option>
-                                                <option value="">Location PK</option>
-                                                <option value="">Location US</option>
-                                                <option value="">Location UK</option>
+                                                <option value="">Anywhere BD</option>
+                                              
                                             </select>
                                         </div>
                                     </div>
@@ -87,7 +85,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Design & Creative</a></h5>
-                                <span>(653)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -98,7 +96,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Design & Development</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -109,7 +107,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Sales & Marketing</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -120,7 +118,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Mobile Application</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +129,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Construction</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -142,7 +140,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Information Technology</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -153,7 +151,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Real Estate</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -164,7 +162,7 @@
                             </div>
                             <div class="services-cap">
                                <h5><a href="/job_listing">Content Writer</a></h5>
-                                <span>(658)</span>
+                                <span>(0)</span>
                             </div>
                         </div>
                     </div>
@@ -189,7 +187,7 @@
                         <div class="cv-caption text-center">
                             <p class="pera1">FEATURED TOURS Packages</p>
                             <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                            <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
+                            <!-- <a href="#" class="border-btn2 border-btn4">Upload your cv</a> -->
                         </div>
                     </div>
                 </div>
@@ -230,8 +228,8 @@
                             </div>
                             <div class="items-link f-right">
                                 <!-- <a href="/job-details">Full Time</a> -->
-                                <a href="/job-details/<%=job[i].id %>"> <%= job[i].jobStatus[i] %></a>
-                                <span> <%= job[i].publicationDate.toLocaleString('en-us') %> </span>
+                                <a href="/job-details/<%=job[i].id %>"> Apply</a>
+                                <span> <%= job[i].publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
                             </div>
                         </div>  
                             <% } %>
@@ -366,7 +364,7 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2">
                                 <span>What we are doing</span>
-                                <h2>24k Talented people are getting Jobs</h2>
+                                <h3>24k Talented people are getting Jobs</h3>
                             </div>
                             <div class="support-caption">
                                 <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
@@ -380,7 +378,7 @@
                             <img src="/homepage-vendors/img/service/support-img.jpg" alt="">
                             <div class="support-img-cap text-center">
                                 <p>Since</p>
-                                <span>1994</span>
+                                <span> 2021 </span>
                             </div>
                         </div>
                     </div>

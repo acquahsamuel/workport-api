@@ -265,7 +265,7 @@
                                             </div>
                                             <div class="items-link items-link2 f-right">
                                                 <a href="/job-details/<%=job[i].id %>">Full Time</a>
-                                                <span> <%=job[i].publicationDate.toLocaleString('en-us') %>  </span>
+                                                <span> <%=job[i].publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %>  </span>
                                             </div>
                                         </div>
                                     <% } %>

@@ -72,8 +72,8 @@
                                     <h4>Job Description</h4>
                                 </div>
 
-                                <!-- <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p> -->           
-                                <p> <%- job.jobDescription -%> </p>
+                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>           
+                                <!-- <p> <%- job.jobDescription -%> </p> -->
                                
                             </div>
                             
@@ -118,7 +118,7 @@
                               <li>Location : <span>   <%=job.locationAllowed %> </span></li>
                               <li>Vacancy : <span> Hidden  </span></li>
                               <li>Salary :  <span>$ <%= job.minimumSalary %> -  $ <%= job.maximumSalary %> yearly</span></li>
-                              <li>Application date : <span> <%=job.publicationDate.toDateString() %></span></li>
+                              <li>Application date : <span> <%=job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %></span></li>
                               <!-- <li>Job nature : <span> <%=job.jobStatus %> </span></li> -->
                               
                           </ul>
