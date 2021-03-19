@@ -1,14 +1,37 @@
-const errorHandler = (err, req, res, next) => {
-  //Log to console for dev
-  console.log(err.stack.red);
+const ErrorResponse = require("../utils/errorResponse");
 
-  
-  res.status(err.statusCode ||  500).json({
+const errorHandler = (err, req, res, next) => {
+  let error = { ...err };
+  error.message = err.message;
+
+  //Log to console for dev
+  // console.log(err.stack.red);
+  console.log(err);
+
+
+  //@Error          CastError 
+  if (err.name === "CastError") {
+    const message = `Resources not found with id  ${err.value}`;
+    error = new ErrorResponse(message, 404);
+  }
+
+  //@Error           Duplicate field
+  if(err.name === "MongoError" && err.code === 11000){
+    const message = `Duplicate field value entered`; 
+    error = new ErrorResponse(message, 400);
+  }
+
+  //@Error           Empty fields
+  if(err.name === 'ValidationError'){
+    const message = Object.values(err.errors).map(val => val.message);
+    error = new ErrorResponse(message, 400);
+  }
+
+
+  res.status(error.statusCode || 500).json({
     success: false,
-    error: err.message || 'Server Error'
+    error: error.message || "Server Error"
   });
 };
 
 module.exports = errorHandler;
-
-
