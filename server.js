@@ -89,7 +89,7 @@ app.use(errorHandler);
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
-  console.log(`App runing on port ${port}`);
+  console.log(`Server Started on port ${port}`);
 });
 
 //@desc  Handle unhandled Rejection
@@ -100,6 +100,13 @@ const server = app.listen(port, () => {
 //     process.exit(1);
 //   });
 // });
+
+
+
+
+
+
+
 
 
 
