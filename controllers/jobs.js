@@ -15,6 +15,7 @@ exports.createJob = asyncHandler(async (req, res, next) => {
   });
 });
 
+
 // @desc          Get all  Jobs
 // @route         GET /api/v1/job/:id
 // @access        Public
