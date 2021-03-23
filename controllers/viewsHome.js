@@ -31,13 +31,16 @@ exports.getHomeJobDetails = async (req, res, next) => {
   });
 };
 
+
+
 // @desc          Get Job listings
 // @route         www.workport.com/about
 // @access        Public
 exports.getHomeAbout = async (req, res, next) => {
-  res, status(200).render("home/about", {});
+  res.status(200).render("home/about");
   next();
 };
+
 
 // @desc          Get Job listings
 // @route         www.workport.com/blog
