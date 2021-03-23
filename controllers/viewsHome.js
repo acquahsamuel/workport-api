@@ -1,8 +1,7 @@
 const Job = require("../models/Job");
-
-
 const express = require("express");
 const router = express.Router();
+
 
 router.all("/*", (req, res, next) => {
   req.app.locals.layout = "home";
@@ -83,7 +82,6 @@ exports.getHomeSingleBlog = async (req, res, next) => {
   next();
 };
 
-// module.exports = router;
 
 module.exports = {
   router,
