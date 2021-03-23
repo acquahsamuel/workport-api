@@ -22,3 +22,5 @@ router.get("/single-blog", getHomeSingleBlog);
 
 module.exports = router;
 
+
+
