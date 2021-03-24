@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
+const showdown = require('showdown');
+// let converter = new showdown.Converter();
+// console.log(converter.makeMarkdown());
+
 router.all("/*", (req, res, next) => {
   req.app.locals.layout = "admin";
   next();
 });
+
 
 // @desc          Delete a single Company
 // @route         www.workport.com/index
@@ -12,7 +17,6 @@ router.all("/*", (req, res, next) => {
 exports.getAdminIndex = async (req, res, next) => {
   res.status(200).render("admin/index");
 };
-
 
 
 // @desc          Delete a single Company
