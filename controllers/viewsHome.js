@@ -97,6 +97,7 @@ exports.getHome404 = asyncHandler(async (req, res, next) => {
     pageTitle: '404',
     path: '/home/error-404',
   });
+  next();
 });
 
 module.exports = {
