@@ -1,6 +1,6 @@
-const Job = require("../models/Job");
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
+const Job = require('../models/Job');
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
 
 // @desc          Create a  Job
 // @route         POST /api/v1/job
@@ -10,8 +10,8 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "success",
-    data: job
+    message: 'success',
+    data: job,
   });
 });
 
@@ -24,8 +24,8 @@ exports.getJobs = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: job.length,
-    message: "success",
-    data: job
+    message: 'success',
+    data: job,
   });
 });
 
@@ -43,11 +43,10 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "success",
-    data: job
+    message: 'success',
+    data: job,
   });
 });
-
 
 // @desc          Update a single Job
 // @route         PUT /api/v1/job/:id
@@ -55,7 +54,7 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 exports.updateJob = asyncHandler(async (req, res, next) => {
   const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true
+    runValidators: true,
   });
 
   if (!job) {
@@ -66,8 +65,8 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: "success",
-    data: job
+    message: 'success',
+    data: job,
   });
 });
 
@@ -86,7 +85,7 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: job.length,
-    message: "success",
-    data: {}
+    message: 'success',
+    data: {},
   });
 });

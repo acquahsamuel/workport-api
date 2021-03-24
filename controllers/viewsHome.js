@@ -3,23 +3,17 @@ const express = require('express');
 const router = express.Router();
 const asyncHandler = require('../middleware/async');
 
-router.all('/*', (req, res, next) => {
-  req.app.locals.layout = 'home';
-  next();
-});
-
 // @desc          Get Job listings
 // @route         www.workport.com/index
 // @access        Public
 exports.getHomeIndex = asyncHandler(async (req, res, next) => {
   const jobs = await Job.find({});
-  res.status(200).render('home/index', {
-    jobs,
+    res.status(200).render('home/index', {
+    pageTitle: 'Homepage',
+    jobs: jobs,
+    path: '/home/index',
   });
-  next();
 });
-
-
 
 // @desc          Get Job listings
 // @route         www.workport.com/job-details
@@ -27,25 +21,30 @@ exports.getHomeIndex = asyncHandler(async (req, res, next) => {
 exports.getHomeJobDetails = asyncHandler(async (req, res, next) => {
   const job = await Job.findById(req.params.id);
   res.status(200).render(`home/job-details`, {
+    pageTitle: 'Job Details',
+    path: '/home/job-details',
     job,
   });
-  next();
 });
 
 // @desc          Get Job listings
 // @route         www.workport.com/about
 // @access        Public
 exports.getHomeAbout = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/about');
-  next();
+  res.status(200).render('home/about', {
+    pageTitle: 'About Us',
+    path: '/home/about',
+  });
 });
 
 // @desc          Get Job listings
 // @route         www.workport.com/blog
 // @access        Public
 exports.getHomeBlog = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/blog');
-  next();
+  res.status(200).render('home/blog', {
+    pageTitle: 'Blog',
+    path: '/home/blog',
+  });
 });
 
 // @desc          Get Job listings
@@ -54,33 +53,50 @@ exports.getHomeBlog = asyncHandler(async (req, res, next) => {
 exports.getHomeJobListing = asyncHandler(async (req, res, next) => {
   const job = await Job.find();
   res.status(200).render(`home/job-listing`, {
+    pageTitle: 'Job Listings',
+    path: '/home/job-listing',
     job,
   });
-  next();
 });
 
 // @desc          Get Job listings
 // @route         www.workport.com/login
 // @access        Public
 exports.getHomeLogin = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/login');
-  next();
+  res.status(200).render('home/login', {
+    pageTitle: 'Account Login',
+    path: '/home/login',
+  });
 });
 
 // @desc          Get Job listings
 // @route         www.workport.com/register
 // @access        Public
 exports.getHomeRegister = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/register');
-  next();
+  res.status(200).render('home/register', {
+    pageTitle: 'Account Registration',
+    path: '/home/register',
+  });
 });
 
 // @desc          Get Job listings
 // @route         www.workport.com/single-blog
 // @access        Public
 exports.getHomeSingleBlog = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/single-blog');
-  next();
+  res.status(200).render('home/single-blog', {
+    pageTitle: 'Single Blog',
+    path: '/home/single-blog',
+  });
+});
+
+// @desc          Get Job listings
+// @route         www.workport.com/single-blog
+// @access        Public
+exports.getHome404 = asyncHandler(async (req, res, next) => {
+  res.status(200).render('home/error-404', {
+    pageTitle: '404',
+    path: '/home/error-404',
+  });
 });
 
 module.exports = {
@@ -93,4 +109,5 @@ module.exports = {
   getHomeLogin: this.getHomeLogin,
   getHomeRegister: this.getHomeRegister,
   getHomeSingleBlog: this.getHomeSingleBlog,
+  getHome404 : this.getHome404
 };
