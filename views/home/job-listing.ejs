@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-    <%- include('layouts/header') -%>
+    <%- include('includes/header') -%>
 
     <body>
         <!-- Preloader Start -->
@@ -17,7 +17,7 @@
         <!-- Preloader Start -->
         <header>
             <!-- Header Start -->
-            <%- include('layouts/navbar') -%>
+            <%- include('includes/navbar') -%>
             <!-- Header End -->
         </header>
         <main>
@@ -237,9 +237,7 @@
 
                                     <!-- single-job-content -->
                                     <% for(let i=0; i < job.length; i++ ) {  %>
-
                                         <div class="single-job-items mb-30">
-
                                             <div class="job-items">
                                                 <div class="company-img">
                                                     <a href="/job-details/<%=job[i].id %>"><img src="/homepage-vendors/img-1 %>" alt=""></a>
@@ -247,8 +245,7 @@
                                                 <div class="job-tittle job-tittle2">
                                                     <!-- <a href="/job-details/<%=job[i].id %>"> -->
                                                         <a href="/job-details/<%=job[i].id %>">
-                                                        <h4><%=job[i].position %>
-                                                        </h4>
+                                                        <h5><%=job[i].position %> </h5>
                                                     </a>
                                                     <ul>
                                                         <li><%=job[i].companyName %>
@@ -313,6 +310,6 @@
 
 
         <!-- footer-bottom area -->
-        <%- include('layouts/footer') -%>
+        <%- include('includes/footer') -%>
     </body>
 </html>

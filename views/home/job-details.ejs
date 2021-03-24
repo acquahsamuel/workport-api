@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     <!-- Header Start -->
-    <%- include('layouts/header') -%>
+    <%- include('includes/header') -%>
     <!-- Header End -->
 
    <body>
@@ -19,9 +19,10 @@
     <!-- Preloader Start -->
     <header>
     <!-- Header Start -->
-        <%- include('layouts/navbar') -%>
+        <%- include('includes/navbar') -%>
     <!-- Header End -->
     </header>
+    
     <main>
 
         <!-- Hero Area Start-->
@@ -66,43 +67,9 @@
                           <!-- job single End -->
                        
                         <div class="job-post-details">
-                            <div class="post-details1 mb-50">
-                                <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Job Description</h4>
-                                </div>
-
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable content of a page when looking at its layout. The pointf of using Lorem Ipsum is that it has ahf mcore or-lgess normal distribution of letters, as opposed to using, Content here content here making it look like readable.</p>           
-                                <!-- <p> <%- job.jobDescription -%> </p> -->
-                               
-                            </div>
-                            
                             <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Required Knowledge, Skills, and Abilities</h4>
-                                </div>
-                               <ul>
-                                   <li>System Software Development</li>
-                                   <li>Mobile Applicationin iOS/Android/Tizen or other platform</li>
-                                   <li>Research and code , libraries, APIs and frameworks</li>
-                                   <li>Strong knowledge on software development life cycle</li>
-                                   <li>Strong problem solving and debugging skills</li>
-                               </ul>
-                            </div>
-                            <div class="post-details2  mb-50">
-                                 <!-- Small Section Tittle -->
-                                <div class="small-section-tittle">
-                                    <h4>Education + Experience</h4>
-                                </div>
-                               <ul>
-                                   <li>3 or more years of professional design experience</li>
-                                   <li>Direct response email experience</li>
-                                   <li>Ecommerce website design experience</li>
-                                   <li>Familiarity with mobile and web apps preferred</li>
-                                   <li>Experience using Invision a plus</li>
-                               </ul>
-                            </div>
+                                <%- job.description %>
+                            </div> 
                         </div>
 
                     </div>
@@ -153,6 +120,6 @@
     
    
      <!-- footer-bottom area -->
-     <%- include('layouts/footer') -%>
+     <%- include('includes/footer') -%>
         
        
