@@ -1,117 +1,137 @@
-const mongoose = require("mongoose");
-const slugify = require("slugify");
+const mongoose = require('mongoose');
+const slugify = require('slugify');
+const marked = require('marked');
+const createDomPurify = require('dompurify');
+const {JSDOM} = require('jsdom');
+const dompurify = createDomPurify(new JSDOM().window);
+
 
 const JobSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
 
   slug: String,
 
   position: {
-    type: String
+    type: String,
   },
 
   companyName: {
-    type: String
+    type: String,
   },
   locationAllowed: {
-    type: String
+    type: String,
   },
 
   jobCategory: {
     type: [String],
     required: true,
     enum: [
-      "Web Development",
-      "Design ",
-      " Product",
-      "Customer Service",
-      "Data",
-      "Sales",
-      "DevOps/SysAdmin",
-      "Business",
-      "Finance",
-      "Legal",
-      "Human Resources",
-      "Medical",
-      "Teaching",
-      "Everything Else"
-    ]
+      'Web Development',
+      'Design ',
+      ' Product',
+      'Customer Service',
+      'Data',
+      'Sales',
+      'DevOps/SysAdmin',
+      'Business',
+      'Finance',
+      'Legal',
+      'Human Resources',
+      'Medical',
+      'Teaching',
+      'Everything Else',
+    ],
   },
 
   jobTags: {
     type: [String],
-    required: true
+    required: true,
   },
   minimumSalary: {
     type: Number,
     minlength: [2],
-    required: true
+    required: true,
   },
 
   maximumSalary: {
     type: Number,
     maxlength: [15],
-    required: true
+    required: true,
   },
   salaryInterval: {
-    type: [String]
+    type: [String],
   },
 
   jobStatus: {
     type: [String],
     required: true,
-    enum: ["Part time", "Full time", "Contract", "Internship"]
+    enum: ['Part time', 'Full time', 'Contract', 'Internship'],
   },
 
   jobDescription: {
     type: String,
-    required: [true, "Please add a description"],
-    required: true
+    required: [true, 'Please add a description'],
+    required: true,
   },
+
+  sanitizedHtml: {
+    type: String,
+    required: true,
+  },
+
   publicationDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   applicationURL: {
     type: String,
     match: [
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-      "Please use a valid URL with HTTP or HTTPS"
-    ]
+      'Please use a valid URL with HTTP or HTTPS',
+    ],
   },
 
   applyToEmail: {
     type: String,
-    required: [true, "Please add an email"],
+    required: [true, 'Please add an email'],
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email"
-    ]
-  }
+      'Please add a valid email',
+    ],
+  },
 });
 
-JobSchema.pre("save", function() {
+JobSchema.pre('save', function() {
   this.populate({
-    path: "jobs",
-    select: "-__v"
+    path: 'jobs',
+    select: '-__v',
   });
 });
 
-JobSchema.pre("save", function(next) {
-  this.slug = slugify(this.position, { lower: true });
+JobSchema.pre('save', function(next) {
+  this.slug = slugify(this.position, {lower: true});
   next();
 });
 
-JobSchema.pre("save", function(next) {
+//@desc     
+JobSchema.pre('save', function(next) {
   this.trimCompanyName = this.companyName;
   this.applicationURL = `https://${this
     .trimCompanyName}.com/application/job/${this.id}`;
   next();
 });
 
-module.exports = mongoose.model("Job", JobSchema);
+//@desc    
+JobSchema.pre('validate', function(next) {
+  if (this.jobDescription) {
+    this.sanitizedHtml = dompurify.sanitize(marked(this.jobDescription));
+  }
+  next();
+});
+
+module.exports = mongoose.model('Job', JobSchema);
 
