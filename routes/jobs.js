@@ -8,8 +8,7 @@ const {
   deleteJob
 } = require("../controllers/jobs");
 const router = express.Router();
-
-
+                                           
 /*
 *
  * @desc  slash( / ) means route which is 

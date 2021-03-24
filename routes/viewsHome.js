@@ -7,7 +7,8 @@ const {
   getHomeJobListing,
   getHomeLogin,
   getHomeRegister,
-  getHomeSingleBlog
+  getHomeSingleBlog,
+  getHome404
 } = require("../controllers/viewsHome");
 const router = express.Router();
 
@@ -19,6 +20,7 @@ router.get("/job-listing", getHomeJobListing);
 router.get("/login", getHomeLogin);
 router.get("/register", getHomeRegister);
 router.get("/single-blog", getHomeSingleBlog);
+router.get("/error-404" , getHome404);
 
 module.exports = router;
 
