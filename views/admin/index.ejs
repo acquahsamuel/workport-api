@@ -1,190 +1,201 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
- <%- include('layouts/header') -%>
+    <%- include('includes/header') -%>
 
-<body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
+    <body>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+            <div class="preloader"> <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
         </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full">
         <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar" data-navbarbg="skin6">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <div class="navbar-header" data-logobg="skin5">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                        <i class="ti-menu ti-close"></i>
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <div class="navbar-brand">
-                        <a href="/" class="logo">
-                            <!-- Logo icon -->
-                            <b class="logo-icon">
-                                <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                <!-- Dark Logo icon -->
+            <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full"> <!-- ============================================================== -->
+            <!-- Topbar header - style you can find in pages.scss -->
+            <!-- ============================================================== -->
+                <header class="topbar" data-navbarbg="skin6"> <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                    <div
+                        class="navbar-header" data-logobg="skin5">
+                        <!-- This is for the sidebar toggle which is visible on mobile only -->
+                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
+                            <i class="ti-menu ti-close"></i>
+                        </a>
+                        <!-- ============================================================== -->
+                        <!-- Logo -->
+                        <!-- ============================================================== -->
+                            <div class="navbar-brand"> <a
+                                href="/" class="logo">
+                                <!-- Logo icon -->
+                                <b class="logo-icon">
+                                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                                    <!-- Dark Logo icon -->
 
-                                <img src="/admin-vendors/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo icon -->
-                                <img src="/admin-vendors/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
-                            </b>
-                            <!--End Logo icon -->
-                            <!-- Logo text -->
-                            <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <img src="/admin-vendors/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="/admin-vendors/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                            </span>
+                                    <img
+                                    src="/admin-vendors/assets/images/logo-icon.png" alt="homepage" class="dark-logo"/> <!-- Light Logo icon -->
+                                    <img src="/admin-vendors/assets/images/logo-light-icon.png" alt="homepage" class="light-logo"/>
+                                </b>
+                                <!--End Logo icon -->
+                                <!-- Logo text -->
+                                <span
+                                    class="logo-text">
+                                    <!-- dark Logo text -->
+                                    <img
+                                    src="/admin-vendors/assets/images/logo-text.png" alt="homepage" class="dark-logo"/>
+                                    <!-- Light Logo text -->
+                                    <img src="/admin-vendors/assets/images/logo-light-text.png" class="light-logo" alt="homepage"/>
+                                </span>
+                            </a>
+                        </div>
+
+                        <!-- Toggle which is visible on mobile only -->
+                        <!-- ============================================================== -->
+                        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="ti-more"></i>
                         </a>
                     </div>
-                   
-                    <!-- Toggle which is visible on mobile only -->
                     <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ti-more"></i>
-                    </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                    <!-- End Logo -->
                     <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto">
+                        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6"> <!-- ============================================================== -->
+                        <!-- toggle and nav items -->
                         <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <div class="d-flex align-items-center">
-                                    <i class="mdi mdi-magnify font-20 mr-1"></i>
-                                    <div class="ml-1 d-none d-sm-block">
-                                        <span>Search</span>
+                            <ul class="navbar-nav float-left mr-auto"> <!-- ============================================================== -->
+                            <!-- Search -->
+                            <!-- ============================================================== -->
+                                <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+                                    <div class="d-flex align-items-center">
+                                        <i class="mdi mdi-magnify font-20 mr-1"></i>
+                                        <div class="ml-1 d-none d-sm-block">
+                                            <span>Search</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                <a class="srh-btn">
-                                    <i class="ti-close"></i>
                                 </a>
-                            </form>
-                        </li>
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/admin-vendors/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <!-- Sidebar scroll-->
-            <%- include('layouts/sidebar') -%>
-            <!-- End Sidebar scroll-->
-        </aside>
-       
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-         
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-5 align-self-center">
-                        <h4 class="page-title">Dashboard</h4>
-                    </div>
-                    <div class="col-7 align-self-center">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
+                                <form class="app-search position-absolute">
+                                    <input type="text" class="form-control" placeholder="Search &amp; enter">
+                                        <a class="srh-btn">
+                                            <i class="ti-close"></i>
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+                            <!-- ============================================================== -->
+                            <!-- Right side toggle and nav items -->
+                            <!-- ============================================================== -->
+                                <ul class="navbar-nav float-right"> <!-- ============================================================== -->
+                                <!-- User profile and search -->
+                                <!-- ============================================================== -->
+                                    <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="/admin-vendors/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                                        <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                            <a class="dropdown-item" href="javascript:void(0)">
+                                                <i class="ti-user m-r-5 m-l-5"></i>
+                                                My Profile</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">
+                                                <i class="ti-wallet m-r-5 m-l-5"></i>
+                                                My Balance</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">
+                                                <i class="ti-email m-r-5 m-l-5"></i>
+                                                Inbox</a>
+                                        </div>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         
-            
-            <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Email campaign chart -->
-                <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title m-b-5"> Listing Credit  </h5>
-                                <h3 class="font-light"> 1 </h3>
-                                <div class="m-t-20 text-center">
-                                    <div id="earnings"></div>
+                                    <!-- ============================================================== -->
+                                <!-- User profile and search -->
+                                    <!-- ============================================================== -->
+                                </ul>
+                            </div>
+                        </nav>
+                    </header>
+
+
+                    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+                    <!-- ============================================================== -->
+                    <aside
+                        class="left-sidebar" data-sidebarbg="skin5">
+                        <!-- Sidebar scroll-->
+                        <%- include('includes/sidebar') -%>
+                        <!-- End Sidebar scroll-->
+                    </aside>
+
+                    <!-- ============================================================== -->
+                    <!-- Page wrapper  -->
+                    <!-- ============================================================== -->
+                        <div class="page-wrapper"> <div class="page-breadcrumb">
+                            <div class="row">
+                                <div class="col-5 align-self-center">
+                                    <h4 class="page-title">Dashboard</h4>
+                                </div>
+                                <div class="col-7 align-self-center">
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item">
+                                                    <a href="#">Home</a>
+                                                </li>
+                                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title m-b-0"> My Job listings </h4>
-                                <h2 class="font-light">1 <span class="font-16 text-success font-medium">+23%</span></h2>
-                                <div class="m-t-30">
-                                    <div class="row text-center">
-                                        <div class="col-6 border-right">
-                                            <h4 class="m-b-0"> 1 </h4>
-                                            <span class="font-14 text-muted">New Users</span>
+
+                        <div class="container-fluid">
+                            <!-- ============================================================== -->
+                            <!-- Email campaign chart -->
+                            <!-- ============================================================== -->
+                                <div class="row"> <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title m-b-5">
+                                                Listing Credit
+                                            </h5>
+                                            <h3 class="font-light">
+                                                1
+                                            </h3>
+                                            <div class="m-t-20 text-center">
+                                                <div id="earnings"></div>
+                                            </div>
                                         </div>
-                                        <div class="col-6">
-                                            <h4 class="m-b-0"> 2 </h4>
-                                            <span class="font-14 text-muted">Repeat Users</span>
+                                    </div>
+
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title m-b-0">
+                                                My Job listings
+                                            </h4>
+                                            <h2 class="font-light">1
+                                                <span class="font-16 text-success font-medium">+23%</span>
+                                            </h2>
+                                            <div class="m-t-30">
+                                                <div class="row text-center">
+                                                    <div class="col-6 border-right">
+                                                        <h4 class="m-b-0">
+                                                            1
+                                                        </h4>
+                                                        <span class="font-14 text-muted">New Users</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <h4 class="m-b-0">
+                                                            2
+                                                        </h4>
+                                                        <span class="font-14 text-muted">Repeat Users</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>                        
-                    </div>
-                </div>
-                
-                <!-- ============================================================== -->
-            </div>
-        
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <%- include('layouts/footer') -%>
+
+                            <!-- ============================================================== -->
+                        </div>
+
+                        <!-- footer -->
+                        <!-- ============================================================== -->
+                        <%- include('includes/footer') -%>

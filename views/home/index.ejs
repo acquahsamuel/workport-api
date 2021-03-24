@@ -60,47 +60,49 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row justify-content-center">
+                    
+                    <% if (jobs.length > 0) { %>
                     <div class="col-xl-10">
                         <!-- single-job-content -->       
-                            <% for(let i=0; i< jobs.length; i++ ) {  %>
-                            <!-- <% jobs.forEach(job => { %> -->
+                            <% for (let job of jobs) { %>
                             <div class="single-job-items mb-30">
                             <div class="job-items">
                                 <div class="company-img">
-                                    <a href="/job-details/<%=jobs[i].id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
+                                    <a href="/job-details/<%=job.id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="/job-details/<%=jobs[i].id %>"><h5> <%=jobs[i].position %></h5></a>
+                                    <a href="/job-details/<%=job.id %>"><h5> <%=job.position %></h5></a>
                                     <ul>
                                         <!-- <li>Creative Agency</li> -->
-                                           <li> <%=jobs[i].companyName %> </li>
-                                        <li><i class="fas fa-map-marker-alt"></i> <%= jobs[i].locationAllowed %>  </li>
-                                        <li>$<%= jobs[i].minimumSalary %> -  $<%= jobs[i].maximumSalary %></li>
+                                           <li> <%=job.companyName %> </li>
+                                        <li><i class="fas fa-map-marker-alt"></i> <%= job.locationAllowed %>  </li>
+                                        <li>$<%= job.minimumSalary %> -  $<%= job.maximumSalary %></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="items-link f-right">
                                 <!-- <a href="/job-details">Full Time</a> -->
-                                <a href="/job-details/<%=jobs[i].id %>"> Apply</a>
-                                <span> <%= jobs[i].publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
+                                <a href="/job-details/<%=job.id %>"> Apply</a>
+                                <span> <%= job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
                             </div>
                         </div>  
-                            <!-- <% }) %> -->
                             <% } %>
                         </a>
-
                     </div>
                 </div>
+
+                <% } else { %>
+                    <h1> No Jobs Posted  </h1>
+                <% } %>
             </div>
         </section>
-        <!-- Featured_job_end -->
-
-
-
-
+        <!-- Featured_job_end -->                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                  
         <!-- How  Apply Process Start-->
-        <%- include('includes/apply-process') %>
+        <%- include('includes/apply-process') %>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 - include('includes/apply-process') %>
     
 
         <div class="testimonial-area testimonial-padding">
