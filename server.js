@@ -84,16 +84,22 @@ app.use('/admin', admin);
 //@des ErrorHandler
 app.use(errorHandler);
 
+//@des Rewrite route to display 404 page 
+const getHome404ErrorPage = require('./controllers/viewsHome');
+app.use(getHome404ErrorPage.getHome404);
+
+
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`Server Started on port ${port}`);
 });
 
+
 //@desc  Handle unhandled Rejection
-// process.on ('unhandledRejection', err => {
-//   console.log ('UNHANDLED REJECTION Shutting down');
-//   console.log (err.name, err.message);
-//   server.close (() => {
-//     process.exit (1);
-//   });
-// });
+process.on ('unhandledRejection', err => {
+  console.log ('UNHANDLED REJECTION Shutting down');
+  console.log (err.name, err.message);
+  // server.close (() => {
+  //   process.exit (1);
+  // });
+});
