@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-
-    <%- include('includes/header') -%>
-
+<%- include('includes/header') -%>
 
     <body>
         <!-- ============================================================== -->
         <!-- Preloader - style you can find in spinners.css -->
         <!-- ============================================================== -->
-            <div class="preloader"> <div class="lds-ripple">
+        <div class="preloader">
+            <div class="lds-ripple">
                 <div class="lds-pos"></div>
                 <div class="lds-pos"></div>
             </div>
@@ -16,38 +15,35 @@
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
-            <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full" data-boxed-layout="full"> <!-- ============================================================== -->
+        <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
+            data-boxed-layout="full">
+            <!-- ============================================================== -->
             <!-- Topbar header - style you can find in pages.scss -->
             <!-- ============================================================== -->
-                <header class="topbar" data-navbarbg="skin6"> <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                    <div
-                        class="navbar-header" data-logobg="skin5">
+            <header class="topbar" data-navbarbg="skin6">
+                <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                    <div class="navbar-header" data-logobg="skin5">
                         <!-- This is for the sidebar toggle which is visible on mobile only -->
-                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                            <i class="ti-menu ti-close"></i>
-                        </a>
+                        <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"> <i
+                                class="ti-menu ti-close"></i> </a>
                         <!-- ============================================================== -->
                         <!-- Logo -->
                         <!-- ============================================================== -->
-                            <div class="navbar-brand"> <a
-                                href="/" class="logo">
-                                <!-- Logo icon -->
-                                <b class="logo-icon">
-                                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                    <!-- Dark Logo icon -->
-                                    <img
-                                    src="/admin-vendors/assets/images/logo-icon.png" alt="homepage" class="dark-logo"/> <!-- Light Logo icon -->
-                                    <img src="/admin-vendors/assets/images/logo-light-icon.png" alt="homepage" class="light-logo"/>
+                        <div class="navbar-brand">
+                            <a href="/" class="logo">
+                                <!-- Logo icon --><b class="logo-icon">
+                                    <!--You can put here icon as well// <i class="wi wi-sunset"></i> //-->
+                                    <!-- Dark Logo icon --> <img src="/admin-vendors/assets/images/logo-icon.png"
+                                        alt="homepage" class="dark-logo" /> <!-- Light Logo icon --> <img
+                                        src="/admin-vendors/assets/images/logo-light-icon.png" alt="homepage"
+                                        class="light-logo" />
                                 </b>
                                 <!--End Logo icon -->
-                                <!-- Logo text -->
-                                <span
-                                    class="logo-text">
-                                    <!-- dark Logo text -->
-                                    <img
-                                    src="/admin-vendors/assets/images/logo-text.png" alt="homepage" class="dark-logo"/>
-                                    <!-- Light Logo text -->
-                                    <img src="/admin-vendors/assets/images/logo-light-text.png" class="light-logo" alt="homepage"/>
+                                <!-- Logo text --><span class="logo-text">
+                                    <!-- dark Logo text --> <img src="/admin-vendors/assets/images/logo-text.png"
+                                        alt="homepage" class="dark-logo" /> <!-- Light Logo text --> <img
+                                        src="/admin-vendors/assets/images/logo-light-text.png" class="light-logo"
+                                        alt="homepage" />
                                 </span>
                             </a>
                         </div>
@@ -57,94 +53,91 @@
                         <!-- ============================================================== -->
                         <!-- Toggle which is visible on mobile only -->
                         <!-- ============================================================== -->
-                            <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="ti-more"></i>
-                        </a>
+                        <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                            data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="ti-more"></i> </a>
                     </div>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
                     <!-- ============================================================== -->
-                        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6"> <!-- ============================================================== -->
+                    <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
+                        <!-- ============================================================== -->
                         <!-- toggle and nav items -->
                         <!-- ============================================================== -->
-                            <ul class="navbar-nav float-left mr-auto"> <!-- ============================================================== -->
+                        <ul class="navbar-nav float-left mr-auto">
+                            <!-- ============================================================== -->
                             <!-- Search -->
                             <!-- ============================================================== -->
-                                <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                    <div class="d-flex align-items-center">
-                                        <i class="mdi mdi-magnify font-20 mr-1"></i>
-                                        <div class="ml-1 d-none d-sm-block">
-                                            <span>Search</span>
-                                        </div>
+                            <li class="nav-item search-box">
+                                <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+                                    <div class="d-flex align-items-center"> <i class="mdi mdi-magnify font-20 mr-1"></i>
+                                        <div class="ml-1 d-none d-sm-block"> <span>Search</span> </div>
                                     </div>
                                 </a>
-                                <form class="app-search position-absolute">
-                                    <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                    <a class="srh-btn">
-                                        <i class="ti-close"></i>
-                                    </a>
+                                <form class="app-search position-absolute"> <input type="text" class="form-control"
+                                        placeholder="Search &amp; enter">
+                                    <a class="srh-btn"> <i class="ti-close"></i> </a>
                                 </form>
                             </li>
                         </ul>
                         <!-- ============================================================== -->
                         <!-- Right side toggle and nav items -->
                         <!-- ============================================================== -->
-                            <ul class="navbar-nav float-right"> <!-- ============================================================== -->
+                        <ul class="navbar-nav float-right">
+                            <!-- ============================================================== -->
                             <!-- User profile and search -->
                             <!-- ============================================================== -->
-                                <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/admin-vendors/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                        src="/admin-vendors/images/users/1.jpg" alt="user" class="rounded-circle"
+                                        width="31"></a>
                                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-user m-r-5 m-l-5"></i>
+                                    <a class="dropdown-item" href="javascript:void(0)"> <i
+                                            class="ti-user m-r-5 m-l-5"></i>
                                         My Profile</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-wallet m-r-5 m-l-5"></i>
-                                        My Balance</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-email m-r-5 m-l-5"></i>
-                                        Inbox</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"> <i
+                                            class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                                    <a class="dropdown-item" href="javascript:void(0)"> <i
+                                            class="ti-email m-r-5 m-l-5"></i>
+                                        Inbox </a>
                                 </div>
                             </li>
                             <!-- ============================================================== -->
-                        <!-- User profile and search -->
+                            <!-- User profile and search -->
                             <!-- ============================================================== -->
                         </ul>
                     </div>
                 </nav>
             </header>
-
-            <!-- Left Sidebar - style you can find in sidebar.scss  -->
+            <!-- Left Sidebar - style you can find in sidebar.scss -->
             <!-- ============================================================== -->
-            <aside
-                class="left-sidebar" data-sidebarbg="skin5">
+            <aside class="left-sidebar" data-sidebarbg="skin5">
                 <!-- Sidebar scroll-->
-                <div
-                    class="scroll-sidebar">
+                <div class="scroll-sidebar">
                     <!-- Sidebar navigation-->
                     <%- include('includes/sidebar') -%>
-                    <!-- End Sidebar navigation -->
+                        <!-- End Sidebar navigation -->
                 </div>
                 <!-- End Sidebar scroll-->
             </aside>
-
-            <!-- Page wrapper  -->
+            <!-- Page wrapper -->
             <!-- ============================================================== -->
             <div class="page-wrapper">
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                    <div class="page-breadcrumb"> <div class="row">
+                <div class="page-breadcrumb">
+                    <div class="row">
                         <div class="col-5 align-self-center">
-                            <h4 class="page-title">
-                                Post Jobs
-                            </h4>
+                            <h4 class="page-title"> Post Jobs </h4>
                         </div>
                         <div class="col-7 align-self-center">
                             <div class="d-flex align-items-center justify-content-end">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="#">Home</a>
-                                        </li>
+                                        <li class="breadcrumb-item"> <a href="#">Home</a> </li>
                                         <!-- <li class="breadcrumb-item active" aria-current="page">Basic Table</li> -->
                                     </ol>
                                 </nav>
@@ -153,195 +146,115 @@
                     </div>
                 </div>
                 <!-- ============================================================== -->
-                <!-- Container fluid  -->
+                <!-- Container fluid -->
                 <!-- ============================================================== -->
-                    <div class="container-fluid"> <div class="row">
+                <div class="container-fluid">
+                    <div class="row">
                         <div class="col-12">
                             <div class="card card-body">
-
-                                <form class="form-horizontal m-t-30">
-
-                                    <div class="form-group">
-                                        <label>
-                                            Position
-                                        </label>
-                                        <input type="text" class="form-control" value="">
-                                        <small>eg. Web Developer
-                                        </small>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
-                                            Company name
-                                        </label>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="">
-                                        <small>eg. Company.inc
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>
-                                            Location Allowed
-                                        </label>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="">
-                                        <small>eg. Anywhere
-                                        </small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>
-                                            Industry/ job tags
-                                        </label>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="">
-                                        <small>
-                                            eg. Node.js, Angular
-                                        </small>
-                                    </div>
+                                <form class="form-horizontal m-t-30" action="/admin/post-job/" method="POST">
+                                    <div class="form-group"> <label> Position </label> <input type="text"
+                                            class="form-control" value=""> <small>eg. Web Developer </small> </div>
 
 
+                                    <div class="form-group"> <label> Company name </label> <input type="email"
+                                            id="email" name="email" class="form-control" placeholder=""> <small>eg.
+                                            Company.inc </small> </div>
+
+
+                                    <div class="form-group"> <label> Location Allowed </label> <input type="email"
+                                            id="email" name="email" class="form-control" placeholder=""> <small>eg.
+                                            Anywhere </small>
+                                        
+                                        </div>
+
+
+                                    <div class="form-group"> <label> Industry/ job tags </label> <input type="email"
+                                            id="email" name="email" class="form-control" placeholder=""> <small> eg.
+                                            Node.js, Angular </small> 
+                                    
+                                   </div>
+                                    
                                     <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCity">
-                                                Minimum salary
-                                            </label>
-                                            <input type="text" class="form-control" id="inputCity">
-                                            <small>
-                                                eg. 1,000
-                                            </small>
+                                        <div class="form-group col-md-4"> <label for="inputCity"> Minimum salary
+                                            </label> <input type="text" class="form-control" id="inputCity"> <small> eg.
+                                                1, 0 </small>
+                                         </div>
+                                         
+                                        <div class="form-group col-md-4"> <label for="inputZip"> Maximum salary </label>
+                                            <input type="text" class="form-control" id="inputZip"> <small> eg. 5,
+                                                000 </small>
                                         </div>
 
-                                        <div class="form-group col-md-4">
-                                            <label for="inputZip">
-                                                Maximum salary
-                                            </label>
-                                            <input type="text" class="form-control" id="inputZip">
-                                            <small>
-                                                eg. 5,000
-                                            </small>
+                                        <div class="form-group col-md-4"> <label for="inputState"> Salary interval
+                                            </label> <select id="inputState" class="form-control">
+                                                <option> Annual </option>
+                                                <option> Hourly </option>
+                                            </select> </div>
+                                    </div>
+
+
+                                    <div class="form-group"> <label> Job description * <span class="text-danger"> Uses
+                                                markdown format - click the ? icon for a guide </span> </label>
+                                        <textarea name="editor-txt" id="default" cols=" 30 " rows="10 "></textarea>
+                                    </div>
+
+
+                                    <div class="alert alert-danger ">
+                                        One of the following is required. This is the email or link where we will send
+                                        applicants. </div> <br>
+
+
+                                    <div class="form-group "> <label> Application URL <span class="text-danger "></span>
+                                            * </label> <input type="text " id=" " name=" " class="form-control "
+                                            placeholder=" "> <small> https: // mycompany.com/application/job/1
+                                        </small> </div>
+
+
+                                    <div class="form-group "> <label> Apply-to email </label> <input type="text " id=" "
+                                            name=" " class="form-control " placeholder=" "> <small> eg.
+                                            companyemail.gmail.com </small> </div> <br>
+                                    <div class="alert alert-danger "> Company details </div> <br>
+
+
+                                    <div class="form-group "> <label> Upload company logo </label>
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend "> <span class="input-group-text "> Upload
+                                                </span> </div>
+                                            <div class="custom-file "> <input type="file " class="custom-file-input "
+                                                    id="inputGroupFile01 "> <label class="custom-file-label "
+                                                    for="inputGroupFile01 "> Choose file </label> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row ">
+                                        <div class="form-group col-md-4 "> <label for="inputCity "> Company Twitter
+                                            </label> <input type="text " class="form-control " id="inputCity "> </div>
+
+                                        <div class="form-group col-md-4 "> <label for="inputZip "> Company contact email
+                                            </label> <input type="text " class="form-control " id="inputZip "> </div>
+                                    </div>
+
+                                    <div class="form-row ">
+                                        <div class="form-group col-md-4 "> <label for="inputCity "> PO # / invoice notes
+                                            </label> <input type="text " class="form-control " id="inputCity ">
                                         </div>
 
-                                        <div class="form-group col-md-4">
-                                            <label for="inputState">
-                                                Salary interval
-                                            </label>
-                                            <select id="inputState" class="form-control">
-                                                <option>
-                                                    Annual
-                                                </option>
-                                                <option>
-                                                    Hourly
-                                                </option>
-                                            </select>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>
-                                            Job description *
-                                            <span class="text-danger">
-                                                Uses markdown format - click the ? icon for a guide
-                                            </span>
-                                        </label>
-
-                                         <!-- <textarea id="mytextarea">Hello, World!</textarea> -->
-                                        <textarea class="form-control" name="jobDescription" id="mytextarea" rows="7"></textarea>
-                        
-                                    </div>
-
-                                    <div class="alert alert-danger">
-                                        One of the following is required. This is the email or link where we will send applicants.
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label>
-                                            Application URL
-                                            <span class="text-danger"></span>
-                                            *
-                                        </label>
-                                        <input type="text" id="" name="" class="form-control" placeholder="">
-                                        <small>
-                                            https://mycompany.com/application/job/1
-                                        </small>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label>
-                                            Apply-to email
-                                        </label>
-                                        <input type="text" id="" name="" class="form-control" placeholder="">
-                                        <small>
-                                            eg. companyemail.gmail.com
-                                        </small>
-                                    </div>
-
-                                    <br>
-                                    <div class="alert alert-danger">
-                                        Company details
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label>
-                                            Upload company logo
-                                        </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    Upload
-                                                </span>
-                                            </div>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                <label class="custom-file-label" for="inputGroupFile01">
-                                                    Choose file
-                                                </label>
-                                            </div>
+                                        <div class="form-group col-md-4 "> <label for="inputZip "> Accounting email
+                                            </label> <input type="text " class="form-control " id="inputZip ">
                                         </div>
                                     </div>
 
 
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCity">
-                                                Company Twitter
-                                            </label>
-                                            <input type="text" class="form-control" id="inputCity">
-                                        </div>
-
-
-                                        <div class="form-group col-md-4">
-                                            <label for="inputZip">
-                                                Company contact email
-                                            </label>
-                                            <input type="text" class="form-control" id="inputZip">
-                                        </div>
+                                    <div class="form-group ">
+                                        <div class="col-sm-12 "> <button type="submit " class="btn btn-danger "> Post
+                                                your Job </button> </div>
                                     </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCity">
-                                                PO # / invoice notes
-                                            </label>
-                                            <input type="text" class="form-control" id="inputCity">
-                                        </div>
-
-                                        <div class="form-group col-md-4">
-                                            <label for="inputZip">
-                                                Accounting email
-                                            </label>
-                                            <input type="text" class="form-control" id="inputZip">
-                                        </div>
-                                    </div>
-
-
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
                 <!-- ============================================================== -->
                 <!-- footer -->
                 <%- include('includes/footer') -%>
