@@ -19,13 +19,13 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 // @route         GET /api/v1/job/:id
 // @access        Public
 exports.getJobs = asyncHandler(async (req, res, next) => {
-  const job = await Job.find({});
+  const jobs = await Job.find({});
 
   res.status(200).json({
     success: true,
     count: job.length,
     message: 'success',
-    data: job,
+    data: jobs,
   });
 });
 
