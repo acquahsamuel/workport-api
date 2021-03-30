@@ -12,9 +12,6 @@ exports.register = asyncHandler(async (req, res, next) => {
     password,
     role,
   });
-
-
-
 });
 
 exports.login = (req, res, next) => {
