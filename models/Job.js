@@ -1,10 +1,5 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
-const marked = require('marked');
-const createDomPurify = require('dompurify');
-const {JSDOM} = require('jsdom');
-const dompurify = createDomPurify(new JSDOM().window);
-
 
 const JobSchema = new mongoose.Schema({
   name: {
@@ -77,11 +72,6 @@ const JobSchema = new mongoose.Schema({
     required: true,
   },
 
-  sanitizedHtml: {
-    type: String,
-    required: true,
-  },
-
   publicationDate: {
     type: Date,
     default: Date.now,
@@ -105,33 +95,9 @@ const JobSchema = new mongoose.Schema({
   },
 });
 
-JobSchema.pre('save', function() {
-  this.populate({
-    path: 'jobs',
-    select: '-__v',
-  });
-});
-
 JobSchema.pre('save', function(next) {
   this.slug = slugify(this.position, {lower: true});
   next();
 });
 
-//@desc     
-JobSchema.pre('save', function(next) {
-  this.trimCompanyName = this.companyName;
-  this.applicationURL = `https://${this
-    .trimCompanyName}.com/application/job/${this.id}`;
-  next();
-});
-
-//@desc    
-JobSchema.pre('validate', function(next) {
-  if (this.jobDescription) {
-    this.sanitizedHtml = dompurify.sanitize(marked(this.jobDescription));
-  }
-  next();
-});
-
 module.exports = mongoose.model('Job', JobSchema);
-
