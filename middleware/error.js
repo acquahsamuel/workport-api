@@ -6,7 +6,6 @@ const errorHandler = (err, req, res, next) => {
 
   //Log to console for dev
   // console.log(err.stack.red);
-  console.log(err);
 
 
   //@Error          CastError 
@@ -35,3 +34,5 @@ const errorHandler = (err, req, res, next) => {
 };
 
 module.exports = errorHandler;
+
+
