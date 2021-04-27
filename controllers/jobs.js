@@ -16,17 +16,18 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 });
 
 // @desc          Get all  Jobs
-// @route         GET /api/v1/job/:id
+// @route         GET /api/v1/jobs
 // @access        Public
 exports.getJobs = asyncHandler(async (req, res, next) => {
+  // await res.status(200).json(res.advancedResults);
   const jobs = await Job.find({});
+  console.log(req.query);
 
   res.status(200).json({
     success: true,
-    count: job.length,
-    message: 'success',
-    data: jobs,
-  });
+    message : 'success',
+    data : jobs
+  })
 });
 
 // @desc          Get a single Job

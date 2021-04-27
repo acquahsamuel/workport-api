@@ -61,7 +61,7 @@ exports.updateCompany = asyncHandler(async (req, res, next) => {
 
   if (!company) {
     return next(
-      new ErrorResponse(` Company not found with id of ${req.parms.id}`, 404)
+      new ErrorResponse(`Company not found with id of ${req.parms.id}`, 404)
     );
   }
 

@@ -10,7 +10,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'User Created',
+    message: 'data',
     // data: user
   });
 });
@@ -19,11 +19,11 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 // @route         GET /api/v1/user/:id
 // @access        Public
 exports.getUsers = asyncHandler(async (req, res, next) => {
-  const users = User.find();
+  const users = await User.find();
 
   res.status(200).json({
     success: true,
-    message: 'Single User',
+    message: 'data',
     data: users,
   });
 });
@@ -40,7 +40,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'Single User',
+    message: 'data',
     data: user,
   });
 });
@@ -60,7 +60,7 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'update user',
+    message: 'data',
     data: user,
   });
 });
@@ -69,11 +69,11 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
 // @route         DELETE /api/v1/user/:id
 // @access        Private
 exports.deleteUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findByIdAndDelete(req.params.id);
+   await User.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success: true,
-    message: 'delete user',
+    message: 'data',
     data : {}
   });
 });
