@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const color = require('colors');
 
 const connectDB = async () => {
-  const conn = await mongoose.connect(process.env.MONGO_URI_PROD, {
+  const conn = await mongoose.connect(process.env.MONGO_URI_DEV, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
