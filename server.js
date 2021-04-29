@@ -15,7 +15,7 @@ const errorHandler = require('./middleware/error');
 const mongoSanitize = require('express-mongo-sanitize');
 const app = express();
 
-dotenv.config({path: './config/config.env'});
+dotenv.config({path: './config.env'});
 connectDB();
 
 //@desc      Mounting Routes
@@ -75,6 +75,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 //@desc  Mount routers_API
 app.use('/api/v1/jobs', jobs);
 app.use('/api/v1/users', users);
@@ -90,6 +91,7 @@ app.use(errorHandler);
 //@des Rewrite route to display 404 page
 const getHome404ErrorPage = require('./controllers/viewsHome');
 app.use(getHome404ErrorPage.getHome404);
+
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
