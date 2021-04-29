@@ -7,10 +7,11 @@ const asyncHandler = require("../middleware/async");
 // @access        Private
 exports.createCompany = asyncHandler(async (req, res, next) => {
   const company = await Company.create(req.body);
+
+  
   res.status(201).json({
     message: "success",
     success: true,
-    count: company.length,
     data: company
   });
 });

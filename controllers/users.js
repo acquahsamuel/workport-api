@@ -10,7 +10,7 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'data',
+    message: user
     // data: user
   });
 });

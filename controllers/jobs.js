@@ -21,11 +21,11 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 exports.getJobs = asyncHandler(async (req, res, next) => {
   // await res.status(200).json(res.advancedResults);
   const jobs = await Job.find({});
-  console.log(req.query);
-
+ 
   res.status(200).json({
     success: true,
     message : 'success',
+    count : jobs.length,
     data : jobs
   })
 });
