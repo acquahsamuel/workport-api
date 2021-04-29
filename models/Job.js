@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const slugify = require('slugify');
+const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const JobSchema = new mongoose.Schema({
   name: {
@@ -13,9 +13,6 @@ const JobSchema = new mongoose.Schema({
     type: String,
   },
 
-  companyName: {
-    type: String,
-  },
   locationAllowed: {
     type: String,
   },
@@ -24,30 +21,30 @@ const JobSchema = new mongoose.Schema({
     type: [String],
     required: true,
     enum: [
-      'Web Development',
-      'Design ',
-      ' Product',
-      'Customer Service',
-      'Data',
-      'Sales',
-      'DevOps/SysAdmin',
-      'Business',
-      'Finance',
-      'Legal',
-      'Human Resources',
-      'Medical',
-      'Teaching',
-      'Everything Else',
+      "Web Development",
+      "Design ",
+      " Product",
+      "Customer Service",
+      "Data",
+      "Sales",
+      "DevOps/SysAdmin",
+      "Business",
+      "Finance",
+      "Legal",
+      "Human Resources",
+      "Medical",
+      "Teaching",
+      "Everything Else",
     ],
   },
 
   jobTags: {
     type: [String],
-    required: true,
+    required: [true, "Please add jobs tags"],
   },
   minimumSalary: {
     type: Number,
-    minlength: [2],
+    minlength: [5],
     required: true,
   },
 
@@ -63,12 +60,12 @@ const JobSchema = new mongoose.Schema({
   jobStatus: {
     type: [String],
     required: true,
-    enum: ['Part time', 'Full time', 'Contract', 'Internship'],
+    enum: ["Part time", "Full time", "Contract", "Internship"],
   },
 
   jobDescription: {
     type: String,
-    required: [true, 'Please add a description'],
+    required: [true, "Please add a description"],
     required: true,
   },
 
@@ -80,24 +77,24 @@ const JobSchema = new mongoose.Schema({
     type: String,
     match: [
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-      'Please use a valid URL with HTTP or HTTPS',
+      "Please use a valid URL with HTTP or HTTPS",
     ],
   },
 
   applyToEmail: {
     type: String,
-    required: [true, 'Please add an email'],
+    required: [true, "Please add an email"],
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please add a valid email',
+      "Please add a valid email",
     ],
   },
 });
 
-JobSchema.pre('save', function(next) {
-  this.slug = slugify(this.position, {lower: true});
+JobSchema.pre("save", function (next) {
+  this.slug = slugify(this.position, { lower: true });
   next();
 });
 
-module.exports = mongoose.model('Job', JobSchema);
+module.exports = mongoose.model("Job", JobSchema);
