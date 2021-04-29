@@ -5,7 +5,7 @@ const Job = require("./models/Job");
 // const Company = require("./models/Company");
 
 // Connect to DB
-dotenv.config({ path: "./config/config.env" });
+dotenv.config({ path: "./config.env" });
 connectDB();
 
 const jobs = JSON.parse(
