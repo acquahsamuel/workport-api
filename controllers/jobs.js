@@ -10,7 +10,6 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'success',
     data: job,
   });
 });
@@ -19,15 +18,7 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 // @route         GET /api/v1/jobs
 // @access        Public
 exports.getJobs = asyncHandler(async (req, res, next) => {
-  // await res.status(200).json(res.advancedResults);
-  const jobs = await Job.find({});
- 
-  res.status(200).json({
-    success: true,
-    message : 'success',
-    count : jobs.length,
-    data : jobs
-  })
+  await res.status(200).json(res.advancedResults);  
 });
 
 // @desc          Get a single Job
@@ -44,7 +35,6 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'success',
     data: job,
   });
 });
@@ -66,7 +56,6 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'success',
     data: job,
   });
 });
@@ -75,7 +64,7 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
 // @route         DELETE /api/v1/job/:id
 // @access        Private
 exports.deleteJob = asyncHandler(async (req, res, next) => {
-  const job = await Job.findByIdAndDelete(req.params.id);
+  const job = await Job.findById(req.params.id);
 
   if (!job) {
     return next(
@@ -83,10 +72,10 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
     );
   }
 
+  job.remove();
   res.status(200).json({
     success: true,
     count: job.length,
-    message: 'success',
     data: {},
   });
 });
