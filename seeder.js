@@ -8,7 +8,6 @@ const Job = require("./models/Job");
 dotenv.config({ path: "./config.env" });
 connectDB();
 
-
 const jobs = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/jobs.json`, "utf-8")
 );
@@ -16,7 +15,6 @@ const jobs = JSON.parse(
 // const companies = JSON.parse(
 //   fs.readFileSync(`${__dirname}/_data/compaies.json`, "utf-8")
 // );
-
 
 const importData = async () => {
   try {
@@ -44,4 +42,3 @@ if (process.argv[2] === "-i") {
 } else if (process.argv[2] === "-d") {
   deleteData();
 }
-
