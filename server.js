@@ -18,14 +18,9 @@ const app = express();
 dotenv.config({ path: "./config.env" });
 connectDB();
 
-//@desc      Mounting Routes
-const jobs = require("./routes/jobs");
-const users = require("./routes/users");
-const companies = require("./routes/companies");
-
 //@des     Mounting pages routes
-const home = require("./routes/viewsHome");
-const admin = require("./routes/viewsAdmin");
+const home = require("./routes/home-v");
+const admin = require("./routes/admin-v");
 
 // Body parser
 app.use(express.json());
@@ -73,11 +68,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-//@desc  Mount routers_API
-app.use("/api/v1/jobs", jobs);
-app.use("/api/v1/users", users);
-app.use("/api/v1/companies", companies);
-
 //@desc  Rendering_pages
 app.use("/", home);
 app.use("/admin", admin);
@@ -86,7 +76,7 @@ app.use("/admin", admin);
 app.use(errorHandler);
 
 //@des Rewrite route to display 404 page
-const getHome404ErrorPage = require("./controllers/viewsHome");
+const getHome404ErrorPage = require("./controllers/home");
 app.use(getHome404ErrorPage.getHome404);
 
 const port = process.env.PORT || 5000;
