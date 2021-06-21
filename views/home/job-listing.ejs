@@ -242,10 +242,12 @@
                                                 <div class="company-img">
                                                     <a href="/job-details/<%=job[i].id %>"><img src="/homepage-vendors/img-1 %>" alt=""></a>
                                                 </div>
-                                                <div class="job-tittle job-tittle2">
+                                                <div
+                                                    class="job-tittle job-tittle2">
                                                     <!-- <a href="/job-details/<%=job[i].id %>"> -->
-                                                        <a href="/job-details/<%=job[i].id %>">
-                                                        <h5><%=job[i].position %> </h5>
+                                                    <a href="/job-details/<%=job[i].id %>">
+                                                        <h5><%=job[i].position %>
+                                                        </h5>
                                                     </a>
                                                     <ul>
                                                         <li><%=job[i].companyName %>
@@ -262,7 +264,9 @@
                                             </div>
                                             <div class="items-link items-link2 f-right">
                                                 <a href="/job-details/<%=job[i].id %>">Full Time</a>
-                                                <span> <%=job[i].publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %>  </span>
+                                                <span>
+                                                    <%=job[i].publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                                </span>
                                             </div>
                                         </div>
                                     <% } %>

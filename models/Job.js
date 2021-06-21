@@ -105,10 +105,9 @@ JobSchema.pre("save", function (next) {
 
 //Cascade delete jobs when a compmany is deleted
 JobSchema.pre("remove", async function (next) {
-  await this.model("Company").deleteMany({ company: this_id }); 
+  await this.model("Company").deleteMany({ company: this_id });
   next();
 });
-
 
 // Reverse populate with virtuals
 JobSchema.virtual("company", {
