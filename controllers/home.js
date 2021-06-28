@@ -1,28 +1,31 @@
-const Job = require('../models/Job');
-const express = require('express');
+const Job = require("../models/Job");
+const express = require("express");
 const router = express.Router();
-const asyncHandler = require('../middleware/async');
+const asyncHandler = require("../middleware/async");
 
 // @desc          Get Job listings
 // @route         www.workport.com/index
 // @access        Public
 exports.getHomeIndex = asyncHandler(async (req, res, next) => {
   const jobs = await Job.find({});
-    res.status(200).render('home/index', {
-    pageTitle: 'Homepage',
+  res.status(200).render("home/index", {
+    pageTitle: "Homepage",
     jobs: jobs,
-    path: '/home/index',
+    path: "/home/index",
   });
 });
+
 
 // @desc          Get Job listings
 // @route         www.workport.com/job-details
 // @access        Public
 exports.getHomeJobDetails = asyncHandler(async (req, res, next) => {
-  const job = await Job.findById(req.params.id);
+  const jobId = req.params.jobId;
+  // console.log(jobId);
+  const job = await Job.findById(jobId);
   res.status(200).render(`home/job-details`, {
-    pageTitle: 'Job Details',
-    path: '/home/job-details',
+    pageTitle: "Job Details",
+    path: "/home/job-details",
     job,
   });
 });
@@ -31,9 +34,9 @@ exports.getHomeJobDetails = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/about
 // @access        Public
 exports.getHomeAbout = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/about', {
-    pageTitle: 'About Us',
-    path: '/home/about',
+  await res.status(200).render("home/about", {
+    pageTitle: "About Us",
+    path: "/home/about",
   });
 });
 
@@ -41,9 +44,9 @@ exports.getHomeAbout = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/blog
 // @access        Public
 exports.getHomeBlog = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/blog', {
-    pageTitle: 'Blog',
-    path: '/home/blog',
+  await res.status(200).render("home/blog", {
+    pageTitle: "Blog",
+    path: "/home/blog",
   });
 });
 
@@ -53,8 +56,8 @@ exports.getHomeBlog = asyncHandler(async (req, res, next) => {
 exports.getHomeJobListing = asyncHandler(async (req, res, next) => {
   const job = await Job.find();
   res.status(200).render(`home/job-listing`, {
-    pageTitle: 'Job Listings',
-    path: '/home/job-listing',
+    pageTitle: "Job Listings",
+    path: "/home/job-listing",
     job,
   });
 });
@@ -63,9 +66,9 @@ exports.getHomeJobListing = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/login
 // @access        Public
 exports.getHomeLogin = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/login', {
-    pageTitle: 'Account Login',
-    path: '/home/login',
+  await res.status(200).render("home/login", {
+    pageTitle: "Account Login",
+    path: "/home/login",
   });
 });
 
@@ -73,9 +76,9 @@ exports.getHomeLogin = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/register
 // @access        Public
 exports.getHomeRegister = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/register', {
-    pageTitle: 'Account Registration',
-    path: '/home/register',
+  await res.status(200).render("home/register", {
+    pageTitle: "Account Registration",
+    path: "/home/register",
   });
 });
 
@@ -83,9 +86,9 @@ exports.getHomeRegister = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/single-blog
 // @access        Public
 exports.getHomeSingleBlog = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/single-blog', {
-    pageTitle: 'Single Blog',
-    path: '/home/single-blog',
+  await res.status(200).render("home/single-blog", {
+    pageTitle: "Single Blog",
+    path: "/home/single-blog",
   });
 });
 
@@ -93,22 +96,9 @@ exports.getHomeSingleBlog = asyncHandler(async (req, res, next) => {
 // @route         www.workport.com/single-blog
 // @access        Public
 exports.getHome404 = asyncHandler(async (req, res, next) => {
-  res.status(200).render('home/error-404', {
-    pageTitle: '404',
-    path: '/home/error-404',
+  await res.status(200).render("home/error-404", {
+    pageTitle: "404",
+    path: "/home/error-404",
   });
   next();
 });
-
-module.exports = {
-  router,
-  getHomeIndex: this.getHomeIndex,
-  getHomeJobDetails: this.getHomeJobDetails,
-  getHomeAbout: this.getHomeAbout,
-  getHomeBlog: this.getHomeBlog,
-  getHomeJobListing: this.getHomeJobListing,
-  getHomeLogin: this.getHomeLogin,
-  getHomeRegister: this.getHomeRegister,
-  getHomeSingleBlog: this.getHomeSingleBlog,
-  getHome404 : this.getHome404
-};
