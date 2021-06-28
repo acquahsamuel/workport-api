@@ -1,21 +1,23 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
+const marked = require("marked");
+const { JSDOM } = require("jsdom");
+const createDomPurify = require("dompurify");
+const dompurify = createDomPurify(new JSDOM().window);
 
 const JobSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-
-    slug: String,
-
     position: {
       type: String,
     },
 
     locationAllowed: {
       type: String,
+    },
+
+    jobStatus: {
+      type: String,
+      required: true,
     },
 
     jobCategory: {
@@ -40,40 +42,44 @@ const JobSchema = new mongoose.Schema(
     },
 
     jobTags: {
-      type: [String],
+      type: String,
       required: [true, "Please add jobs tags"],
     },
+
     minimumSalary: {
       type: Number,
       minlength: [5],
       required: true,
     },
+    slug: String,
 
     maximumSalary: {
       type: Number,
       maxlength: [15],
       required: true,
     },
-    salaryInterval: {
-      type: [String],
+
+    currency: {
+      type: String,
+      maxlength: [10],
+      required: true,
     },
 
-    jobStatus: {
+    salaryInterval: {
       type: [String],
       required: true,
-      enum: ["Part time", "Full time", "Contract", "Internship"],
     },
 
     jobDescription: {
       type: String,
       required: [true, "Please add a description"],
+    },
+
+    sanitizedHtml: {
+      type: String,
       required: true,
     },
 
-    publicationDate: {
-      type: Date,
-      default: Date.now,
-    },
     applicationURL: {
       type: String,
       match: [
@@ -91,6 +97,43 @@ const JobSchema = new mongoose.Schema(
         "Please add a valid email",
       ],
     },
+
+    company: {
+      // companyId: mongoose.Schema.ObjectId,
+      companyName: {
+        type: String,
+        required: [true, "Please add a company name"],
+        trim: true,
+      },
+
+      companyLogo: {
+        type: String,
+        default: "no-photo.jpg",
+      },
+
+      companyTwitter: {
+        type: String,
+        match: [
+          /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+          "Please use a valid URL with HTTP or HTTPS",
+        ],
+      },
+
+      companyEmail: {
+        type: String,
+        required: [true, "Please add an email"],
+        unique: true,
+        match: [
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+          "Please add a valid email",
+        ],
+      },
+    },
+
+    publicationDate: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -103,18 +146,18 @@ JobSchema.pre("save", function (next) {
   next();
 });
 
-//Cascade delete jobs when a compmany is deleted
-JobSchema.pre("remove", async function (next) {
-  await this.model("Company").deleteMany({ company: this_id });
+JobSchema.pre("validate", function (next) {
+  if (this.jobDescription) {
+    this.sanitizedHtml = dompurify.sanitize(
+      marked(this.jobDescription),
+      {
+        ALLOWED_TAGS: ["b", "q", "div", "strong", "ul", "li"],
+        ALLOWED_ATTR: ["style"],
+      },
+      { USE_PROFILES: { html: true } }
+    );
+  }
   next();
-});
-
-// Reverse populate with virtuals
-JobSchema.virtual("company", {
-  ref: "Company",
-  localField: "_id",
-  foreignField: "job",
-  justOne: false,
 });
 
 module.exports = mongoose.model("Job", JobSchema);
