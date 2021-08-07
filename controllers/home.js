@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("../middleware/async");
 
+
 // @desc          Get Job listings
 // @route         www.workport.com/index
 // @access        Public
