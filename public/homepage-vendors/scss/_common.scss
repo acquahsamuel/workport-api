@@ -5,6 +5,8 @@
 	font-family: $font_2;
 	font-weight: normal;
 	font-style: normal;
+	// background-color: #F5F5F5;
+	background: ghostwhite;
 }
 h1,
 h2,
@@ -380,12 +382,12 @@ hr {
 
 // Border btn -2
 .border-btn2{
-	border: 1px solid #8b92dd;
-	color: #8b92dd;
+	border: 1px solid #080808;
+	color: #09090a;
 	font: $font_1;
 	background: none;
 	-moz-user-select: none;
-	padding: 19px 69px;
+	padding: 10px 59px;
 	margin: 0px;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -411,7 +413,7 @@ hr {
 		top: 0;
 		width: 101%;
 		height: 101%;
-		background:#8b92dd;
+		background:#000000;
 		z-index: -1;
 		transition: transform 0.5s;
 		transition-timing-function: ease;

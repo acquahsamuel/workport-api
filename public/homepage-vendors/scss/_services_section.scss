@@ -1,13 +1,14 @@
 .our-services{
     .single-services{
-        border: 1px solid rgb(218, 252, 239);
-        padding: 44px 0;
+        border: 1px solid rgb(56, 56, 56);
+        padding: 24px 0;
+        border-radius: 5px;
         @include transition(.4s);
         .services-ion{
             span{
-                font-size: 60px;
-                margin-bottom: 13px;
-                color: #014b85;
+                font-size: 50px;
+                margin-bottom: 8px;
+                color: #041420;
                 @include transition(.3s);
             }
         }
@@ -22,7 +23,7 @@
                }
             }
             span{
-                color: #fb246a;
+                color: #0a090a;
                 font-size:18px;
             }
         }

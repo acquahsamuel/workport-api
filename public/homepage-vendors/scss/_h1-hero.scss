@@ -1,70 +1,80 @@
-
 .slider-height {
-    min-height: 850px;
-    background-repeat:no-repeat ;
+    min-height: 600px;
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    @media #{$laptop}{
-        min-height: 700px;
-    }
-    @media #{$md}{
+    @media #{$laptop} {
         min-height: 600px;
     }
-    @media #{$xs}{
-        min-height: 550px;
+    @media #{$md} {
+        min-height: 500px;
+    }
+    @media #{$xs} {
+        min-height: 450px;
     }
 }
 
-.slider-height2{
-    min-height: 450px;
-    background-repeat:no-repeat ;
+.slider-height2 {
+    min-height: 300px;
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    @media #{$xs}{
+    @media #{$xs} {
         min-height: 260px;
     }
 }
 
-.slider-area{
+.slider-area {
     margin-top: -1px;
-    .hero__caption{
+    // background: rgb(44, 42, 42);
+
+    background: #360033; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0b8793, #360033); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #0b8793,
+        #360033
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    // background-image: linear-gradient(to right, #434343 0%, black 100%);
+
+    .hero__caption {
         padding-right: 29px;
-        @media #{$xs}{
+        @media #{$xs} {
             padding-right: 0px;
         }
-        & h1{
-            font-size: 80px;
+        & h1 {
+            font-size: 50px;
             font-weight: 900;
-            margin-bottom: 78px;
-            color: $heading-color;
+            margin-bottom: 68px;
             line-height: 1.2;
+            color: whitesmoke;
 
-            @media #{$xs}{
+            @media #{$xs} {
                 font-size: 27px;
             }
-            @media #{$sm}{
+            @media #{$sm} {
                 font-size: 41px;
             }
-            @media #{$lg}{
+            @media #{$lg} {
                 font-size: 60px;
             }
-            @media #{$md}{
+            @media #{$md} {
                 font-size: 50px;
             }
         }
-        & p{
+        & p {
             color: #fff;
             font-size: 30px;
             line-height: 1.2;
             font-weight: 400;
             margin-bottom: 39px;
             font-family: $font_1;
-            @media #{$xs}{
+            @media #{$xs} {
                 margin-bottom: 30px;
             }
         }
     }
-
 }
 
 //
@@ -74,7 +84,7 @@
     &::before {
         position: absolute;
         content: "";
-        background-color: rgba(32, 54, 38,.3);
+        // background-color: rgba(32, 54, 38,.3);
         width: 100%;
         height: 100%;
         left: 0;
@@ -87,37 +97,34 @@
 }
 
 // Another Hero Page
-.slider-area{
-    .hero-cap{
-        & h2{
+.slider-area {
+    .hero-cap {
+        & h2 {
             color: #fff;
             font-size: 50px;
             font-weight: 700;
             text-transform: capitalize;
-            @media #{$sm}{
+            @media #{$sm} {
                 font-size: 40px;
             }
-            @media #{$xs}{
+            @media #{$xs} {
                 font-size: 40px;
             }
-
         }
     }
 }
 
-
-form.search-box{
-    box-shadow: 0px 6px 29px 0px rgba(36, 43, 94, 0.08);
+form.search-box {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .input-form{
+    .input-form {
         width: 45%;
         position: relative;
-        @media #{$xs}{
+        @media #{$xs} {
             width: 100%;
         }
-        input{
+        input {
             height: 70px;
             width: 100%;
             color: #777777;
@@ -127,42 +134,41 @@ form.search-box{
             border: none;
             border-radius: 0px;
             position: relative;
-            @media #{$xs}{
+            @media #{$xs} {
                 margin-bottom: 20px;
             }
-            @media #{$sm}{
+            @media #{$sm} {
                 padding: 9px 33px 9px 25px;
                 margin-bottom: 20px;
             }
             &::placeholder {
                 color: #616875;
-                @media #{$xs}{
+                @media #{$xs} {
                     font-size: 13px;
-                    
                 }
             }
         }
         &::before {
             position: absolute;
-            content: '';
+            content: "";
             width: 1px;
             height: 51px;
-            background:#e0e4f8;
+            background: #e0e4f8;
             right: 22px;
             top: 50%;
             z-index: 1;
             transform: translateY(-50%);
-            @media #{$sm}{
-               display: none;
+            @media #{$sm} {
+                display: none;
             }
-            @media #{$xs}{
-               display: none;
+            @media #{$xs} {
+                display: none;
             }
         }
     }
-    .select-form{
+    .select-form {
         width: 34%;
-        @media #{$xs}{
+        @media #{$xs} {
             width: 100%;
         }
         .nice-select {
@@ -171,18 +177,18 @@ form.search-box{
             background: #fff;
             border-radius: 0px;
             padding: 11px 19px 11px 10px;
-             color: #616875;
+            color: #616875;
             line-height: 54px;
             border: 0;
-            @media #{$xs}{
+            @media #{$xs} {
                 margin-bottom: 20px;
                 padding-left: 25px;
             }
-            @media #{$sm}{
+            @media #{$sm} {
                 margin-bottom: 20px;
                 padding-left: 25px;
             }
-           .list {
+            .list {
                 width: 100%;
             }
             &.open .list {
@@ -199,17 +205,16 @@ form.search-box{
                 right: 29px;
             }
         }
-
     }
-    .search-form{
+    .search-form {
         width: 21%;
-        @media #{$xs}{
+        @media #{$xs} {
             width: 100%;
         }
-        a{
+        a {
             width: 100%;
             height: 70px;
-            background:$btn-bg;
+            background: $btn-bg;
             font-size: 20px;
             line-height: 1;
             text-align: center;
@@ -225,5 +230,4 @@ form.search-box{
             font-size: 14px;
         }
     }
-
 }
