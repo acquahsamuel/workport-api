@@ -2,186 +2,119 @@
 <html class="no-js" lang="zxx">
 <%- include('includes/header') -%>
 
-    <body>
-        <!-- Preloader Start -->
-        <div id="preloader-active">
-            <div class="preloader d-flex align-items-center justify-content-center">
-                <div class="preloader-inner position-relative">
-                    <div class="preloader-circle"></div>
-                    <div class="preloader-img pere-text">
-                        <img src="/homepage-vendors/img/logo/logo.png" alt="">
+
+<body>
+    <header>
+
+        <!-- Header Start -->
+        <%- include('includes/navbar') %>
+        <!-- Header End -->
+    </header>
+    <main>
+
+
+        <!-- slider Area Start-->
+        <%- include('includes/slider-area') %>
+        <!-- slider Area End-->
+
+
+        <!-- Featured_job_start -->
+        <section class="featured-job-area p-5">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle ">
+                            <span>Recent Job</span>
+                            <h2> Remote Jobs </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <% if (jobs.length > 0) { %>
+                    <div class="col-xl-12">
+                       
+                        <!-- single-job-content -->
+                        <div class="single-job-items mb-10 advert-board">
+                            <div class="job-items">
+                                <div class="job-tittle">
+                                    <a href="/admin/job-details">
+                                        <h4> Advert Board </h4>
+                                    </a>
+                                    <ul>
+                                        <li> Post your ad's here </li>
+
+                                    </ul>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- single-job-content -->
+                        <% for (let job of jobs) { %>
+                        <div class="single-job-items mb-30">
+                          
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a href="/admin/job-details"><img src="/homepage-vendors/img/icon/job-list1.png"
+                                            alt=""></a>
+                                </div>
+                                <div class="job-tittle">
+                                    <a href="/admin/job-details">
+                                        <h4>  <%=job.position %></h4>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <!-- <%=job.companyName %> -->
+                                            Google Africa 
+                                        </li>
+                                        <li><i class="fas fa-map-marker-alt"></i><%= job.locationAllowed %> </li>
+                                        <li>$
+                                            <%= job.minimumSalary %> - $ <%= job.maximumSalary %>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="items-link f-right">
+                                <a href="/admin/job-details">Full Time</a>
+                                <span> <%= job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } else { %>
+                        <h1> No Jobs Posted </h1>
+                        <% } %>
+                </div>
+            </div>
+        </section>
+        <!-- Featured_job_end -->
+
+
+        <!--Pagination Start  -->
+        <div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">
+                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                    <li class="page-item"><a class="page-link" href="#"><span
+                                                class="ti-angle-right"></span></a></li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Preloader Start -->
-
-        <header>
-            <!-- Header Start -->
-            <%- include('includes/navbar') %>
-                <!-- Header End -->
-        </header>
-
-        <main>
-
-            <!-- slider Area Start-->
-            <%- include('includes/slider-area') %>
-                <!-- slider Area End-->
-
-                <!-- Our Services Start -->
-                <%- include('includes/featured') %>
-                    <!-- Our Services End -->
+        <!--Pagination End  -->
+    </main>
 
 
-                    <!-- Online CV Area Start -->
-                    <div class="online-cv cv-bg section-overly pt-90 pb-120" data-background="/homepage-vendors/img/gallery/cv_bg.jpg">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-10">
-                                    <div class="cv-caption text-center">
-                                        <p class="pera1">FEATURED TOURS Packages</p>
-                                        <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                                        <!-- <a href="#" class="border-btn2 border-btn4">Upload your cv</a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Online CV Area End-->
-                    <!-- Featured_job_start -->
-                    <section class="featured-job-area feature-padding">
-                        <div class="container">
-                            <!-- Section Tittle -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="section-tittle text-center">
-                                        <span>Recent Job</span>
-                                        <h2>Featured Jobs</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row justify-content-center">
-
-                                <% if (jobs.length > 0) { %>
-                                    <div class="col-xl-10">
-                                        <!-- single-job-content -->
-                                        <% for (let job of jobs) { %>
-                                            <div class="single-job-items mb-30">
-                                                <div class="job-items">
-                                                    <div class="company-img">
-                                                        <a href="/job-details/<%=job.id %>"><img src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
-                                                    </div>
-                                                    <div class="job-tittle">
-                                                        <a href="/job-details/<%=job.id %>">
-                                                            <h5>
-                                                                <%=job.position %>
-                                                            </h5>
-                                                        </a>
-                                                        <ul>
-                                                            <!-- <li>Creative Agency</li> -->
-                                                            <li>
-                                                                <%=job.companyName %>
-                                                            </li>
-                                                            <li><i class="fas fa-map-marker-alt"></i>
-                                                                <%= job.locationAllowed %>
-                                                            </li>
-                                                            <li>$
-                                                                <%= job.minimumSalary %> - $
-                                                                    <%= job.maximumSalary %>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="items-link f-right">
-                                                    <!-- <a href="/job-details">Full Time</a> -->
-                                                    <a href="/job-details/<%=job.id %>"> Apply</a>
-                                                    <span> <%= job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
-                                                </div>
-                                            </div>
-                                            <% } %>
-                                                </a>
-                                    </div>
-                            </div>
-
-                            <% } else { %>
-                                <h1> No Jobs Posted </h1>
-                                <% } %>
-                        </div>
-                    </section>
-                    <!-- Featured_job_end -->
-
-
-                    <!-- How  Apply Process Start-->
-                    <%- include('includes/apply-process') %>
-
-
-                        <div class="testimonial-area testimonial-padding">
-                            <div class="container">
-                                <!-- Testimonial contents -->
-                                <div class="row d-flex justify-content-center">
-                                    <div class="col-xl-8 col-lg-8 col-md-10">
-                                        <div class="h1-testimonial-active dot-style">
-                                            <!-- Single Testimonial -->
-                                            <div class="single-testimonial text-center">
-                                                <!-- Testimonial Content -->
-                                                <div class="testimonial-caption ">
-                                                    <!-- founder -->
-                                                    <div class="testimonial-founder  ">
-                                                        <div class="founder-img mb-30">
-                                                            <img src="/homepage-vendors/img/testmonial/testimonial-founder.png" alt="">
-                                                            <span>Margaret Lawson</span>
-                                                            <p>Creative Director</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="testimonial-top-cap">
-                                                        <p>“I am at an age where I just want to be fit and healthy our bodies are our responsibility! So start caring for your body and it will care for you. Eat clean it will care for you and workout hard.”</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Testimonial End -->
-
-
-                        <!-- Support Company Start-->
-                        <div class="support-company-area support-padding fix">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-xl-6 col-lg-6">
-                                        <div class="right-caption">
-                                            <!-- Section Tittle -->
-                                            <div class="section-tittle section-tittle2">
-                                                <span>What we are doing</span>
-                                                <h3>24k Talented people are getting Jobs</h3>
-                                            </div>
-                                            <div class="support-caption">
-                                                <p class="pera-top">Mollit anim laborum duis au dolor in voluptate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillum.</p>
-                                                <p>Mollit anim laborum.Duis aute irufg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur signjnt occa cupidatat non inulpadeserunt mollit aboru. temnthp incididbnt ut labore
-                                                    mollit anim laborum suis aute.</p>
-                                                <a href="/login" class="btn post-btn">Post a job</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6">
-                                        <div class="support-location-img">
-                                            <img src="/homepage-vendors/img/service/support-img.jpg" alt="">
-                                            <div class="support-img-cap text-center">
-                                                <p>Since</p>
-                                                <span> 2021 </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Support Company End-->
-
-        </main>
-
-
-        <!-- footer-bottom area -->
-        <%- include('includes/footer') -%>
+    <%- include('includes/footer') -%>

@@ -67,15 +67,26 @@
                                     </div>
                                     <!-- Select job items start -->
                                     <div class="select-job-items2">
-                                        <select name="select">
-                                            <option value="">All Category</option>
-                                            <% for(let i=0; i < job.Category; i++ ) {  %>
-                                                <option value="">
-                                                    <%=job.jobCategory[i] %>
-                                                </option>
-
-                                            <% } %>
-                                        </select>
+                                        <select
+                                        name="jobCategory"
+                                        id="inputState"
+                                        class="form-control"
+                                      >
+                                        <option> Web Development </option>
+                                        <option> Design </option>
+                                        <option> Product </option>
+                                        <option> Customer Service </option>
+                                        <option> Data </option>
+                                        <option> Sales </option>
+                                        <option> DevOps/SysAdmin </option>
+                                        <option> Business </option>
+                                        <option> Finance</option>
+                                        <option> Legal </option>
+                                        <option> Human Resources </option>
+                                        <option> Medical</option>
+                                        <option> Teaching</option>
+                                        <option> Everything Else </option>
+                                      </select>
                                     </div>
                                     <!--  Select job items End-->
                                     <!-- select-Categories start -->
@@ -91,11 +102,11 @@
                                             <input type="checkbox" checked="checked active">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="container">Remote
+                                        <label class="container"> Contract
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
-                                        <label class="container">Freelance
+                                        <label class="container"> Internship 
                                             <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
@@ -109,14 +120,30 @@
                                     </div>
                                     <!-- Select job items start -->
                                     <div class="select-job-items2">
-                                        <select name="select">
-                                            <option value="">Anywhere</option>
-                                            <option value="">Category 1</option>
-                                            <option value="">Category 2</option>
-                                            <option value="">Category 3</option>
-                                            <option value="">Category 4</option>
-                                        </select>
+                                        <select
+                                        name=""
+                                        id="inputState"
+                                        class="form-control"
+                                      >
+                                        <option value="Anywhere (100% Remote) Only">
+                                          Anywhere (100% Remote) 
+                                        </option>
+                                        <option value="USA Only"> USA Only </option>
+                                        <option value="North America Only">
+                                          North America Only
+                                        </option>
+                                        <option value="Europe Only"> Europe Only </option>
+                                        <option value="Americas Only"> America Only </option>
+                                        <option value="Canada Only"> Canada Only </option>
+                                        <option value="EMEA Only"> EMEA Only </option>
+                                        <option value="Asia Only"> Asia Only </option>
+                                        <option value="Africa Only"> Africa Only </option>
+                                        <option value="Other (don’t specify)">
+                                          Other(don't specify)
+                                        </option>
+                                      </select>
                                     </div>
+
                                     <!--  Select job items End-->
                                     <!-- select-Categories start -->
                                     <div class="select-Categories pt-80 pb-50">
@@ -141,6 +168,9 @@
                                         </label>
                                     </div>
                                     <!-- select-Categories End -->
+
+
+                                    
                                 </div>
                                 <!-- single three -->
                                 <div
@@ -177,9 +207,11 @@
                                     </div>
                                     <!-- select-Categories End -->
                                 </div>
-                                <div
+
+                                
+                             
+                                <!-- <div
                                     class="single-listing">
-                                    <!-- Range Slider Start -->
                                     <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                                         <div class="small-section-tittle2">
                                             <h4>Filter Jobs</h4>
@@ -187,7 +219,7 @@
                                         <div class="widgets_inner">
                                             <div
                                                 class="range_item">
-                                                <!-- <div id="slider-range"></div> -->
+                                                <div id="slider-range"></div>
                                                 <input type="text" class="js-range-slider" value=""/>
                                                 <div class="d-flex align-items-center">
                                                     <div class="price_text">
@@ -201,9 +233,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </aside>
-                                    <!-- Range Slider End -->
+                                    </aside> 
                                 </div>
+                                 -->
+
                             </div>
                             <!-- Job Category Listing End -->
                         </div>

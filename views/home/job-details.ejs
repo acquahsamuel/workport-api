@@ -1,125 +1,147 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
-    <!-- Header Start -->
-    <%- include('includes/header') -%>
-    <!-- Header End -->
+  <!-- Header Start -->
+  <%- include('includes/header') -%>
+  <!-- Header End -->
 
-   <body>
+  <body>
     <!-- Preloader Start -->
     <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
-                </div>
-            </div>
+      <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+          <div class="preloader-circle"></div>
+          <div class="preloader-img pere-text">
+            <img src="assets/img/logo/logo.png" alt="" />
+          </div>
         </div>
+      </div>
     </div>
     <!-- Preloader Start -->
     <header>
-    <!-- Header Start -->
-        <%- include('includes/navbar') -%>
-    <!-- Header End -->
+      <!-- Header Start -->
+      <%- include('includes/navbar') -%>
+      <!-- Header End -->
     </header>
-    
+
     <main>
-
-        <!-- Hero Area Start-->
-        <div class="slider-area ">
-        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center">
-                            <h2><%= job.position %> </h2>
-                        </div>
-                    </div>
+      <!-- Hero Area Start-->
+      <div class="slider-area">
+        <div
+          class="single-slider section-overly slider-height2 d-flex align-items-center"
+          data-background="assets/img/hero/about.jpg"
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="hero-cap text-center">
+                  <h2><%= job.position %></h2>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-        </div>
-        <!-- Hero Area End -->
-        <!-- job post company Start -->
-        <div class="job-post-company pt-120 pb-120">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <!-- Left Content -->
-                    <div class="col-xl-7 col-lg-8">
-                        <!-- job single -->
-                        <div class="single-job-items mb-50">
-                            <div class="job-items">
-                                <div class="company-img company-img-details">
-                                    <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="#">
-                                        <h4> <%= job.position %> </h4>
-                                    </a>
-                                    <ul>
-                                        <li><%=job.companyName %> </li>
-                                        <li><i class="fas fa-map-marker-alt"></i> <%= job.locationAllowed %> </li>
-                                        <li> $<%= job.minimumSalary %> -  $<%= job.maximumSalary %></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                          <!-- job single End -->
-                       
-                        <div class="job-post-details">
-                            <div class="post-details2  mb-50">
-                                <%- job.description %>
-                            </div> 
-                        </div>
-
-                    </div>
-                    <!-- Right Content -->
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="post-details3  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Job Overview</h4>
-                           </div>
-                          <ul>
-                              <li>Posted date : <span> <%=job.publicationDate.toLocaleString('en-us') %> </span></li>
-                              <li>Location : <span>   <%=job.locationAllowed %> </span></li>
-                              <li>Vacancy : <span> Hidden  </span></li>
-                              <li>Salary :  <span>$<%= job.minimumSalary %> -  $<%= job.maximumSalary %> yearly</span></li>
-                              <li>Application date : <span> <%=job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %></span></li>
-                              <!-- <li>Job nature : <span> <%=job.jobStatus %> </span></li> -->
-                              
-                          </ul>
-                         <div class="apply-btn2">
-                            <a href="#" class="btn">Apply Now</a>
-                         </div>
-                       </div>
-                        <div class="post-details4  mb-50">
-                            <!-- Small Section Tittle -->
-                           <div class="small-section-tittle">
-                               <h4>Company Information</h4>
-                           </div>
-                              <span>Colorlib</span>
-                              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                            <ul>
-                                <li>Name: <span>Colorlib </span></li>
-                                <li>Web : <span> colorlib.com</span></li>
-                                <li>Email: <span>carrier.colorlib@gmail.com</span></li>
-                            </ul>
-                       </div>
-                    </div>
+      </div>
+      <!-- Hero Area End -->
+      <!-- job post company Start -->
+      <div class="job-post-company pt-120 pb-120">
+        <div class="container">
+          <div class="row justify-content-between">
+            <!-- Left Content -->
+            <div class="col-xl-7 col-lg-8">
+              <!-- job single -->
+              <div class="single-job-items mb-50">
+                <div class="job-items">
+                  <div class="company-img company-img-details">
+                    <a href="#"
+                      ><img src="assets/img/icon/<%= job  %>" alt=""
+                    /></a>
+                  </div>
+                  <div class="job-tittle">
+                    <a href="#">
+                      <h4><%= job.position %></h4>
+                    </a>
+                    <ul>
+                      <li><%=job.companyName %></li>
+                      <li>
+                        <i class="fas fa-map-marker-alt"></i> <%=
+                        job.locationAllowed %>
+                      </li>
+                      <li>
+                        $<%= job.minimumSalary %> - $<%= job.maximumSalary %>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+              <!-- job single End -->
 
+              <div class="job-post-details">
+                <div class="post-details2 mb-50">
+                 
+                  <%- job.sanitizedHtml %>
+                </div>
+              </div>
             </div>
+            <!-- Right Content -->
+            <div class="col-xl-4 col-lg-4">
+              <div class="post-details3 mb-50">
+                <!-- Small Section Tittle -->
+                <div class="small-section-tittle">
+                  <h4>Job Overview</h4>
+                </div>
+                <ul>
+                  <li>
+                    Posted date :
+                    <span>
+                      <%=job.publicationDate.toLocaleString('en-us') %>
+                    </span>
+                  </li>
+                  <li>Location : <span> <%=job.locationAllowed %> </span></li>
+                  <li>Vacancy : <span> Hidden </span></li>
+                  <li>
+                    Salary :
+                    <span
+                      >$<%= job.minimumSalary %> - $<%= job.maximumSalary %>
+                      yearly</span
+                    >
+                  </li>
+                  <li>
+                    Application date :
+                    <span>
+                      <%=job.publicationDate.toLocaleString('en-us' , { year:
+                      'numeric', month: 'long', day: 'numeric' }) %></span
+                    >
+                  </li>
+                  <!-- <li>Job nature : <span> <%=job.jobStatus %> </span></li> -->
+                </ul>
+                <div class="apply-btn2">
+                  <a href="#" class="btn">Apply Now</a>
+                </div>
+              </div>
+              <div class="post-details4 mb-50">
+                <!-- Small Section Tittle -->
+                <div class="small-section-tittle">
+                  <h4>Company Information</h4>
+                </div>
+                <span>Colorlib</span>
+                <p>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content of a page when looking at its layout.
+                </p>
+                <ul>
+                  <!-- <li>Name: <span> <%=job.company %>  </span></li> -->
+                  <!-- <li>Web : <span>  <%=job.company %> </span></li> -->
+                  <!-- <li>Email: <span> <%=job.company %> </span></li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- job post company End -->
-
-
-
+      </div>
+      <!-- job post company End -->
     </main>
 
-    
-   
-     <!-- footer-bottom area -->
-     <%- include('includes/footer') -%>
-        
-       
+    <!-- footer-bottom area -->
+    <%- include('includes/footer') -%>
+  </body>
+</html>

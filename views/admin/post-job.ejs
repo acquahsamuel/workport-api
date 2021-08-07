@@ -211,43 +211,90 @@
               <div class="card card-body">
                 <form
                   class="form-horizontal m-t-30"
-                  action="/admin/post-job/"
+                  action="/admin/post-job"
                   method="POST"
                 >
-                  <div class="form-group">
-                    <label> Position </label>
-                    <input
-                      type="text"
-                      id="position"
-                      name="position"
-                      class="form-control"
-                      value=""
-                    />
-                    <small>eg. Web Developer </small>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label> Position </label>
+                      <input
+                        type="text"
+                        id="position"
+                        name="position"
+                        class="form-control"
+                      />
+                      <small>eg. Web Developer </small>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label> Location Allowed </label>
+
+                      <select
+                        name="jobStatus"
+                        id="inputState"
+                        class="form-control"
+                      >
+                        <option value="Anywhere (100% Remote) Only">
+                          Anywhere (100% Remote) Only
+                        </option>
+                        <option value="USA Only"> USA Only </option>
+                        <option value="North America Only">
+                          North America Only
+                        </option>
+                        <option value="Europe Only"> Europe Only </option>
+                        <option value="Americas Only"> America Only </option>
+                        <option value="Canada Only"> Canada Only </option>
+                        <option value="EMEA Only"> EMEA Only </option>
+                        <option value="Asia Only"> Asia Only </option>
+                        <option value="Africa Only"> Africa Only </option>
+                        <option value="Other (don’t specify)">
+                          Other(don't specify)
+                        </option>
+                      </select>
+                      
+                      <small>eg. Anywhere </small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label> Job Status </label>
+
+                      <select
+                        name="jobStatus"
+                        id="inputState"
+                        class="form-control"
+                      >
+                         <option value="Full time"> Full time </option>
+                        <option value="Part time"> Part time </option>
+                        <option value="Contract"> Contract </option>
+                        <option value="Internship"> Internship </option>
+                      </select>
+                    </div>
                   </div>
 
                   <div class="form-group">
-                    <label> Company name </label>
-                    <input
-                      type="text"
-                      id="email"
-                      name="companyName"
+                    <label for="inputState"> Job Category </label>
+                    <select
+                      name="jobCategory"
+                      id="inputState"
                       class="form-control"
-                      placeholder=""
-                    />
-                    <small>eg. Company.inc </small>
-                  </div>
-
-                  <div class="form-group">
-                    <label> Location Allowed </label>
-                    <input
-                      type="text"
-                      id="email"
-                      name="locationAllowed"
-                      class="form-control"
-                      placeholder=""
-                    />
-                    <small>eg. Anywhere </small>
+                    >
+                      <option> Web Development </option>
+                      <option> Design </option>
+                      <option> Product </option>
+                      <option> Customer Service </option>
+                      <option> Data </option>
+                      <option> Sales </option>
+                      <option> DevOps/SysAdmin </option>
+                      <option> Business </option>
+                      <option> Finance</option>
+                      <option> Legal </option>
+                      <option> Human Resources </option>
+                      <option> Medical</option>
+                      <option> Teaching</option>
+                      <option> Everything Else </option>
+                    </select>
                   </div>
 
                   <div class="form-group">
@@ -263,31 +310,46 @@
                   </div>
 
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="inputCity"> Minimum salary </label>
+                    <div class="form-group col-md-3">
+                      <label for=""> Minimum salary </label>
                       <input
                         type="number"
                         name="minimumSalary"
                         class="form-control"
                         id="minimum salary"
                         step="0.01"
+                        placeholder="eg. 2,500"
                       />
-                      <small> eg. 1, 0 </small>
                     </div>
 
-                    <div class="form-group col-md-4">
-                      <label for="inputZip"> Maximum salary </label>
+                    <div class="form-group col-md-3">
+                      <label for=""> Maximum salary </label>
                       <input
                         type="number"
                         name="maximumSalary"
                         class="form-control"
                         id="maximun salary"
                         step="0.01"
+                        placeholder="eg. 5,000"
                       />
-                      <small> eg. 5, 000 </small>
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
+                      <label for="inputState"> Currency </label>
+                      <select
+                        name="currency"
+                        id="inputState"
+                        class="form-control"
+                      >
+                        <option> USD </option>
+                        <option> GH </option>
+                        <option> EUR </option>
+                        <option> GBP </option>
+                        <option> AUD </option>
+                      </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
                       <label for="inputState"> Salary interval </label>
                       <select
                         name="salaryInterval"
@@ -308,10 +370,11 @@
                       </span>
                     </label>
                     <textarea
+                    
                       name="jobDescription"
-                      id="default"
+                      id="jobDescription"
                       cols=" 30 "
-                      rows="10 "
+                      rows="10"
                     ></textarea>
                   </div>
 
@@ -326,7 +389,7 @@
                       Application URL <span class="text-danger"></span> *
                     </label>
                     <input
-                      type="text "
+                      type="url"
                       id=" "
                       name="applicationURL"
                       class="form-control"
@@ -338,7 +401,7 @@
                   <div class="form-group">
                     <label> Apply-to email </label>
                     <input
-                      type="text "
+                      type="email "
                       id=""
                       name="applyToEmail"
                       class="form-control"
@@ -346,80 +409,70 @@
                     />
                     <small> eg. companyemail.gmail.com </small>
                   </div>
-                  <br />
                   <div class="alert alert-danger">Company details</div>
-                  <br />
 
-                  <div class="form-group">
-                    <label> Upload company logo </label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"> Upload </span>
-                      </div>
-                      <div class="custom-file">
-                        <input
-                          type="file "
-                          name="companyLogo"
-                          class="custom-file-input"
-                          id="inputGroupFile01 "
-                        />
-                        <label
-                          class="custom-file-label"
-                          for="inputGroupFile01 "
-                        >
-                          Choose file
-                        </label>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label> Company name </label>
+                      <input
+                        type="text"
+                        id="email"
+                        name="companyName"
+                        class="form-control"
+                        placeholder=""
+                      />
+                      <small>eg. Company.inc </small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                      <label> Upload company logo </label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"> Upload </span>
+                        </div>
+                        <div class="custom-file">
+                          <input
+                            type="file"
+                            name="companyLogo"
+                            class="custom-file-input"
+                            id="inputGroupFile01 "
+                          />
+                          <label
+                            class="custom-file-label"
+                            for="inputGroupFile01 "
+                          >
+                            Choose file
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <label for="inputCity "> Company Twitter </label>
+                    <div class="form-group col-md-6">
+                      <label for=" "> Company Twitter </label>
                       <input
-                        type="text "
+                        type="url"
                         class="form-control"
-                        id="inputCity "
+                        id=" "
                         name="companyTwitter"
                       />
                     </div>
 
-                    <div class="form-group col-md-4">
-                      <label for="inputZip "> Company contact email </label>
+                    <div class="form-group col-md-6">
+                      <label for=" "> Company contact email </label>
                       <input
-                        type="text "
+                        type="email"
                         name="companyEmail"
                         class="form-control"
-                        id="inputZip "
+                        id=" "
                       />
                     </div>
                   </div>
 
-                  <div class="form-row">
-                    <!-- <div class="form-group col-md-4">
-                      <label for="inputCity "> PO # / invoice notes </label>
-                      <input
-                        type="text "
-                        class="form-control"
-                        id="inputCity "
-                        name=""
-                      />
-                    </div> -->
-
-                    <!-- <div class="form-group col-md-4">
-                      <label for="inputZip "> Accounting email </label>
-                      <input
-                        name=""
-                        type="text "
-                        class="form-control"
-                        id="inputZip "
-                      />
-                    </div> -->
-                  </div>
-
                   <div class="form-group">
                     <div class="col-sm-12">
-                      <button type="submit " class="btn btn-danger">
+                      <button type="submit" class="btn btn-secondary">
                         Post your Job
                       </button>
                     </div>
