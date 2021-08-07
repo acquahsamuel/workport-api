@@ -9,25 +9,33 @@ const xss = require("xss-clean");
 const express = require("express");
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser");
+const session = require('express-session');
 const rateLimit = require("express-rate-limit");
 const fileupload = require("express-fileupload");
 const errorHandler = require("./middleware/error");
 const mongoSanitize = require("express-mongo-sanitize");
 const app = express();
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({
+  path: "./config.env"
+});
 connectDB();
 
+
 //@des     Mounting pages routes
-const home = require("./routes/home-v");
-const admin = require("./routes/admin-v");
+const homeRoute = require("./routes/home");
+const adminRoute = require("./routes/admin");
 
 // Body parser
 app.use(express.json());
 
 // Cookie parser
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json({ limit: "15kb" }));
+app.use(express.urlencoded({
+  extended: false
+}));
+app.use(express.json({
+  limit: "15kb"
+}));
 app.use(cookieParser());
 
 // Dev logging middleware
@@ -64,13 +72,23 @@ app.use(cors());
 //@des Serving Static files
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session({
+  secret: 'session-secret-key-value',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true
+  }
+}));
+
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 //@desc  Rendering_pages
-app.use("/", home);
-app.use("/admin", admin);
+app.use("/", homeRoute);
+app.use("/admin", adminRoute);
 
 //@des ErrorHandler
 app.use(errorHandler);
@@ -88,7 +106,4 @@ const server = app.listen(port, () => {
 process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION Shutting down");
   console.log(err.name, err.stack, err.message);
-  // server.close (() => {
-  //   process.exit (1);
-  // });
 });
