@@ -52,7 +52,6 @@
   },
   "devDependencies": {
     "ejs": "^3.1.6",
-    "pug": "^3.0.2",
     "validator": "^13.5.2"
   }
 }

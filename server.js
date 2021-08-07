@@ -72,14 +72,16 @@ app.use(cors());
 //@des Serving Static files
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(session({
-  secret: 'session-secret-key-value',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true
-  }
-}));
+
+
+// app.use(session({
+//   secret: 'session-secret-key-value',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     secure: true
+//   }
+// }));
 
 
 
