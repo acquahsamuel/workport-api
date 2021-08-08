@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
-const marked = require("marked");
-const {
-  JSDOM
-} = require("jsdom");
-const createDomPurify = require("dompurify");
-const dompurify = createDomPurify(new JSDOM().window);
+
+
 
 const JobSchema = new mongoose.Schema({
   position: {
@@ -22,24 +18,8 @@ const JobSchema = new mongoose.Schema({
   },
 
   jobCategory: {
-    type: [String],
-    required: true,
-    enum: [
-      "Web Development",
-      "Design ",
-      " Product",
-      "Customer Service",
-      "Data",
-      "Sales",
-      "DevOps/SysAdmin",
-      "Business",
-      "Finance",
-      "Legal",
-      "Human Resources",
-      "Medical",
-      "Teaching",
-      "Everything Else",
-    ],
+    type: String,
+    required: true
   },
 
   jobTags: {
@@ -76,10 +56,10 @@ const JobSchema = new mongoose.Schema({
     required: [true, "Please add a description"],
   },
 
-  sanitizedHtml: {
-    type: String,
-    required: true,
-  },
+  // sanitizedHtml: {
+  //   type: String,
+  //   required: true,
+  // },
 
   applicationURL: {
     type: String,
@@ -99,7 +79,7 @@ const JobSchema = new mongoose.Schema({
     ],
   },
 
-  company: {
+  company: [{
     // companyId: mongoose.Schema.ObjectId,
     companyName: {
       type: String,
@@ -129,7 +109,7 @@ const JobSchema = new mongoose.Schema({
         "Please add a valid email",
       ],
     },
-  },
+  }],
 
   publicationDate: {
     type: Date,
@@ -151,22 +131,6 @@ JobSchema.pre("save", function (next) {
   next();
 });
 
-JobSchema.pre("validate", function (next) {
-  if (this.jobDescription) {
-    this.sanitizedHtml = dompurify.sanitize(
-      marked(this.jobDescription),
-      // {
-      //   ALLOWED_TAGS: ["b", "q", "div", "strong", "ul", "li"],
-      //   ALLOWED_ATTR: ["style"],
-      // },
-      {
-        USE_PROFILES: {
-          html: true
-        }
-      }
-    );
-  }
-  next();
-});
+
 
 module.exports = mongoose.model("Job", JobSchema);
