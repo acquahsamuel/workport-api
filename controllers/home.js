@@ -1,6 +1,5 @@
 const Job = require("../models/Job");
 const express = require("express");
-const router = express.Router();
 const asyncHandler = require("../middleware/async");
 
 
@@ -16,40 +15,22 @@ exports.getHomeIndex = asyncHandler(async (req, res, next) => {
   });
 });
 
-
 // @desc          Get Job listings
 // @route         www.workport.com/job-details
 // @access        Public
 exports.getHomeJobDetails = asyncHandler(async (req, res, next) => {
-  const jobId = req.params.jobId;
-  // console.log(jobId);
-  const job = await Job.findById(jobId);
+  const slug = req.params.slug;
+  const job = await Job.findById(slug);
+  // const job = await Job.findById(jobId);
+
   res.status(200).render(`home/job-details`, {
     pageTitle: "Job Details",
     path: "/home/job-details",
     job,
+    // company
   });
 });
 
-// @desc          Get Job listings
-// @route         www.workport.com/about
-// @access        Public
-exports.getHomeAbout = asyncHandler(async (req, res, next) => {
-  await res.status(200).render("home/about", {
-    pageTitle: "About Us",
-    path: "/home/about",
-  });
-});
-
-// @desc          Get Job listings
-// @route         www.workport.com/blog
-// @access        Public
-exports.getHomeBlog = asyncHandler(async (req, res, next) => {
-  await res.status(200).render("home/blog", {
-    pageTitle: "Blog",
-    path: "/home/blog",
-  });
-});
 
 // @desc          Get Job listings
 // @route         www.workport.com/job-listings
@@ -76,30 +57,10 @@ exports.getHomeLogin = asyncHandler(async (req, res, next) => {
 // @desc          Get Job listings
 // @route         www.workport.com/register
 // @access        Public
-exports.getHomeRegister = asyncHandler(async (req, res, next) => {
-  await res.status(200).render("home/register", {
+exports.getHomeSignup = asyncHandler(async (req, res, next) => {
+  await res.status(200).render("home/signup", {
     pageTitle: "Account Registration",
-    path: "/home/register",
+    path: "/home/signup",
   });
 });
 
-// @desc          Get Job listings
-// @route         www.workport.com/single-blog
-// @access        Public
-exports.getHomeSingleBlog = asyncHandler(async (req, res, next) => {
-  await res.status(200).render("home/single-blog", {
-    pageTitle: "Single Blog",
-    path: "/home/single-blog",
-  });
-});
-
-// @desc          Get Job listings
-// @route         www.workport.com/single-blog
-// @access        Public
-exports.getHome404 = asyncHandler(async (req, res, next) => {
-  await res.status(200).render("home/error-404", {
-    pageTitle: "404",
-    path: "/home/error-404",
-  });
-  next();
-});

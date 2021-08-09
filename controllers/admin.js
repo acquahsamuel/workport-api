@@ -78,15 +78,31 @@ exports.postAdminJob = (req, res, next) => {
     });
 };
 
-// @desc          Delete a single Company
+// @desc          Get  a single Company
 // @route         www.workport.com/index
 // @access        Private
 exports.getAdminManageJob = async (req, res, next) => {
+  const jobs = await Job.find({});
+  await res.status(200).render("admin/manage-job", {
+    pageTitle: "Manage Job",
+    path: "/admin/manage-job",
+    jobs
+  });
+};
+
+
+// @desc          Get  a  Job  
+// @route         www.workport.com/index
+// @access        Private
+exports.getAdminManageSingleJob = async (req, res, next) => {
+  // const jobs = await Job.findById();
   await res.status(200).render("admin/manage-job", {
     pageTitle: "Manage Job",
     path: "/admin/manage-job",
   });
 };
+
+
 
 // @desc          Delete a single Company
 // @route         www.workport.com/index
