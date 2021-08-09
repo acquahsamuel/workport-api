@@ -1,31 +1,37 @@
-const hpp = require("hpp");
 const ejs = require('ejs');
 const path = require("path");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const colors = require("colors");
-const morgan = require("morgan");
-const helmet = require("helmet");
-const xss = require("xss-clean");
 const express = require("express");
 const connectDB = require("./config/db");
-const cookieParser = require("cookie-parser");
 const session = require('express-session');
-const rateLimit = require("express-rate-limit");
-const fileupload = require("express-fileupload");
+const MongoDBStore = require('connect-mongodb-session')(session);
 const errorHandler = require("./middleware/error");
-const mongoSanitize = require("express-mongo-sanitize");
+
 const app = express();
+
+// @des   dB session-store
+const store = new MongoDBStore({
+  uri: process.env.MONGO_URI_DEV,
+  collection: 'sessions'
+})
+
 
 dotenv.config({
   path: "./config.env"
 });
+
+// @des   dB connection
 connectDB();
 
 
-//@des     Mounting pages routes
+// @des   Mounting pages routes
+const auth = require("./routes/auth");
 const homeRoute = require("./routes/home");
 const adminRoute = require("./routes/admin");
+const errorController = require('./controllers/error');
+
 
 // Body parser
 app.use(express.json());
@@ -34,78 +40,48 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-app.use(express.json({
-  limit: "15kb"
-}));
-app.use(cookieParser());
 
-// Dev logging middleware
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
-
-// File uploading
-app.use(fileupload());
-
-// Sanitize data
-app.use(mongoSanitize());
-
-// Set security headers
-app.use(helmet());
-
-// Prevent XSS attacks
-app.use(xss());
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 mins
-  max: 100,
-  message: "Too many request from this IP, Please try again in an hour!",
-});
-app.use("/api", limiter);
-
-// Prevent http param pollution
-app.use(hpp());
 
 // Enable CORS
 app.use(cors());
 
-//@des Serving Static files
+// @des Serving Static files
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 app.use(express.static(`${__dirname}/public`));
 app.use(express.static(path.join(__dirname, "public")));
 
 
-// app.use(session({
-//   secret: 'session-secret-key-value',
-//   resave: false,
-//   saveUninitialized: false,
-//   cookie: {
-//     secure: true
-//   }
-// }));
+// @desc express session
+app.use(session({
+  secret: 'session-secret-key-value',
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}));
 
 
-
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-
-//@desc  Rendering_pages
+// @desc routes middlewares
 app.use("/", homeRoute);
+app.use("/auth", auth);
 app.use("/admin", adminRoute);
 
-//@des ErrorHandler
+
+// @des 404 page on error
+app.use(errorController.get404);
+
+
+// @des ErrorHandler
 app.use(errorHandler);
 
-//@des Rewrite route to display 404 page
-const getHome404ErrorPage = require("./controllers/home");
-app.use(getHome404ErrorPage.getHome404);
 
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
   console.log(`Server Started on port ${port}`);
 });
 
-//@desc  Handle unhandled Rejection
+// @desc  Handle unhandled Rejection
 process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION Shutting down");
   console.log(err.name, err.stack, err.message);
