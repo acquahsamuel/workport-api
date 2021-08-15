@@ -15,6 +15,8 @@ exports.getHomeIndex = asyncHandler(async (req, res, next) => {
   });
 });
 
+
+
 // @desc          Get Job listings
 // @route         www.workport.com/job-details
 // @access        Public
@@ -63,4 +65,3 @@ exports.getHomeSignup = asyncHandler(async (req, res, next) => {
     path: "/home/signup",
   });
 });
-

@@ -1,50 +1,47 @@
 <!doctype html>
-<html class="no-js" lang="en-US">
+<html class="no-js" lang="zxx">
+
 <%- include('includes/header') -%>
 
 <body>
+
     <header>
         <!-- Header Start -->
         <%- include('includes/navbar') -%>
         <!-- Header End -->
     </header>
-
     <!-- Hero Area Start-->
-    <div class="slider-area">
+    <div class="slider-area ">
         <div class="single-slider section-overly slider-height2 d-flex align-items-center"
             data-background="assets/img/hero/about.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <!-- <h2> Login </h2> -->
+                            <!-- <h2>Contact us</h2> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <!-- Hero Area End -->
     <!-- ================ contact section start ================= -->
     <section class="contact-section">
         <div class="container">
 
-
-            <div class="row m-6">
-
+            <div class="row">
                 <div class="col-12">
-                    <h2 class="contact-title"> Account Login </h2>
+                    <h2 class="contact-title"> Register Account </h2>
                 </div>
-
                 <div class="col-lg-8">
-
-                    <form class="form-contact contact_form" action="/login" method="" id="">
+                    <form class="form-contact contact_form" action="/signup" method="" id="">
                         <div class="row">
 
                             <div class="col-12">
                                 <div class="form-group">
                                     <input class="form-control" name="email" id="email" type="email"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
                                         placeholder="Enter Email">
                                 </div>
                             </div>
@@ -52,25 +49,20 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <input class="form-control" name="password" id="password" type="password"
+                                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
                                         placeholder="Enter Password">
                                 </div>
                             </div>
 
 
                         </div>
-
+                        <a href="/login" style="color: black;"> Already have an account ? Login </a>
                         <div class="form-group mt-3">
-                            <button type="submit" name="" class="genric-btn primary radius"> Login </button>
+                            <button type="submit" name="register" class="genric-btn primary radius"> Register </button>
+                            <button type="submit" name="register-google" class="genric-btn danger  radius"><i
+                                    class="ti-google"></i> Google </button>
+                            <!-- <a href="#" class="genric-btn primary radius">Primary</a> -->
                         </div>
-
-
-                        <div class="">
-                            <form action="/auth/google" method="post">
-                                <button type="submit" name="" class="genric-btn danger  radius"><i
-                                        class="ti-google"></i> Login with Google </button>
-                            </form>
-                        </div>
-                        <a href="/register" style="color: black;"> Don't have an account ? Register </a>
                     </form>
                 </div>
 
@@ -78,6 +70,8 @@
         </div>
     </section>
     <!-- ================ contact section end ================= -->
+
+
 
 
     <!-- footer-bottom area -->

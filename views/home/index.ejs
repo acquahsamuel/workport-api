@@ -1,22 +1,18 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-US">
 <%- include('includes/header') -%>
-
 
 <body>
     <header>
-
         <!-- Header Start -->
         <%- include('includes/navbar') %>
         <!-- Header End -->
     </header>
     <main>
 
-
         <!-- slider Area Start-->
         <%- include('includes/slider-area') %>
         <!-- slider Area End-->
-
 
         <!-- Featured_job_start -->
         <section class="featured-job-area p-5">
@@ -25,7 +21,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-tittle ">
-                            <span>Recent Job</span>
+                            <span> Recent Job </span>
                             <h2> Remote Jobs </h2>
                         </div>
                     </div>
@@ -33,12 +29,12 @@
                 <div class="row">
                     <% if (jobs.length > 0) { %>
                     <div class="col-xl-12">
-                       
+
                         <!-- single-job-content -->
                         <div class="single-job-items mb-10 advert-board">
                             <div class="job-items">
                                 <div class="job-tittle">
-                                    <a href="/admin/job-details">
+                                    <a href="#">
                                         <h4> Advert Board </h4>
                                     </a>
                                     <ul>
@@ -51,24 +47,22 @@
 
                         </div>
 
-
                         <!-- single-job-content -->
                         <% for (let job of jobs) { %>
                         <div class="single-job-items mb-30">
-                          
                             <div class="job-items">
                                 <div class="company-img">
-                                    <a href="/admin/job-details"><img src="/homepage-vendors/img/icon/job-list1.png"
-                                            alt=""></a>
+                                    <a href="/job-details/<%=job.slug %>"><img
+                                            src="/homepage-vendors/img/icon/job-list1.png" alt=""></a>
                                 </div>
                                 <div class="job-tittle">
-                                    <a href="/admin/job-details">
-                                        <h4>  <%=job.position %></h4>
+                                    <a href="/job-details/<%=job.slug %>">
+                                        <h4> <%=job.position %></h4>
                                     </a>
                                     <ul>
                                         <li>
                                             <!-- <%=job.companyName %> -->
-                                            Google Africa 
+                                            Google Africa
                                         </li>
                                         <li><i class="fas fa-map-marker-alt"></i><%= job.locationAllowed %> </li>
                                         <li>$
@@ -78,15 +72,17 @@
                                 </div>
                             </div>
                             <div class="items-link f-right">
-                                <a href="/admin/job-details">Full Time</a>
-                                <span> <%= job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %> </span>
+                                <a href="/job-details/<%=job.slug %>">Full Time</a>
+                                <span>
+                                    <%= job.publicationDate.toLocaleString('en-us' , {  year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                </span>
                             </div>
                         </div>
                         <% } %>
                     </div>
                     <% } else { %>
-                        <h1> No Jobs Posted </h1>
-                        <% } %>
+                    <h1> No Jobs Posted </h1>
+                    <% } %>
                 </div>
             </div>
         </section>
@@ -115,6 +111,5 @@
         </div>
         <!--Pagination End  -->
     </main>
-
 
     <%- include('includes/footer') -%>

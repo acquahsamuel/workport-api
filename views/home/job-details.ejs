@@ -1,22 +1,11 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en-US">
   <!-- Header Start -->
   <%- include('includes/header') -%>
   <!-- Header End -->
 
   <body>
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-      <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="preloader-inner position-relative">
-          <div class="preloader-circle"></div>
-          <div class="preloader-img pere-text">
-            <img src="assets/img/logo/logo.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Preloader Start -->
+  
     <header>
       <!-- Header Start -->
       <%- include('includes/navbar') -%>
@@ -101,8 +90,8 @@
                   <li>
                     Salary :
                     <span
-                      >$<%= job.minimumSalary %> - $<%= job.maximumSalary %>
-                      yearly</span
+                      > &#36;<%= job.minimumSalary %> -  &#36;<%= job.maximumSalary %>
+                      </span
                     >
                   </li>
                   <li>
@@ -123,7 +112,7 @@
                 <div class="small-section-tittle">
                   <h4>Company Information</h4>
                 </div>
-                <span>Colorlib</span>
+                <span> <%= job.company.companyName %>  </span>
                 <p>
                   It is a long established fact that a reader will be distracted
                   by the readable content of a page when looking at its layout.
