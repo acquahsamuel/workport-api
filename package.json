@@ -2,11 +2,11 @@
   "name": "project-startup",
   "version": "1.0.0",
   "description": "Project startup for node.js",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "start:prod": "NODE_ENV=production nodemon server",
-    "start:dev": "nodemon server.js",
-    "debug": "ndb server.js"
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "debug": "ndb app.js"
   },
   "keywords": [
     "startup",
@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "dompurify": "^2.0.8",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
@@ -44,14 +45,14 @@
     "mongoose": "^5.12.2",
     "morgan": "^1.10.0",
     "nodemailer": "^6.5.0",
+    "pm2": "^5.1.0",
     "showdown": "^1.9.1",
     "slugify": "^1.5.0",
-    "ejs": "^3.1.6",
     "validator": "^13.5.2"
   },
-  "engines" : {
-    "node" : "15.13.0",
-    "npm" : "7.7.6"
+  "engines": {
+    "node": "15.13.0",
+    "npm": "7.7.6"
   },
   "devDependencies": {
     "ejs": "^3.1.6",
