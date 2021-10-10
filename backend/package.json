@@ -1,0 +1,51 @@
+{
+  "name": "project-startup",
+  "version": "1.0.0",
+  "description": "Project startup for node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "debug": "ndb app.js"
+  },
+  "keywords": [
+    "startup",
+    "for",
+    "node",
+    "codebase",
+    "node",
+    "nodeopen",
+    "free-start"
+  ],
+  "author": "Acquah Samuel",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6-alpha.5",
+    "express-mongo-sanitize": "^1.3.2",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^3.21.1",
+    "hpp": "^0.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.1",
+    "morgan": "^1.9.1",
+    "node-geocoder": "^3.24.0",
+    "nodemailer": "^6.3.0",
+    "slugify": "^1.3.5",
+    "xss-clean": "^0.1.1"
+  },
+  "engines": {
+    "node": "10.0.0",
+    "npm": "7.7.6"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.6",
+    "validator": "^13.5.2"
+  }
+}
