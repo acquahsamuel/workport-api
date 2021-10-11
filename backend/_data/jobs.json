@@ -1,0 +1,42 @@
+[{
+
+    "name": "Samuel Dowell",
+    "position": "Amazon Cloud Engineer",
+    "locationAllowed": "USA Only",
+    "jobCategory": [
+        "Web Development",
+        "Design ",
+        " Product",
+        "Customer Service",
+        "Data",
+        "Sales",
+        "DevOps/SysAdmin",
+        "Business",
+        "Finance",
+        "Legal",
+        "Human Resources",
+        "Medical",
+        "Teaching",
+        "Everything Else"
+    ],
+    "jobTags": [
+        "javascript",
+        "node.js",
+        "react",
+        "frontend",
+        "backend",
+        "angular"
+    ],
+    "currency"  : "GHS",
+    "minimumSalary": "10000",
+    "maximumSalary": "20000",
+    "salaryInterval": [
+        "Anual", "Hourly"
+    ],
+    "jobStatus": [
+        "Part time", "Full time", "Contract", "Internship"
+    ],
+    "jobDescription": "<p>If you're looking for a unique opportunity to establish a Technical Documentation organization with the oversight to design, implement, and lead a group responsible for delivering on Payroc's growth and industry-changing strategic objectives - read on.</p>\n<p>At Payroc, we're building the next generation of capabilities that powers our merchant-first ecosystem. The radical and responsible delivery of value is our mandate. We believe that focused and empowered teams can do great things. You'll find that we're a curious, driven, and pragmatic bunch who believe in outcomes over outputs, and we're looking for like-minded individuals to join us on our journey. </p>\n<p> </p>\n<p><strong>What we're obsessive about:</strong></p>\n<ul>\n<li><strong>Small teams, big things:</strong> We'll convey the outcomes our merchants require, provide you with the support and tools to succeed, and then we let you work your magic, with no needless processes to get in your way. </li>\n<li><strong>Develop, grow, thrive:</strong> We promote a philosophy where you can develop and grow as an individual and team.  We encourage you to approach problems in unique ways, try new techniques, learn from your colleagues, and master your craft. </li>\n<li><strong>Real people, real problems:</strong> We develop solutions to solve real-world challenges faced by our merchants.  Our Team Members collaborate to build the right things the right way.  We are curious about how things work, and we believe that sharing ideas and insights leads to better, more innovative products.</li>\n</ul>\n<p>The Staff Technical Writer is responsible for creating documentation that effectively transfers knowledge to appropriate relevant audiences. The Staff Technical Writer synthesizes company objectives with the audience needs analyses and usability assessments to design, test, and refine documentation. The individual will focus on Payroc's Product, Engineering, and Technical Operation functions, and therefore experience with software development, quality assurance, networking, storage systems, virtualization, security, business continuity, and ITIL best practices is highly desirable.</p>\n<p> </p>\n<p><strong>Duties and Responsibilities </strong></p>\n<ul>\n<li>Work with other departments to acquire/disseminate information on time.</li>\n<li>Suggest innovations for work processes. </li>\n<li>Actively seek out opportunities to reuse work and collaborate with other efforts.</li>\n<li>Drive documentation standards and process improvement efforts.</li>\n<li>Contribute a user perspective and constructive criticism to product design, while demonstrating ownership of areas of responsibility.</li>\n<li>Contribute to professional debate and partake in implementation toward change (e.g., corporate policy, process, or task-related modifications).</li>\n<li>Research, analyze, organize, design, and develop a consistent authoring, storage, and presentation of technical information.</li>\n<li>Synthesize Payroc product requirements and company objectives with the audience's needs for technical information.</li>\n<li>Effectively edit documentation and other information products for non-documentation colleagues.</li>\n<li>Pursue job/career-related learning outside of the scope of assigned tasks (classes, reading.). </li>\n<li>Impart knowledge to the less experienced in areas of expertise.</li>\n<li>All other duties as assigned.</li>\n</ul>\n<p> </p>\n<p><strong>Qualifications </strong></p>\n<ul>\n<li>Bachelor's Degree or equivalent work experience.</li>\n<li>10+ years' experience in a related position.</li>\n<li>Advanced understanding of authoring, screen capture, image editing, and publishing tools.</li>\n<li>Innovative document design skills (e.g., style, page, and document design).</li>\n<li>Experience with HTML, SQL, and JavaScript.</li>\n<li>Familiarity with current web technologies (browsers, servers, XML/XSL, protocols).</li>\n<li>Experience with distributed, web-oriented computing architectures and concepts.</li>\n<li>Understanding of databases, networking, storage systems, data security, and virtualization a plus.</li>\n<li>Able to work on several projects at once and take ownership of task schedules.</li>\n<li>Demonstrate full proficiency in writing skills.</li>\n<li>Demonstrate an ability to analyze and organize complex material.</li>\n<li>Demonstrate skill at getting documentation reviewed and eliciting feedback.</li>\n<li>Adapt quickly to new technologies and methodologies; advocates for change when necessary.</li>\n<li>Strong ability to successfully manage concurrent deliverables on time and with quality within fast-paced environment and under deadlines. </li>\n<li>Excellent oral and written communications.</li>\n</ul>\n",
+    "applicationURL": "https://mycompany.com/application/job/9",
+    "applyToEmail": "username01@gmail.com"
+}]
