@@ -6,24 +6,20 @@ const CompanySchema = new mongoose.Schema({
     required: [true, "Please add a company name"],
     trim: true,
   },
-
   companyAddress : {
     type: String,
     required: [true, "Please add a company address"],
     trim: true,
   },
-
   companyContact : {
     type: Number,
     required: [true, "Please add a company contact"],
     // trim: true,
   },
-
   companyLogo: {
     type: String,
     default: "no-photo.jpg",
   },
-
   companyTwitter: {
     type: String,
     match: [
@@ -32,7 +28,6 @@ const CompanySchema = new mongoose.Schema({
     ],
     unique : true
   },
-
   companyLinkedin: {
     type: String,
     match: [
@@ -41,7 +36,6 @@ const CompanySchema = new mongoose.Schema({
     ],
     unique : true
   },
-
   companyEmail: {
     type: String,
     required: [true, "Please add an email"],
@@ -51,11 +45,14 @@ const CompanySchema = new mongoose.Schema({
       "Please add a valid email",
     ],
   },
-
   invoiceNotes: {
     type: String
   },
-  // username && password && account_status field
+  jobs: [{ 
+    type: mongoose.Schema.ObjectId,
+    ref: "Job",
+    required: true,
+  }]
 });
 
 module.exports = mongoose.model("Company", CompanySchema);
