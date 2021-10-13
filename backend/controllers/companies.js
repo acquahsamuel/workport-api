@@ -6,12 +6,16 @@ const Company = require('../models/Company');
 // @route     POST /api/v1/getJobs
 // @access    Public
 exports.getCompanies = asyncHandler(async (req, res, next) => {
-    const companies = await Company.find({});
+    //Populate (embedding document in document)
+    const companies = await Company.find({}).populate({
+        path: 'jobs',
+        select: 'jobDescription  jobStatus jobCategory'
+      });
 
     res.status(200).json({
         success: true,
         count: companies.length,
-        message: companies
+        data: companies
     });
 });
 
@@ -55,7 +59,7 @@ exports.updateCompany = asyncHandler(async (req, res, next) => {
 exports.getCompany = asyncHandler(async (req, res, next) => {
     const company = await Company.findById(req.params.id);
     if (!company) {
-        return (next(new ErrorResponse(`Job with ${req.params.id} not found `, 400)))
+        return (next(new ErrorResponse(`Company with ${req.params.id} not found `, 400)))
     }
 
     res.status(200).json({
