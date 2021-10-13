@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 
 const {
     getCompanies,
@@ -9,6 +8,8 @@ const {
     deleteCompany
 } = require('../controllers/companies');
 
+const router = express.Router({ mergeParams : true });
+// const router = express.Router();
 
 router
     .route('/')
