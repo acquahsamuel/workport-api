@@ -2,16 +2,20 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const Job = require('../models/Job');
 
+
 // @desc      Create job
 // @route     POST /api/v1/getJobs
 // @access    Public
 exports.getJobs = asyncHandler(async (req, res, next) => {
-    const jobs = await Job.find({});
+    const jobs = await Job.find({}).populate({
+        path: 'company',
+        select : 'companyName companyContact CompanyAddress',
+    });
 
     res.status(200).json({
         success: true,
         count: jobs.length,
-        message: jobs
+        data: jobs
     });
 });
 
@@ -20,13 +24,14 @@ exports.getJobs = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createJob = asyncHandler(async (req, res, next) => {
-    const job = await Job.create(req.body);
+     const job = await Job.create(req.body);
 
     res.status(201).json({
         success: true,
         data: job
     });
 });
+
 
 
 // @desc      Update job
