@@ -11,12 +11,12 @@ const JobSchema = new mongoose.Schema({
   },
 
   jobStatus: {
-    type: [String],
+    type: String,
     required: true,
   },
 
   jobCategory: {
-    type: [String],
+    type: String,
     required: true,
   },
 
@@ -40,12 +40,11 @@ const JobSchema = new mongoose.Schema({
 
   currency: {
     type: String,
-    maxlength: [10],
     required: true,
   },
 
   salaryInterval: {
-    type: [String],
+    type: String,
     required: true,
   },
 
@@ -74,16 +73,18 @@ const JobSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  // jobId: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "Job",
-  //   required: true,
-  // },
-  // userId: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "User",
-  //   required: true,
-  // }
+
+  company: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Company",
+    required: true,
+  },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  }
+
 }, {
   toJSON: {
     virtuals: true,
@@ -102,4 +103,3 @@ JobSchema.pre("save", function (next) {
 });
 
 module.exports = mongoose.model("Job", JobSchema);
-
