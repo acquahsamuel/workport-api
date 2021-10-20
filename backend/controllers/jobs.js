@@ -9,7 +9,7 @@ const Job = require('../models/Job');
 exports.getJobs = asyncHandler(async (req, res, next) => {
     const jobs = await Job.find({}).populate({
         path: 'company',
-        select : 'companyName companyContact CompanyAddress',
+        select: 'companyName companyContact CompanyAddress companyLinkedin companyTwitter',
     });
 
     res.status(200).json({
@@ -24,7 +24,7 @@ exports.getJobs = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createJob = asyncHandler(async (req, res, next) => {
-     const job = await Job.create(req.body);
+    const job = await Job.create(req.body);
 
     res.status(201).json({
         success: true,
