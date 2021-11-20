@@ -6,12 +6,12 @@ const CompanySchema = new mongoose.Schema({
     required: [true, "Please add a company name"],
     trim: true,
   },
-  companyAddress : {
+  companyAddress: {
     type: String,
     required: [true, "Please add a company address"],
     trim: true,
   },
-  companyContact : {
+  companyContact: {
     type: Number,
     required: [true, "Please add a company contact"],
     // trim: true,
@@ -26,7 +26,7 @@ const CompanySchema = new mongoose.Schema({
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
       "Please use a valid URL with HTTP or HTTPS",
     ],
-    unique : true
+    unique: true
   },
   companyLinkedin: {
     type: String,
@@ -34,7 +34,7 @@ const CompanySchema = new mongoose.Schema({
       /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
       "Please use a valid URL with HTTP or HTTPS",
     ],
-    unique : true
+    unique: true
   },
   companyEmail: {
     type: String,
@@ -48,7 +48,7 @@ const CompanySchema = new mongoose.Schema({
   invoiceNotes: {
     type: String
   },
-  jobs: [{ 
+  jobs: [{
     type: mongoose.Schema.ObjectId,
     ref: "Job",
     required: true,
