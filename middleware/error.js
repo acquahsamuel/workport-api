@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   error.message = err.message;
 
   //Log to console for dev
-  // console.log(err.stack.red);
+  console.log(err.stack.red);
 
   //@Error          CastError 
   if (err.name === "CastError") {
@@ -14,13 +14,13 @@ const errorHandler = (err, req, res, next) => {
   }
 
   //@Error           Duplicate field
-  if(err.name === "MongoError" && err.code === 11000){
-    const message = `Duplicate field value entered`; 
+  if (err.name === "MongoError" && err.code === 11000) {
+    const message = `Duplicate field value entered`;
     error = new ErrorResponse(message, 400);
   }
 
   //@Error           Empty fields
-  if(err.name === 'ValidationError'){
+  if (err.name === 'ValidationError') {
     const message = Object.values(err.errors).map(val => val.message);
     error = new ErrorResponse(message, 400);
   }
