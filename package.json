@@ -43,9 +43,9 @@
   },
   "engines": {
     "node": "10.0.0",
-    "npm": "5.0.6"
+    "npm": "6.0.6"
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^6.3.0"
   }
 }
