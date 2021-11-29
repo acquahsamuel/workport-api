@@ -26,7 +26,6 @@ const app = express();
 // Body parser
 app.use(express.json());
 
-
 // Route files
 const jobs = require('./routes/jobs');
 const auth = require('./routes/auth');
@@ -85,7 +84,6 @@ const server = app.listen(port, () => {
 });
 
 
-
 //@desc  Handle unhandled Rejection
 process.on('unhandledRejection', err => {
   console.log('UNHANDLED REJECTION Shutting down');
@@ -94,9 +92,3 @@ process.on('unhandledRejection', err => {
     process.exit(1);
   });
 });
-
-
-
-
-
-
