@@ -10,26 +10,33 @@ const User = require("../models/User");
 // @route     POST /api/v1/getJobs
 // @access    Public
 exports.getJobs = asyncHandler(async (req, res, next) => {
-  const jobs = await Job.find().sort({ datePosted: -1 }).populate({
-    path: "company",
-    select:
-      "companyName companyContact CompanyAddress companyLinkedin companyTwitter",
-  });
+  await res.status(200).json(res.advancedResults);
+});
+
+// @desc      Get single job
+// @route     GET /api/v1/job/:jobId
+// @access    Public
+exports.getJob = asyncHandler(async (req, res, next) => {
+  const job = await Job.findById(req.params.id);
+  if (!job) {
+    return next(new ErrorResponse(`Doc with ${req.params.id} not found `, 400));
+  }
 
   res.status(200).json({
     success: true,
-    count: jobs.length,
-    data: jobs,
+    data: job,
   });
 });
+
 
 // @desc      Create job
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createJob = asyncHandler(async (req, res, next) => {
   //Get user id
-  // console.log(user);
-
+  // req.body.user = req.user.id;
+  
+  //Check for postedJobs 
   const job = await Job.create(req.body);
 
   res.status(201).json({
@@ -57,24 +64,10 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Get single job
-// @route     GET /api/v1/job/:jobId
-// @access    Public
-exports.getJob = asyncHandler(async (req, res, next) => {
-  const job = await Job.findById(req.params.id);
-  if (!job) {
-    return next(new ErrorResponse(`Doc with ${req.params.id} not found `, 400));
-  }
-
-  res.status(200).json({
-    success: true,
-    data: job,
-  });
-});
 
 // @desc      Delete job
 // @route     GET /api/v1/job/:jobId
-// @access    Public
+// @access    Private
 exports.deleteJob = asyncHandler(async (req, res, next) => {
   await Job.findByIdAndDelete(req.params.id);
 
@@ -83,3 +76,16 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
     data: {},
   });
 });
+
+
+// @desc      Delete all  job in db (dangerous)
+// @route     GET /api/v1/job/:jobId
+// @access    Private
+exports.deleteAllJobs = asyncHandler(async (req, res, next) => {
+  await Job.deleteMany();
+
+  res.status(200).json({
+    success: true,
+    data: {}
+  })
+})

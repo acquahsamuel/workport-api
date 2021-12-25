@@ -1,18 +1,21 @@
-const path = require('path');
-const hpp = require('hpp');
-const cors = require('cors');
-const express = require('express');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const xss = require('xss-clean');
-const connectDB = require('./config/db');
-const fileupload = require('express-fileupload');
-const cookieParser = require('cookie-parser');
-const mongoSanitize = require('express-mongo-sanitize');
-const rateLimit = require('express-rate-limit');
-const errorHandler = require('./middleware/error');
+const os = require("os");
+const path = require("path");
+const hpp = require("hpp");
+const cors = require("cors");
+const express = require("express");
+const dotenv = require("dotenv");
+const morgan = require("morgan");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const connectDB = require("./config/db");
+const fileupload = require("express-fileupload");
+const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
+const rateLimit = require("express-rate-limit");
+const errorHandler = require("./middleware/error");
 
+console.log(os.platform());
+console.log(os.version());
 
 // Load env vars
 dotenv.config();
@@ -20,24 +23,23 @@ dotenv.config();
 // Connect to database
 connectDB();
 
-
 const app = express();
 
 // Body parser
 app.use(express.json());
 
 // Route files
-const jobs = require('./routes/jobs');
-const auth = require('./routes/auth');
-const users = require('./routes/users');
-const companies = require('./routes/companies');
+const jobs = require("./routes/jobs");
+const auth = require("./routes/auth");
+const users = require("./routes/users");
+const companies = require("./routes/companies");
 
 // Cookie parser
 app.use(cookieParser());
 
 // Dev logging middleware
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
 
 // File uploading
@@ -65,16 +67,16 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
+//Allow Cors
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-
 // Mount routers
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/jobs', jobs);
-app.use('/api/v1/users', users);
-app.use('/api/v1/companies', companies);
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/jobs", jobs);
+app.use("/api/v1/users", users);
+app.use("/api/v1/companies", companies);
 
 app.use(errorHandler);
 
@@ -83,10 +85,9 @@ const server = app.listen(port, () => {
   console.log(`Server Started on port ${port}`);
 });
 
-
 //@desc  Handle unhandled Rejection
-process.on('unhandledRejection', err => {
-  console.log('UNHANDLED REJECTION Shutting down');
+process.on("unhandledRejection", (err) => {
+  console.log("UNHANDLED REJECTION Shutting down");
   console.log(err.name, err.message);
   server.close(() => {
     process.exit(1);

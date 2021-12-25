@@ -1,24 +1,33 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const {
     getJobs,
     getJob,
     createJob,
     updateJob,
-    deleteJob
-} = require('../controllers/jobs');
+    deleteJob,
+    deleteAllJobs,
+} = require("../controllers/jobs");
 
+const Job = require('../models/Job');
+const advancedResults = require('../middleware/advancedResults');
 
-router
-    .route('/')
-    .get(getJobs)
+const {
+    protect
+} = require("../middleware/auth");
+
+router.route('/')
+    .get(advancedResults(Job, {
+            path: 'company'
+        }),
+        getJobs
+    )
     .post(createJob);
 
-router
-    .route('/:id')
+router.route('/:id')
     .get(getJob)
     .put(updateJob)
-    .delete(deleteJob);
-
+    .delete(protect, deleteJob)
+    .delete(protect, deleteAllJobs);
 
 module.exports = router;
