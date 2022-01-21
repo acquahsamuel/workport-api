@@ -67,10 +67,13 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-//Allow Cors
 
-// Set static folder
-app.use(express.static(path.join(__dirname, "public")));
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/workport'));
+
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/dist/workport/index.html'));
+});
 
 // Mount routers
 app.use("/api/v1/auth", auth);

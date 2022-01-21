@@ -4,8 +4,10 @@
   "description": "workport job posting client",
   "main": "server.js",
   "scripts": {
-    "start": "NODE_ENV=production node server",
-    "start:dev": "NODE_ENV=development nodemon server"
+    "start": "node server",
+    "start:dev": "NODE_ENV=development nodemon server",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
     "startup",
