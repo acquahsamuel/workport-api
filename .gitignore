@@ -32,7 +32,7 @@ lib-cov
 # bower_components
 
 # node-waf configuration
-# .lock-wscript
+.lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
@@ -45,17 +45,17 @@ jspm_packages/
 # typings/
 
 # TypeScript cache
-# *.tsbuildinfo
+*.tsbuildinfo
 
 
 # Optional npm cache directory
 .npm
 
 # Optional eslint cache
-# .eslintcache
+.eslintcache
 
 # Optional REPL history
-# .node_repl_history
+.node_repl_history
 
 # Output of 'npm pack'
 # *.tgz
@@ -64,29 +64,29 @@ jspm_packages/
 .yarn-integrity
 
 # dotenv environment variables file
-# .env
-# .env.test
-# config.env
+.env
+.env.test
+config.env
 # parcel-bundler cache (https://parceljs.org/)
-# .cache
+.cache
 
 # next.js build output
-# .next
+.next
 
 # nuxt.js build output
-# .nuxt
+.nuxt
 
 # vuepress build output
-# .vuepress/dist
+.vuepress/dist
 
 # Serverless directories
-# .serverless/
+.serverless/
 
 # FuseBox cache
-# .fusebox/
+.fusebox/
 
 # DynamoDB Local files
-# .dynamodb/
+.dynamodb/
 
 # Private data
 # data.js
@@ -95,7 +95,7 @@ jspm_packages/
 _data
 
 #configuration page
-config
+dev.js
 
 #config 
-/config
+# /config

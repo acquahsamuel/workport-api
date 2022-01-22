@@ -1,27 +1,25 @@
 const os = require("os");
 const path = require("path");
+const colors = require('colors');
 const hpp = require("hpp");
 const cors = require("cors");
-const express = require("express");
-const dotenv = require("dotenv");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const xss = require("xss-clean");
-const connectDB = require("./config/db");
+const express = require("express");
+const mongoose = require("mongoose");
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
-const mongoSanitize = require("express-mongo-sanitize");
 const rateLimit = require("express-rate-limit");
 const errorHandler = require("./middleware/error");
+const mongoSanitize = require("express-mongo-sanitize");
+const keys = require("./config/keys");
 
-console.log(os.platform());
-console.log(os.version());
-
-// Load env vars
-dotenv.config();
-
-// Connect to database
-connectDB();
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.MONGO_URI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 
 const app = express();
 
@@ -67,29 +65,19 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
-
-
-
 // Mount routers
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/jobs", jobs);
 app.use("/api/v1/users", users);
 app.use("/api/v1/companies", companies);
 
-
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/workport'));
-
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/dist/workport/index.html'));
-});
-
-
 app.use(errorHandler);
 
+console.log(os.platform());
+console.log(os.version());
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
-  console.log(`Server Started on port ${port}`);
+  console.log(`Server Started on port ${port}`.yellow.underline);
 });
 
 //@desc  Handle unhandled Rejection
