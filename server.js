@@ -68,6 +68,15 @@ app.use(hpp());
 app.use(cors());
 
 
+
+
+// Mount routers
+app.use("/api/v1/auth", auth);
+app.use("/api/v1/jobs", jobs);
+app.use("/api/v1/users", users);
+app.use("/api/v1/companies", companies);
+
+
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/dist/workport'));
 
@@ -75,11 +84,6 @@ app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/workport/index.html'));
 });
 
-// Mount routers
-app.use("/api/v1/auth", auth);
-app.use("/api/v1/jobs", jobs);
-app.use("/api/v1/users", users);
-app.use("/api/v1/companies", companies);
 
 app.use(errorHandler);
 
