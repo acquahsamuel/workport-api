@@ -15,6 +15,8 @@ const errorHandler = require("./middleware/error");
 const mongoSanitize = require("express-mongo-sanitize");
 const keys = require("./config/keys");
 
+
+// Mongodb connection
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.MONGO_URI, {
   useUnifiedTopology: true,
@@ -80,7 +82,8 @@ const server = app.listen(port, () => {
   console.log(`Server Started on port ${port}`.yellow.underline);
 });
 
-//@desc  Handle unhandled Rejection
+
+// Handle unhandled Rejection
 process.on("unhandledRejection", (err) => {
   console.log("UNHANDLED REJECTION Shutting down");
   console.log(err.name, err.message);
@@ -88,3 +91,4 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
