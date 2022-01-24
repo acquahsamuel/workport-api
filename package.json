@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "start:dev": "NODE_ENV=development nodemon server",
+    "start:dev": "nodemon server",
     "client": "npm run start --prefix client"
   },
   "keywords": [

@@ -48,7 +48,7 @@ const JobSchema = new mongoose.Schema(
     applyToEmail: {
       type: String,
       required: [true, "Please add an email"],
-      // unique: true,
+      unique: true,
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         "Please add a valid email",

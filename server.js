@@ -21,6 +21,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(keys.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
+  useCreateIndex : true
 });
 
 const app = express();
