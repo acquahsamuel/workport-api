@@ -1,20 +1,23 @@
 const mongoose = require("mongoose");
 
 const CompanySchema = new mongoose.Schema({
-  companyName: {
+  company: {
     type: String,
     required: [true, "Please add a company name"],
     trim: true,
   },
-  companyAddress: {
+  companyUrl: {
     type: String,
     required: [true, "Please add a company address"],
     trim: true,
+    unique : true
   },
-  companyContact: {
-    type: Number,
-    required: [true, "Please add a company contact"],
-  
+  companyDescription: {
+    type: String,
+    required: [true, "Please add a description"],
+  },
+  companySize: {
+    type: String,
   },
   companyLogo: {
     type: String,
@@ -45,10 +48,7 @@ const CompanySchema = new mongoose.Schema({
       "Please add a valid email",
     ],
   },
-  invoiceNotes: {
-    type: String,
-  },
-  jobs: [
+  jobsPostedByCompany: [
     {
       type: mongoose.Schema.ObjectId,
       ref: "Job",
