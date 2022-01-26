@@ -1,6 +1,6 @@
 const os = require("os");
 const path = require("path");
-const colors = require('colors');
+const colors = require("colors");
 const hpp = require("hpp");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -15,18 +15,15 @@ const errorHandler = require("./middleware/error");
 const mongoSanitize = require("express-mongo-sanitize");
 const keys = require("./config/keys");
 
-
 // Mongodb connection
-mongoose.Promise = global.Promise;
 mongoose.connect(keys.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex : true
+  useCreateIndex: true,
 });
 
 const app = express();
 
-// Body parser
 app.use(express.json());
 
 // Route files
@@ -57,7 +54,8 @@ app.use(xss());
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 mins
+  // 10 mins
+  windowMs: 10 * 60 * 1000,
   max: 100,
 });
 app.use(limiter);
@@ -80,9 +78,8 @@ console.log(os.platform());
 console.log(os.version());
 const port = process.env.PORT || 5000;
 const server = app.listen(port, () => {
-  console.log(`Server Started on port ${port}`.yellow.underline);
+  console.log(`Server started on port ${port}`.yellow.underline);
 });
-
 
 // Handle unhandled Rejection
 process.on("unhandledRejection", (err) => {
@@ -92,4 +89,3 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
-
