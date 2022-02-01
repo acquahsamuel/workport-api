@@ -9,7 +9,7 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
   //Populate (embedding document in document)
   const companies = await Company.find().populate({
     path: "jobs",
-    select: "jobDescription  jobStatus jobCategory",
+    select: "jobDescription  jobStatus jobCategory"
   });
 
   if (!companies) {
@@ -19,7 +19,7 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: companies.length,
-    data: companies,
+    data: companies
   });
 });
 
@@ -27,12 +27,12 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createCompany = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user;
   const company = await Company.create(req.body);
-
 
   res.status(201).json({
     success: true,
-    data: company,
+    data: company
   });
 });
 
@@ -42,7 +42,7 @@ exports.createCompany = asyncHandler(async (req, res, next) => {
 exports.updateCompany = asyncHandler(async (req, res, next) => {
   const company = await Company.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true,
+    runValidators: true
   });
 
   if (!company) {
@@ -53,7 +53,7 @@ exports.updateCompany = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: company,
+    data: company
   });
 });
 
@@ -70,7 +70,7 @@ exports.getCompany = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: company,
+    data: company
   });
 });
 
@@ -82,6 +82,6 @@ exports.deleteCompany = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: {},
+    data: {}
   });
 });
