@@ -24,10 +24,9 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: job,
+    data: job
   });
 });
-
 
 // @desc      Create job
 // @route     POST /api/v1/createJob
@@ -36,12 +35,13 @@ exports.createJob = asyncHandler(async (req, res, next) => {
   //Get user id
   // req.body.user = req.user.id;
   
-  //Check for postedJobs 
+
+  //Check for postedJobs
   const job = await Job.create(req.body);
 
   res.status(201).json({
     success: true,
-    data: job,
+    data: job
   });
 });
 
@@ -51,7 +51,7 @@ exports.createJob = asyncHandler(async (req, res, next) => {
 exports.updateJob = asyncHandler(async (req, res, next) => {
   const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true,
+    runValidators: true
   });
 
   if (!job) {
@@ -60,10 +60,9 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: job,
+    data: job
   });
 });
-
 
 // @desc      Delete job
 // @route     GET /api/v1/job/:jobId
@@ -73,10 +72,9 @@ exports.deleteJob = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: {},
+    data: {}
   });
 });
-
 
 // @desc      Delete all  job in db (dangerous)
 // @route     GET /api/v1/job/:jobId
@@ -87,5 +85,5 @@ exports.deleteAllJobs = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     data: {}
-  })
-})
+  });
+});

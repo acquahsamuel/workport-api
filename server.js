@@ -1,8 +1,8 @@
 const os = require("os");
-const path = require("path");
-const colors = require("colors");
 const hpp = require("hpp");
 const cors = require("cors");
+const path = require("path");
+const colors = require("colors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const xss = require("xss-clean");
@@ -19,7 +19,7 @@ const keys = require("./config/keys");
 mongoose.connect(keys.MONGO_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
+  useCreateIndex: true
 });
 
 const app = express();
@@ -56,7 +56,7 @@ app.use(xss());
 const limiter = rateLimit({
   // 10 mins
   windowMs: 10 * 60 * 1000,
-  max: 100,
+  max: 100
 });
 app.use(limiter);
 
