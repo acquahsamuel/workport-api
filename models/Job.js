@@ -1,80 +1,79 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
 
-const JobSchema = new mongoose.Schema({
-  position: {
-    type: String,
-  },
-  title: {
-    type: String,
-  },
-  locationAllowed: {
-    type: String,
-  },
-  jobStatus: {
-    type: String,
-    required: true,
-  },
-  jobCategory: {
-    type: String,
-    required: true,
-  },
-
-  jobSearchTags: {
-    type: [String],
-    required: [true, "Please add jobs tags"],
-  },
-  salaryRange: {
-    from: {
-      type: Number,
+const JobSchema = new mongoose.Schema(
+  {
+    position: {
+      type: String
     },
-    to: {
-      type: Number,
+    title: {
+      type: String
     },
-    currency: {
+    locationAllowed: {
+      type: String
+    },
+    jobStatus: {
       type: String,
+      required: true
     },
-  },
-  jobDescription: {
-    type: String,
-    required: [true, "Please add a description"],
-  },
+    jobCategory: {
+      type: String,
+      required: true
+    },
 
-  applicationURL: {
-    type: String,
-    match: [
-      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-      "Please use a valid URL with HTTP or HTTPS",
-    ],
-  },
+    jobSearchTags: {
+      type: [String],
+      required: [true, "Please add jobs tags"]
+    },
+    salaryRange: {
+      from: {
+        type: Number
+      },
+      to: {
+        type: Number
+      },
+      currency: {
+        type: String
+      }
+    },
+    jobDescription: {
+      type: String,
+      required: [true, "Please add a description"]
+    },
 
-  datePosted: {
-    type: Date,
-    default: Date.now,
-  },
+    applicationURL: {
+      type: String,
+      match: [
+        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+        "Please use a valid URL with HTTP or HTTPS"
+      ]
+    },
+    // company: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: "Company",
+    //  required: [true, "Filled cannot be empty"]
+    // },
 
-  company: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Company",
-    required: true,
+    createdBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      required: [true, "Filled cannot be empty"]
+    }
   },
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: true,
+  {
+    toJSON: {
+      virtuals: true
+    },
+    toObject: {
+      virtuals: true
+    }
   },
-}, {
-  toJSON: {
-    virtuals: true,
-  },
-  toObject: {
-    virtuals: true,
-  },
-});
+  { timestamps: true }
+);
 
 JobSchema.pre("save", function (next) {
   this.slug = slugify(this.position, {
-    lower: true,
+    lower: true
   });
   next();
 });
