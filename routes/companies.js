@@ -9,11 +9,12 @@ const {
 } = require("../controllers/companies");
 
 const router = express.Router({ mergeParams: true });
-// const router = express.Router();
+const { protect , authorize } = require("../middleware/auth");
+
 
 router.route("/")
 .get(getCompanies)
-.post(createCompany);
+.post(protect ,authorize("user", "admin"), createCompany);
 
 router.route("/:id")
 .get(getCompany)
@@ -22,3 +23,4 @@ router.route("/:id")
 
 
 module.exports = router;
+
