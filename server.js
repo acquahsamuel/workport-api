@@ -36,9 +36,10 @@ const companies = require("./routes/companies");
 app.use(cookieParser());
 
 // Dev logging middleware
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+if (keys.NODE_ENV === "development") {
+  app.use(morgan("combined"));
 }
+
 
 // File uploading
 app.use(fileupload());
