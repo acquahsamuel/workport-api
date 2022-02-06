@@ -1,4 +1,8 @@
 const express = require("express");
+const Job = require("../models/Job");
+const advancedResults = require("../middleware/advancedResults");
+const { protect, authorize } = require("../middleware/auth");
+
 const router = express.Router();
 const {
   getJobs,
@@ -9,9 +13,7 @@ const {
   deleteAllJobs
 } = require("../controllers/jobs");
 
-const Job = require("../models/Job");
-const advancedResults = require("../middleware/advancedResults");
-const { protect, authorize } = require("../middleware/auth");
+
 
 router
   .route("/")
@@ -22,4 +24,3 @@ router
 router.route("/:id").get(getJob).put(updateJob).delete(protect, deleteJob);
 
 module.exports = router;
-
