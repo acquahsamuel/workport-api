@@ -4,8 +4,7 @@
   "description": "workport job posting client",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "start:dev": "nodemon server",
+    "start": "nodemon  ./src/server.js",
     "client": "npm run start --prefix client"
   },
   "keywords": [
