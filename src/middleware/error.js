@@ -1,3 +1,5 @@
+
+
 const ErrorResponse = require("../utils/errorResponse");
 
 const errorHandler = (err, req, res, next) => {
@@ -6,6 +8,7 @@ const errorHandler = (err, req, res, next) => {
 
   //Log to console for dev
   console.log(err.stack.red);
+
 
   //@Error          CastError
   if (err.name === "CastError") {

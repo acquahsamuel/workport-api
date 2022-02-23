@@ -1,29 +1,17 @@
 const os = require("os");
 const hpp = require("hpp");
 const cors = require("cors");
-const path = require("path");
-const colors = require("colors");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const xss = require("xss-clean");
 const express = require("express");
-const mongoose = require("mongoose");
 const fileupload = require("express-fileupload");
 const cookieParser = require("cookie-parser");
 const rateLimit = require("express-rate-limit");
 const errorHandler = require("./middleware/error");
 const mongoSanitize = require("express-mongo-sanitize");
-const keys = require("./config/keys");
-
-// Mongodb connection
-mongoose.connect(keys.MONGO_URI, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true
-});
 
 const app = express();
-
 app.use(express.json());
 
 // Route files
@@ -36,10 +24,9 @@ const companies = require("./routes/companies");
 app.use(cookieParser());
 
 // Dev logging middleware
-if (keys.NODE_ENV === "development") {
-  app.use(morgan("combined"));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
 }
-
 
 // File uploading
 app.use(fileupload());
@@ -73,20 +60,9 @@ app.use("/api/v1/jobs", jobs);
 app.use("/api/v1/users", users);
 app.use("/api/v1/companies", companies);
 
+/**
+ *Imported from middleware/error  error response
+ */
 app.use(errorHandler);
 
-console.log(os.platform());
-console.log(os.version());
-const port = process.env.PORT || 5000;
-const server = app.listen(port, () => {
-  console.log(`Server started on port ${port}`.yellow.underline);
-});
-
-// Handle unhandled Rejection
-process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLED REJECTION Shutting down");
-  console.log(err.name, err.message);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+module.exports = app;

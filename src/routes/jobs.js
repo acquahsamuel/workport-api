@@ -13,8 +13,6 @@ const {
   deleteAllJobs
 } = require("../controllers/jobs");
 
-
-
 router
   .route("/")
   .get(advancedResults(Job, { path: "company" }), getJobs)
