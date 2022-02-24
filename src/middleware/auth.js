@@ -1,25 +1,28 @@
-const jwt = require("jsonwebtoken");
-const asyncHandler = require("./async");
-const ErrorResponse = require("../utils/errorResponse");
-const User = require("../models/User");
+const jwt = require('jsonwebtoken');
+const asyncHandler = require('./async');
+const ErrorResponse = require('../utils/errorResponse');
+const User = require('../models/User');
 // const keys = require("../config/keys");
 
 // Protect routes
+// eslint-disable-next-line consistent-return
 exports.protect = asyncHandler(async (req, res, next) => {
   let token;
 
   if (
     req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
+    req.headers.authorization.startsWith('Bearer')
   ) {
     // Set token from Bearer token in header
-    token = req.headers.authorization.split(" ")[1];
+
+    // eslint-disable-next-line prefer-destructuring
+    token = req.headers.authorization.split(' ')[1];
     // Set token from cookie
   }
 
   // Make sure token exists
   if (!token) {
-    return next(new ErrorResponse("Not authorized to access this route", 401));
+    return next(new ErrorResponse('Not authorized to access this route', 401));
   }
 
   try {
@@ -28,13 +31,15 @@ exports.protect = asyncHandler(async (req, res, next) => {
     req.user = await User.findById(decoded.id);
     next();
   } catch (err) {
-    return next(new ErrorResponse("Not authorized to access this route", 401));
+    return next(new ErrorResponse('Not authorized to access this route', 401));
   }
 });
 
 // Grant access to specific roles
-exports.authorize = (...roles) => {
-  return (req, res, next) => {
+exports.authorize =
+  (...roles) =>
+  // eslint-disable-next-line consistent-return
+  (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
         new ErrorResponse(
@@ -45,4 +50,3 @@ exports.authorize = (...roles) => {
     }
     next();
   };
-};

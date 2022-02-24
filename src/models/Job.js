@@ -1,52 +1,53 @@
-const mongoose = require("mongoose");
-const slugify = require("slugify");
+const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const JobSchema = new mongoose.Schema(
   {
     position: {
-      type: String
+      type: String,
     },
     title: {
-      type: String
+      type: String,
     },
     locationAllowed: {
-      type: String
+      type: String,
     },
     jobStatus: {
       type: String,
-      required: true
+      required: true,
     },
     jobCategory: {
       type: String,
-      required: true
+      required: true,
     },
 
     jobSearchTags: {
       type: [String],
-      required: [true, "Please add jobs tags"]
+      required: [true, 'Please add jobs tags'],
     },
     salaryRange: {
       from: {
-        type: Number
+        type: Number,
       },
       to: {
-        type: Number
+        type: Number,
       },
       currency: {
-        type: String
-      }
+        type: String,
+      },
     },
     jobDescription: {
       type: String,
-      required: [true, "Please add a description"]
+      required: [true, 'Please add a description'],
     },
 
     applicationURL: {
       type: String,
       match: [
+        // eslint-disable-next-line no-useless-escape
         /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-        "Please use a valid URL with HTTP or HTTPS"
-      ]
+        'Please use a valid URL with HTTP or HTTPS',
+      ],
     },
     // company: {
     //   type: mongoose.Schema.ObjectId,
@@ -56,26 +57,55 @@ const JobSchema = new mongoose.Schema(
 
     createdBy: {
       type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: [true, "Filled cannot be empty"]
-    }
+      ref: 'User',
+      required: [true, 'Filled cannot be empty'],
+    },
+
+    premiumJob: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
     },
     toObject: {
-      virtuals: true
-    }
+      virtuals: true,
+    },
   },
   { timestamps: true }
 );
 
-JobSchema.pre("save", function (next) {
+/**
+ * Add slug
+ */
+JobSchema.pre('save', function (next) {
   this.slug = slugify(this.position, {
-    lower: true
+    lower: true,
   });
   next();
 });
 
-module.exports = mongoose.model("Job", JobSchema);
+/**
+ *  Queries for item
+ *  When we don't want preminim items to be add to the
+ *  general results
+ *  Generic middleware /^find/
+ */
+JobSchema.pre(/^find/, function (next) {
+  this.start = Date.now();
+  this.find({ premiumJob: { $ne: true } });
+  next();
+});
+
+/**
+ * Generic middleware
+ */
+JobSchema.post(/^find/, function (resultsAfterSaved, next) {
+  console.log(`Query took ${Date.now() - this.start} millsec`);
+  // console.log(resultsAfterSaved);
+  next();
+});
+
+module.exports = mongoose.model('Job', JobSchema);

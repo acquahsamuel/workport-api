@@ -1,13 +1,13 @@
-const crypto = require("crypto");
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
-const sendEmail = require("../utils/sendEmail");
-const User = require("../models/User");
+const crypto = require('crypto');
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const sendEmail = require('../utils/sendEmail');
+const User = require('../models/User');
 
 // @desc      Register user
 // @route     POST /api/v1/auth/register
 // @access    Public
-exports.register = asyncHandler(async (req, res, next) => {
+exports.register = asyncHandler(async (req, res) => {
   const { name, email, password, role } = req.body;
 
   // Create user
@@ -18,42 +18,45 @@ exports.register = asyncHandler(async (req, res, next) => {
     role,
   });
 
+  // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
 });
 
 // @desc      Login user
 // @route     POST /api/v1/auth/login
 // @access    Public
+// eslint-disable-next-line consistent-return
 exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   // Validate emil & password
   if (!email || !password) {
-    return next(new ErrorResponse("Please provide an email and password", 400));
+    return next(new ErrorResponse('Please provide an email and password', 400));
   }
 
-  // Check for user
-  const user = await User.findOne({ email }).select("+password");
+  // Check for user and select password to be added
+  const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    return next(new ErrorResponse("Invalid credentials", 401));
+    return next(new ErrorResponse('Invalid credentials', 401));
   }
 
   // Check if password matches
   const isMatch = await user.matchPassword(password);
 
   if (!isMatch) {
-    return next(new ErrorResponse("Invalid credentials", 401));
+    return next(new ErrorResponse('Invalid credentials', 401));
   }
 
+  // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
 });
 
 // @desc      Log user out / clear cookie
 // @route     GET /api/v1/auth/logout
 // @access    Private
-exports.logout = asyncHandler(async (req, res, next) => {
-  res.cookie("token", "none", {
+exports.logout = asyncHandler(async (req, res) => {
+  res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
   });
@@ -64,10 +67,12 @@ exports.logout = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Get current logged in user
-// @route     POST /api/v1/auth/me
-// @access    Private
-exports.getMe = asyncHandler(async (req, res, next) => {
+/**
+ * @desc      Get current logged in user
+ * @route     POST /api/v1/auth/me
+ *  @access    Private
+ */
+exports.getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
 
   res.status(200).json({
@@ -76,10 +81,12 @@ exports.getMe = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Update user details
-// @route     PUT /api/v1/auth/updatedetails
-// @access    Private
-exports.updateDetails = asyncHandler(async (req, res, next) => {
+/**
+ * @desc      Update user details
+ * @route     PUT /api/v1/auth/updatedetails
+ * @access    Private
+ */
+exports.updateDetails = asyncHandler(async (req, res) => {
   const fieldsToUpdate = {
     name: req.body.name,
     email: req.body.email,
@@ -96,41 +103,44 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Update password
-// @route     PUT /api/v1/auth/updatepassword
-// @access    Private
+/**
+ * @desc      Update password
+ * @route     PUT /api/v1/auth/updatepassword
+ * @access    Private
+ */
+// eslint-disable-next-line consistent-return
 exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select("+password");
+  const user = await User.findById(req.user.id).select('+password');
 
-  // Check current password
   if (!(await user.matchPassword(req.body.currentPassword))) {
-    return next(new ErrorResponse("Password is incorrect", 401));
+    return next(new ErrorResponse('Password is incorrect', 401));
   }
 
   user.password = req.body.newPassword;
   await user.save();
 
+  // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
 });
 
-// @desc      Forgot password
-// @route     POST /api/v1/auth/forgotpassword
-// @access    Public
+/**
+ * @desc      Forgot password
+ * @route     POST /api/v1/auth/forgotpassword
+ * @access    Public
+ */
+// eslint-disable-next-line consistent-return
 exports.forgotPassword = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(new ErrorResponse("There is no user with that email", 404));
+    return next(new ErrorResponse('There is no user with that email', 404));
   }
 
-  // Get reset token
   const resetToken = user.getResetPasswordToken();
-
   await user.save({ validateBeforeSave: false });
 
-  // Create reset url
   const resetUrl = `${req.protocol}://${req.get(
-    "host"
+    'host'
   )}/api/v1/auth/resetpassword/${resetToken}`;
 
   const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
@@ -138,11 +148,11 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   try {
     await sendEmail({
       email: user.email,
-      subject: "Password reset token",
+      subject: 'Password reset token',
       message,
     });
 
-    res.status(200).json({ success: true, data: "Email sent" });
+    res.status(200).json({ success: true, data: 'Email sent' });
   } catch (err) {
     console.log(err);
     user.resetPasswordToken = undefined;
@@ -150,7 +160,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    return next(new ErrorResponse("Email could not be sent", 500));
+    return next(new ErrorResponse('Email could not be sent', 500));
   }
 
   res.status(200).json({
@@ -159,15 +169,17 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @desc      Reset password
-// @route     PUT /api/v1/auth/resetpassword/:resettoken
-// @access    Public
+/**
+ * @desc      Reset password
+ * @route     PUT /api/v1/auth/resetpassword/:resettoken
+ * @access    Public
+ */
+// eslint-disable-next-line consistent-return
 exports.resetPassword = asyncHandler(async (req, res, next) => {
-  // Get hashed token
   const resetPasswordToken = crypto
-    .createHash("sha256")
+    .createHash('sha256')
     .update(req.params.resettoken)
-    .digest("hex");
+    .digest('hex');
 
   const user = await User.findOne({
     resetPasswordToken,
@@ -175,7 +187,7 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
   });
 
   if (!user) {
-    return next(new ErrorResponse("Invalid token", 400));
+    return next(new ErrorResponse('Invalid token', 400));
   }
 
   // Set new password
@@ -184,10 +196,16 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordExpire = undefined;
   await user.save();
 
+  // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
 });
 
-// Get token from model, create cookie and send response
+/**
+ * @desc Get token from model, create cookie and send response
+ * @param {*} user
+ * @param {*} statusCode
+ * @param {*} res
+ */
 const sendTokenResponse = (user, statusCode, res) => {
   // Create token
   const token = user.getSignedJwtToken();
@@ -199,11 +217,11 @@ const sendTokenResponse = (user, statusCode, res) => {
     httpOnly: true,
   };
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === 'production') {
     options.secure = true;
   }
 
-  res.status(statusCode).cookie("token", token, options).json({
+  res.status(statusCode).cookie('token', token, options).json({
     success: true,
     token,
   });

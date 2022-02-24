@@ -1,1 +1,1 @@
-node : bin/www.js
+node : ./src/server.js
