@@ -8,6 +8,10 @@ const OPTLENGTH = 5;
 
 const UserSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: [true, 'Please tell us your name!'],
+    },
     email: {
       type: String,
       required: [true, 'Please add an email'],
@@ -90,7 +94,6 @@ UserSchema.methods.matchPassword = async function (candidatePassword) {
  * @returns
  */
 UserSchema.methods.getResetPasswordToken = function () {
-  // Generate token
   const resetToken = crypto.randomBytes(20).toString('hex');
 
   // Hash token and set to resetPasswordToken field

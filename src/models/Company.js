@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const CompanySchema = new mongoose.Schema(
   {
-    company: {
+    companyName: {
       type: String,
       required: [true, 'Please add a company name'],
       trim: true,
@@ -51,11 +51,6 @@ const CompanySchema = new mongoose.Schema(
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         'Please add a valid email',
       ],
-    },
-    user: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: true,
     },
   },
   { timestamps: true }
