@@ -1,25 +1,20 @@
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
+const Company = require('../models/Company');
 const Job = require('../models/Job');
-
-// @desc      Create job
-// @route     POST /api/v1/getJobs
-// @access    Private (user)
-exports.getJobsForUser = asyncHandler(async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.id }).sort('createdAt');
-
-  res.status(200).json({
-    success: true,
-    data: jobs,
-  });
-});
 
 // @desc      Create job
 // @route     POST /api/v1/getJobs
 // @access    Public (admins)
 // eslint-disable-next-line consistent-return
 exports.getJobs = asyncHandler(async (req, res) => {
-  await res.status(200).json(res.advancedResults);
+  // await res.status(200).json(res.advancedResults);
+  const job = await Job.find();
+
+  res.status(200).json({
+    success: true,
+    data: job,
+  });
 });
 
 // @desc      Get single job
@@ -42,10 +37,10 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 // @desc      Create job
 // @route     POST /api/v1/createJob
 // @access    Public
+// eslint-disable-next-line consistent-return
 exports.createJob = asyncHandler(async (req, res) => {
   // req.body.company = req.params.companyId;
-  req.body.createdBy = req.user;
-  // console.log(req.user);
+  req.body.user = req.user;
   const job = await Job.create(req.body);
 
   res.status(201).json({
