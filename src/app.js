@@ -1,4 +1,5 @@
 require('os');
+require('dotenv').config('.env');
 const hpp = require('hpp');
 const cors = require('cors');
 const morgan = require('morgan');

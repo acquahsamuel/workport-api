@@ -2,29 +2,39 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const sendEmail = require('../utils/sendEmail');
+const sendSMS = require('../utils/sendSMS');
 const User = require('../models/User');
 
-// @desc      Register user
-// @route     POST /api/v1/auth/register
-// @access    Public
+/**
+ * @desc      Register user
+ * @route     POST /api/v1/auth/register
+ * @access    Public
+ */
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password, role } = req.body;
-
-  // Create user
+  const { email, password, role } = req.body;
   const user = await User.create({
-    name,
     email,
     password,
     role,
   });
 
+  try {
+    sendSMS({
+      message: `${user.email}`,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
   // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
 });
 
-// @desc      Login user
-// @route     POST /api/v1/auth/login
-// @access    Public
+/**
+ * @desc      Login user
+ * @route     POST /api/v1/auth/login
+ * @access    Public
+ */
 // eslint-disable-next-line consistent-return
 exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
@@ -70,7 +80,7 @@ exports.logout = asyncHandler(async (req, res) => {
 /**
  * @desc      Get current logged in user
  * @route     POST /api/v1/auth/me
- *  @access    Private
+ * @access    Private
  */
 exports.getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
