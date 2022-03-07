@@ -2,7 +2,13 @@ const express = require('express');
 const jobController = require('../controllers/jobController');
 const { protect, authorize } = require('../middleware/auth');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
+
+// Include other resource routers
+const companyRouter = require('./companies');
+
+// api/v1/jobs/:companyId/job
+router.use('/:companyId/jobs', companyRouter);
 
 router
   .route('/')
@@ -16,12 +22,6 @@ router
   .put(jobController.updateJob)
   .delete(protect, jobController.deleteJob);
 
-/** Company controller */
-const companyController = require('../controllers/companyController');
-
-// /api/v1/companies/:name/jobs
-router
-  .route('/:jobId/companies')
-  .post(authorize('users'), companyController.createCompany);
-
 module.exports = router;
+
+// api/v1/company/companyId/job
