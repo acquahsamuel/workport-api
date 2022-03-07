@@ -3,15 +3,11 @@ const asyncHandler = require('../middleware/async');
 const Company = require('../models/Company');
 
 // @desc      Create job
-// @route     POST /api/v1/getJobs
+// @route     POST /api/v1/companies
 // @access    Public
 // eslint-disable-next-line consistent-return
 exports.getCompanies = asyncHandler(async (req, res, next) => {
-  // Populate (embedding document in document)
-  const companies = await Company.find().populate({
-    path: 'jobs',
-    select: 'jobDescription  jobStatus jobCategory',
-  });
+  const companies = await Company.find();
 
   if (!companies) {
     return next(new ErrorResponse(`No Companies`, 400));

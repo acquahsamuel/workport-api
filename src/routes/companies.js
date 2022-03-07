@@ -1,21 +1,19 @@
 const express = require('express');
-
-const {
-  getCompanies,
-  getCompany,
-  createCompany,
-  updateCompany,
-  deleteCompany,
-} = require('../controllers/companies');
+const companyController = require('../controllers/companyController');
+const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router({ mergeParams: true });
-const { protect, authorize } = require('../middleware/auth');
 
 router
   .route('/')
-  .get(getCompanies)
-  .post(protect, authorize('user', 'admin'), createCompany);
+  .get(companyController.getCompanies)
+  .post(protect, authorize('user', 'admin'), companyController.createCompany)
+  .delete(protect, authorize('admin'), companyController.deleteAllCompanies);
 
-router.route('/:id').get(getCompany).put(updateCompany).delete(deleteCompany);
+router
+  .route('/:id')
+  .get(companyController.getCompany)
+  .put(protect, authorize('user', 'admin'), companyController.updateCompany)
+  .delete(protect, authorize('user', 'admin'), companyController.deleteCompany);
 
 module.exports = router;

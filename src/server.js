@@ -2,7 +2,6 @@ const os = require('os');
 const morgan = require('morgan');
 const app = require('./app');
 const connectDB = require('./config/db');
-require('dotenv').config('./env');
 
 /**
  *  Connect to port

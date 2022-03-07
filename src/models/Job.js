@@ -49,16 +49,16 @@ const JobSchema = new mongoose.Schema(
         'Please use a valid URL with HTTP or HTTPS',
       ],
     },
-    // company: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "Company",
-    //  required: [true, "Filled cannot be empty"]
-    // },
+    company: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company',
+      required: [true, 'Company field cannot be empty'],
+    },
 
-    createdBy: {
+    user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: [true, 'Filled cannot be empty'],
+      required: [true, 'User field cannot be empty'],
     },
 
     premiumJob: {
@@ -99,12 +99,14 @@ JobSchema.pre(/^find/, function (next) {
   next();
 });
 
-/**
- * Generic middleware
- */
-JobSchema.post(/^find/, function (resultsAfterSaved, next) {
-  console.log(`Query took ${Date.now() - this.start} millsec`);
-  // console.log(resultsAfterSaved);
+JobSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'company',
+    select: 'companyName, companyUrl, companyDescription',
+  }).populate({
+    path: 'user',
+    select: 'name',
+  });
   next();
 });
 
