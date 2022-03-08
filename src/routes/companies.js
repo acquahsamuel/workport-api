@@ -1,12 +1,20 @@
 const express = require('express');
+const Company = require('../models/Company');
 const companyController = require('../controllers/companyController');
 const { protect, authorize } = require('../middleware/auth');
 
-const router = express.Router({ mergeParams: true });
+const advancedResults = require('../middleware/advancedResults');
+
+const router = express.Router();
+
+// Nested route
+// const jobRouter = require('./jobs');
+
+// router.use('/:companyId/jobs', jobRouter);
 
 router
   .route('/')
-  .get(companyController.getCompanies)
+  .get(advancedResults(Company), companyController.getCompanies)
   .post(protect, authorize('user', 'admin'), companyController.createCompany)
   .delete(protect, authorize('admin'), companyController.deleteAllCompanies);
 
