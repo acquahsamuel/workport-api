@@ -10,10 +10,10 @@ const sendSMS = async (options) => {
       body: options.message,
     };
 
-    const info = await client.messages.create(message);
-    console.log('Message sent: %s', info.sid);
+    await client.messages.create(message);
+    // console.log('Message sent: %s', info.sid);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
