@@ -4,6 +4,7 @@ const Company = require('../models/Company');
 
 // @desc      Create job
 // @route     POST /api/v1/companies
+// @route     POST /api/v1/companies/:companyId/jobs
 // @access    Public
 // eslint-disable-next-line consistent-return
 exports.getCompanies = asyncHandler(async (req, res, next) => {
@@ -24,7 +25,9 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createCompany = asyncHandler(async (req, res) => {
-  req.body.user = req.user;
+  if (!req.body.user) req.body.user = req.user;
+  if (!req.body.job) req.body.job = req.params.jobId;
+
   const company = await Company.create(req.body);
 
   res.status(201).json({
@@ -78,6 +81,18 @@ exports.getCompany = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.deleteCompany = asyncHandler(async (req, res) => {
   await Company.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({
+    success: true,
+    data: {},
+  });
+});
+
+// @desc      Delete all companies in
+// @route     GET /api/v1/companies
+// @access    Private
+exports.deleteAllCompanies = asyncHandler(async (req, res) => {
+  await Company.deleteMany();
 
   res.status(200).json({
     success: true,
