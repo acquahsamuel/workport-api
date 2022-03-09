@@ -12,9 +12,15 @@ const JobSchema = new mongoose.Schema(
     locationAllowed: {
       type: String,
     },
-    jobStatus: {
+    jobType: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      required: true,
+      enum: ['pending', 'active'],
+      default: 'pending',
     },
     jobCategory: {
       type: String,
@@ -55,13 +61,7 @@ const JobSchema = new mongoose.Schema(
       required: [true, 'Company field cannot be empty'],
     },
 
-    user: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User',
-      required: [true, 'User field cannot be empty'],
-    },
-
-    premiumJob: {
+    premium: {
       type: Boolean,
       default: false,
     },
@@ -89,24 +89,11 @@ JobSchema.pre('save', function (next) {
 
 /**
  *  Queries for item
- *  When we don't want preminim items to be add to the
- *  general results
  *  Generic middleware /^find/
  */
 JobSchema.pre(/^find/, function (next) {
   this.start = Date.now();
-  this.find({ premiumJob: { $ne: true } });
-  next();
-});
-
-JobSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: 'company',
-    select: 'companyName, companyUrl, companyDescription',
-  }).populate({
-    path: 'user',
-    select: 'name',
-  });
+  this.find({ premium: { $ne: true } });
   next();
 });
 

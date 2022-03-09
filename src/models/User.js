@@ -69,7 +69,7 @@ UserSchema.pre('save', async function (next) {
 /**
  *
  * @returns
- *id = refers to user id in database
+ * id = refers to user id in database
  */
 UserSchema.methods.getSignedJwtToken = function () {
   // eslint-disable-next-line no-underscore-dangle
