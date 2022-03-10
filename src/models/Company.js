@@ -52,6 +52,12 @@ const CompanySchema = new mongoose.Schema(
         'Please add a valid email',
       ],
     },
+
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'User field cannot be empty'],
+    },
   },
   { timestamps: true }
 );

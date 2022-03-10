@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Please tell us your name!'],
+      // required: [true, 'Please tell us your name!'],
     },
     email: {
       type: String,
@@ -69,7 +69,7 @@ UserSchema.pre('save', async function (next) {
 /**
  *
  * @returns
- *id = refers to user id in database
+ * id = refers to user id in database
  */
 UserSchema.methods.getSignedJwtToken = function () {
   // eslint-disable-next-line no-underscore-dangle
