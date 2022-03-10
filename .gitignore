@@ -99,3 +99,5 @@ dev.js
 
 #config 
 # /config
+
+.env 
