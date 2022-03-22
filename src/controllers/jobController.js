@@ -7,7 +7,7 @@ const Job = require('../models/Job');
 // @route     POST /api/v1/getJobs
 // @route     POST /api/v1/companies/:companyId/jobs
 // @access    Public
-// eslint-disable-next-line consistent-return
+
 exports.getJobs = asyncHandler(async (req, res) => {
   if (req.params.companyId) {
     const jobs = await Job.find({ company: req.params.companyId });
@@ -18,13 +18,13 @@ exports.getJobs = asyncHandler(async (req, res) => {
       data: jobs,
     });
   }
-  res.status(200).json(res.advancedResults);
+  return res.status(200).json(res.advancedResults);
 });
 
 // @desc      Get single job
 // @route     GET /api/v1/job/:jobId
 // @access    Public
-// eslint-disable-next-line consistent-return
+
 exports.getJob = asyncHandler(async (req, res, next) => {
   const job = await Job.findById(req.params.id);
 
@@ -32,7 +32,7 @@ exports.getJob = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Doc with ${req.params.id} not found `, 400));
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     data: job,
   });
@@ -41,12 +41,10 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 // @desc      Create job
 // @route     POST /api/v1/createJob
 // @access    Public
-// eslint-disable-next-line consistent-return
 exports.createJob = asyncHandler(async (req, res) => {
   // Add user to req,body
   req.body.company = req.params.companyId;
   req.body.user = req.user.id;
-  console.log(req.params.companyId);
 
   const company = await Company.findById(req.params.companyId);
 
@@ -59,7 +57,7 @@ exports.createJob = asyncHandler(async (req, res) => {
 
   const job = await Job.create(req.body);
 
-  res.status(201).json({
+  return res.status(201).json({
     success: true,
     data: job,
   });
@@ -68,7 +66,6 @@ exports.createJob = asyncHandler(async (req, res) => {
 // @desc      Update job
 // @route     PATCH /api/v1/job/:jobId
 // @access    Public
-// eslint-disable-next-line consistent-return
 exports.updateJob = asyncHandler(async (req, res, next) => {
   const job = await Job.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -79,14 +76,14 @@ exports.updateJob = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Doc with ${req.params.id} not found `, 400));
   }
 
-  res.status(200).json({
+  return res.status(200).json({
     success: true,
     data: job,
   });
 });
 
 // @desc      Delete job
-// @route     GET /api/v1/job/:jobId
+
 // @access    Private
 exports.deleteJob = asyncHandler(async (req, res) => {
   await Job.findByIdAndDelete(req.params.id);
