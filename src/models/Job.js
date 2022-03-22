@@ -55,11 +55,11 @@ const JobSchema = new mongoose.Schema(
         'Please use a valid URL with HTTP or HTTPS',
       ],
     },
-    company: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Company',
-      required: [true, 'Company field cannot be empty'],
-    },
+    // company: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: 'Company',
+    //   required: [true, 'Company field cannot be empty'],
+    // },
 
     premium: {
       type: Boolean,

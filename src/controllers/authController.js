@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const sendEmail = require('../utils/sendEmail');
-const sendSMS = require('../utils/sendSMS');
+// const sendSMS = require('../utils/sendSMS');
 const User = require('../models/User');
 
 /**
@@ -11,21 +11,20 @@ const User = require('../models/User');
  * @access    Public
  */
 exports.register = asyncHandler(async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { email, password, role } = req.body;
   const user = await User.create({
-    name,
     email,
     password,
     role,
   });
 
-  try {
-    sendSMS({
-      message: `${user.email}`,
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   sendSMS({
+  //     message: `${user.email}`,
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   // eslint-disable-next-line no-use-before-define
   sendTokenResponse(user, 200, res);
