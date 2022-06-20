@@ -26,6 +26,10 @@ exports.getJobs = asyncHandler(async (req, res) => {
 
 
 
+
+
+
+
 // @desc      Get single job
 // @route     GET /api/v1/job/:jobId
 // @access    Public

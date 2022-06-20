@@ -57,6 +57,11 @@ app.use(hpp());
 // Enable CORS
 app.use(cors());
 
+app.get('/',(req ,res, next)=>{
+  res.json('Workport api')
+  next()
+})
+
 // Mount routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/jobs', jobs);
