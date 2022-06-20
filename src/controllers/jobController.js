@@ -7,24 +7,28 @@ const Job = require('../models/Job');
 // @route     POST /api/v1/getJobs
 // @route     POST /api/v1/companies/:companyId/jobs
 // @access    Public
-
 exports.getJobs = asyncHandler(async (req, res) => {
-  if (req.params.companyId) {
-    const jobs = await Job.find({ company: req.params.companyId });
+  const jobs = await Job.find().populate({
+    path: 'company',
+    select: 'companyName companyUrl companyTwitter companyLogo'
+  });
 
-    return res.status(200).json({
-      success: true,
-      count: jobs.length,
-      data: jobs,
-    });
+  if (!jobs) {
+    return next(new ErrorResponse(`No jobs found`, 400));
   }
-  return res.status(200).json(res.advancedResults);
-});
+
+  res.status(200).json({
+    success: true,
+    count: jobs.length,
+    data: jobs,
+  });
+})
+
+
 
 // @desc      Get single job
 // @route     GET /api/v1/job/:jobId
 // @access    Public
-
 exports.getJob = asyncHandler(async (req, res, next) => {
   const job = await Job.findById(req.params.id);
 
@@ -43,17 +47,8 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.createJob = asyncHandler(async (req, res) => {
   // Add user to req,body
-  req.body.company = req.params.companyId;
+  // req.body.company = req.params.companyId;
   req.body.user = req.user.id;
-
-  const company = await Company.findById(req.params.companyId);
-
-  if (!company) {
-    // eslint-disable-next-line no-undef
-    return next(
-      new ErrorResponse(`No compay with the id of ${req.params.companyId}`, 404)
-    );
-  }
 
   const job = await Job.create(req.body);
 

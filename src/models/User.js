@@ -10,7 +10,6 @@ const UserSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      // required: [true, 'Please tell us your name!'],
     },
     email: {
       type: String,
@@ -38,6 +37,7 @@ const UserSchema = new mongoose.Schema(
       type: Number,
       select: false,
     },
+
     resetPasswordToken: String,
     resetPassword: Date,
   },

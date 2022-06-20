@@ -3,6 +3,9 @@ const slugify = require('slugify');
 
 const JobSchema = new mongoose.Schema(
   {
+    slug: {
+      type: String,
+    },
     position: {
       type: String,
     },
@@ -31,17 +34,6 @@ const JobSchema = new mongoose.Schema(
       type: [String],
       required: [true, 'Please add jobs tags'],
     },
-    salaryRange: {
-      from: {
-        type: Number,
-      },
-      to: {
-        type: Number,
-      },
-      currency: {
-        type: String,
-      },
-    },
     jobDescription: {
       type: String,
       required: [true, 'Please add a description'],
@@ -55,11 +47,18 @@ const JobSchema = new mongoose.Schema(
         'Please use a valid URL with HTTP or HTTPS',
       ],
     },
-    // company: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: 'Company',
-    //   required: [true, 'Company field cannot be empty'],
-    // },
+
+    company: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company',
+      required: [true, 'Company field cannot be empty'],
+    },
+
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'User field cannot be empty'],
+    },
 
     premium: {
       type: Boolean,
@@ -81,7 +80,7 @@ const JobSchema = new mongoose.Schema(
  * Add slug
  */
 JobSchema.pre('save', function (next) {
-  this.slug = slugify(this.position, {
+  this.slug = slugify(this.position + this.company, {
     lower: true,
   });
   next();
@@ -96,5 +95,8 @@ JobSchema.pre(/^find/, function (next) {
   this.find({ premium: { $ne: true } });
   next();
 });
+
+
+
 
 module.exports = mongoose.model('Job', JobSchema);

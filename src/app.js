@@ -15,11 +15,13 @@ const errorHandler = require('./middleware/error');
 const app = express();
 app.use(express.json());
 
+
 // Route files
 const jobs = require('./routes/jobs');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const companies = require('./routes/companies');
+
 
 // Cookie parser
 app.use(cookieParser());
@@ -64,6 +66,7 @@ app.use('/api/v1/companies', companies);
 /**
  *Imported from middleware/error  error response
  */
+
 app.use(errorHandler);
 
 module.exports = app;

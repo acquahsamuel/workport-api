@@ -13,10 +13,6 @@ const CompanySchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-    companyDescription: {
-      type: String,
-      required: [true, 'Please add a description'],
-    },
     companySize: {
       type: String,
     },

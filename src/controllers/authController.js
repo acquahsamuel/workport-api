@@ -1,18 +1,18 @@
-const crypto = require('crypto');
-const ErrorResponse = require('../utils/errorResponse');
-const asyncHandler = require('../middleware/async');
-const sendEmail = require('../utils/sendEmail');
+const crypto = require ('crypto');
+const ErrorResponse = require ('../utils/errorResponse');
+const asyncHandler = require ('../middleware/async');
+const sendEmail = require ('../utils/sendEmail');
 // const sendSMS = require('../utils/sendSMS');
-const User = require('../models/User');
+const User = require ('../models/User');
 
 /**
  * @desc      Register user
  * @route     POST /api/v1/auth/register
  * @access    Public
  */
-exports.register = asyncHandler(async (req, res) => {
-  const { email, password, role } = req.body;
-  const user = await User.create({
+exports.register = asyncHandler (async (req, res) => {
+  const {email, password, role} = req.body;
+  const user = await User.create ({
     email,
     password,
     role,
@@ -27,7 +27,7 @@ exports.register = asyncHandler(async (req, res) => {
   // }
 
   // eslint-disable-next-line no-use-before-define
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse (user, 200, res);
 });
 
 /**
@@ -36,42 +36,44 @@ exports.register = asyncHandler(async (req, res) => {
  * @access    Public
  */
 // eslint-disable-next-line consistent-return
-exports.login = asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
+exports.login = asyncHandler (async (req, res, next) => {
+  const {email, password} = req.body;
 
   // Validate emil & password
   if (!email || !password) {
-    return next(new ErrorResponse('Please provide an email and password', 400));
+    return next (
+      new ErrorResponse ('Please provide an email and password', 400)
+    );
   }
 
   // Check for user and select password to be added
-  const user = await User.findOne({ email }).select('+password');
+  const user = await User.findOne ({email}).select ('+password');
 
   if (!user) {
-    return next(new ErrorResponse('Invalid credentials', 401));
+    return next (new ErrorResponse ('Invalid credentials', 401));
   }
 
   // Check if password matches
-  const isMatch = await user.matchPassword(password);
+  const isMatch = await user.matchPassword (password);
 
   if (!isMatch) {
-    return next(new ErrorResponse('Invalid credentials', 401));
+    return next (new ErrorResponse ('Invalid credentials', 401));
   }
 
   // eslint-disable-next-line no-use-before-define
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse (user, 200, res);
 });
 
 // @desc      Log user out / clear cookie
 // @route     GET /api/v1/auth/logout
 // @access    Private
-exports.logout = asyncHandler(async (req, res) => {
-  res.cookie('token', 'none', {
-    expires: new Date(Date.now() + 10 * 1000),
+exports.logout = asyncHandler (async (req, res) => {
+  res.cookie ('token', 'none', {
+    expires: new Date (Date.now () + 10 * 1000),
     httpOnly: true,
   });
 
-  res.status(200).json({
+  res.status (200).json ({
     success: true,
     data: {},
   });
@@ -82,10 +84,10 @@ exports.logout = asyncHandler(async (req, res) => {
  * @route     POST /api/v1/auth/me
  * @access    Private
  */
-exports.getMe = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id);
+exports.getMe = asyncHandler (async (req, res) => {
+  const user = await User.findById (req.user.id);
 
-  res.status(200).json({
+  res.status (200).json ({
     success: true,
     data: user,
   });
@@ -96,18 +98,18 @@ exports.getMe = asyncHandler(async (req, res) => {
  * @route     PUT /api/v1/auth/updatedetails
  * @access    Private
  */
-exports.updateDetails = asyncHandler(async (req, res) => {
+exports.updateDetails = asyncHandler (async (req, res) => {
   const fieldsToUpdate = {
     name: req.body.name,
     email: req.body.email,
   };
 
-  const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+  const user = await User.findByIdAndUpdate (req.user.id, fieldsToUpdate, {
     new: true,
     runValidators: true,
   });
 
-  res.status(200).json({
+  res.status (200).json ({
     success: true,
     data: user,
   });
@@ -119,18 +121,18 @@ exports.updateDetails = asyncHandler(async (req, res) => {
  * @access    Private
  */
 // eslint-disable-next-line consistent-return
-exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('+password');
+exports.updatePassword = asyncHandler (async (req, res, next) => {
+  const user = await User.findById (req.user.id).select ('+password');
 
-  if (!(await user.matchPassword(req.body.currentPassword))) {
-    return next(new ErrorResponse('Password is incorrect', 401));
+  if (!await user.matchPassword (req.body.currentPassword)) {
+    return next (new ErrorResponse ('Password is incorrect', 401));
   }
 
   user.password = req.body.newPassword;
-  await user.save();
+  await user.save ();
 
   // eslint-disable-next-line no-use-before-define
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse (user, 200, res);
 });
 
 /**
@@ -139,41 +141,39 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
  * @access    Public
  */
 // eslint-disable-next-line consistent-return
-exports.forgotPassword = asyncHandler(async (req, res, next) => {
-  const user = await User.findOne({ email: req.body.email });
+exports.forgotPassword = asyncHandler (async (req, res, next) => {
+  const user = await User.findOne ({email: req.body.email});
 
   if (!user) {
-    return next(new ErrorResponse('There is no user with that email', 404));
+    return next (new ErrorResponse ('There is no user with that email', 404));
   }
 
-  const resetToken = user.getResetPasswordToken();
-  await user.save({ validateBeforeSave: false });
+  const resetToken = user.getResetPasswordToken ();
+  await user.save ({validateBeforeSave: false});
 
-  const resetUrl = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/auth/resetpassword/${resetToken}`;
+  const resetUrl = `${req.protocol}://${req.get ('host')}/api/v1/auth/resetpassword/${resetToken}`;
 
   const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
 
   try {
-    await sendEmail({
+    await sendEmail ({
       email: user.email,
       subject: 'Password reset token',
       message,
     });
 
-    res.status(200).json({ success: true, data: 'Email sent' });
+    res.status (200).json ({success: true, data: 'Email sent'});
   } catch (err) {
-    console.log(err);
+    console.log (err);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
 
-    await user.save({ validateBeforeSave: false });
+    await user.save ({validateBeforeSave: false});
 
-    return next(new ErrorResponse('Email could not be sent', 500));
+    return next (new ErrorResponse ('Email could not be sent', 500));
   }
 
-  res.status(200).json({
+  res.status (200).json ({
     success: true,
     data: user,
   });
@@ -185,29 +185,29 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
  * @access    Public
  */
 // eslint-disable-next-line consistent-return
-exports.resetPassword = asyncHandler(async (req, res, next) => {
+exports.resetPassword = asyncHandler (async (req, res, next) => {
   const resetPasswordToken = crypto
-    .createHash('sha256')
-    .update(req.params.resettoken)
-    .digest('hex');
+    .createHash ('sha256')
+    .update (req.params.resettoken)
+    .digest ('hex');
 
-  const user = await User.findOne({
+  const user = await User.findOne ({
     resetPasswordToken,
-    resetPasswordExpire: { $gt: Date.now() },
+    resetPasswordExpire: {$gt: Date.now ()},
   });
 
   if (!user) {
-    return next(new ErrorResponse('Invalid token', 400));
+    return next (new ErrorResponse ('Invalid token', 400));
   }
 
   // Set new password
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
-  await user.save();
+  await user.save ();
 
   // eslint-disable-next-line no-use-before-define
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse (user, 200, res);
 });
 
 /**
@@ -218,11 +218,11 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
  */
 const sendTokenResponse = (user, statusCode, res) => {
   // Create token
-  const token = user.getSignedJwtToken();
+  const token = user.getSignedJwtToken ();
 
   const options = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    expires: new Date (
+      Date.now () + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
   };
@@ -231,7 +231,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     options.secure = true;
   }
 
-  res.status(statusCode).cookie('token', token, options).json({
+  res.status (statusCode).cookie ('token', token, options).json ({
     success: true,
     token,
   });
