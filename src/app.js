@@ -75,3 +75,4 @@ app.use('/api/v1/companies', companies);
 app.use(errorHandler);
 
 module.exports = app;
+
