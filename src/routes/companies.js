@@ -9,7 +9,6 @@ const router = express.Router();
 
 // Nested route
 // const jobRouter = require('./jobs');
-
 // router.use('/:companyId/jobs', jobRouter);
 
 router
