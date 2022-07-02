@@ -21,6 +21,7 @@ const jobs = require('./routes/jobs');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 const companies = require('./routes/companies');
+const categories = require('./routes/categories');
 
 
 // Cookie parser
@@ -67,6 +68,7 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/jobs', jobs);
 app.use('/api/v1/users', users);
 app.use('/api/v1/companies', companies);
+app.use('/api/v1/categories', categories);
 
 /**
  *Imported from middleware/error  error response
