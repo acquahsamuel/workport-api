@@ -11,15 +11,15 @@ const sendSMS = async (options) => {
     };
 
     await client.messages.create(message);
-    // console.log('Message sent: %s', info.sid);
+    console.log('Message sent: %s', info.sid);
   } catch (error) {
-    // console.log(error);
+    console.log(error);
   }
 };
 
 // client.messages
 //   .create({
-//     body: `Workport OTP : ${code}`,
+//     body: `Workport OTP : 1234`,
 //     from: 'whatsapp:+14155238886',
 //     to: 'whatsapp:+233262195121',
 //   })

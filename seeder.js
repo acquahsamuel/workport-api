@@ -23,8 +23,6 @@ mongoose.connect(process.env.MONGO_URI, {
 const jobs = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/jobs.json`, 'utf-8')
 );
-
-
 const users = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
 );

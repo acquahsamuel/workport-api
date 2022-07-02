@@ -8,8 +8,9 @@ const OPTLENGTH = 5;
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
+      // required: [true, 'Please add an username'],
     },
     email: {
       type: String,
@@ -33,6 +34,7 @@ const UserSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
+
     otpCode: {
       type: Number,
       select: false,

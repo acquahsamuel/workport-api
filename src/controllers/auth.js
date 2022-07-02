@@ -2,7 +2,7 @@ const crypto = require ('crypto');
 const ErrorResponse = require ('../utils/errorResponse');
 const asyncHandler = require ('../middleware/async');
 const sendEmail = require ('../utils/sendEmail');
-// const sendSMS = require('../utils/sendSMS');
+const sendSMS = require('../utils/sendSMS');
 const User = require ('../models/User');
 
 /**
@@ -11,8 +11,9 @@ const User = require ('../models/User');
  * @access    Public
  */
 exports.register = asyncHandler (async (req, res) => {
-  const {email, password, role} = req.body;
+  const {email, password, role , username} = req.body;
   const user = await User.create ({
+    username,
     email,
     password,
     role,

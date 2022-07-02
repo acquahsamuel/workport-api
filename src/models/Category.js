@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const CategorySchema = new mongoose.Schema(
   {
-    categoryName: {
+    name: {
       type: String,
       required: [true, 'Please add a category name'],
       trim: true,
+      unique: true
     },
   },
   { timestamps: true }

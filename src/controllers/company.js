@@ -25,8 +25,9 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/createJob
 // @access    Public
 exports.createCompany = asyncHandler(async (req, res) => {
-  if (!req.body.user) req.body.user = req.user;
-  if (!req.body.job) req.body.job = req.params.jobId;
+  // console.log(req.params);
+  if (!req.body.userId) req.body.userId = req.user.id;
+
 
   const company = await Company.create(req.body);
 
@@ -41,7 +42,7 @@ exports.createCompany = asyncHandler(async (req, res) => {
 // @access    Public
 // eslint-disable-next-line consistent-return
 exports.updateCompany = asyncHandler(async (req, res, next) => {
-  const company = await Company.findByIdAndUpdate(req.params.id, req.body, {
+  const company = await Company.findByIdAndUpdate(req.params.companyId, req.body, {
     new: true,
     runValidators: true,
   });
@@ -63,7 +64,23 @@ exports.updateCompany = asyncHandler(async (req, res, next) => {
 // @access    Public
 // eslint-disable-next-line consistent-return
 exports.getCompany = asyncHandler(async (req, res, next) => {
-  const company = await Company.findById(req.params.id);
+  const company = await Company.findById(req.params.companyId);
+  if (!company) {
+    return next(
+      new ErrorResponse(`Company with ${req.params.companyId} not found `, 400)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    data: company,
+  });
+});
+
+
+// @desc      Get my company listing
+exports.getMyCompany = asyncHandler(async (req, res, next) => {
+  const company = await Company.find({ user: req.user.id });
   if (!company) {
     return next(
       new ErrorResponse(`Company with ${req.params.id} not found `, 400)
@@ -74,7 +91,8 @@ exports.getCompany = asyncHandler(async (req, res, next) => {
     success: true,
     data: company,
   });
-});
+})
+
 
 // @desc      Delete job
 // @route     GET /api/v1/job/:jobId

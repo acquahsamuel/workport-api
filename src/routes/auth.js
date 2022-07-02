@@ -1,17 +1,26 @@
 const express = require('express');
-const authController = require('../controllers/authController');
+const {
+    register,
+    login,
+    logout,
+    getMe,
+    forgotPassword,
+    resetPassword,
+    updateDetails,
+    updatePassword
+  } = require('../controllers/auth');
 
 const router = express.Router();
 
 const { protect } = require('../middleware/auth');
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
-router.get('/logout', authController.logout);
-router.get('/me', protect, authController.getMe);
-router.put('/updatedetails', protect, authController.updateDetails);
-router.put('/updatepassword', protect, authController.updatePassword);
-router.post('/forgotpassword', authController.forgotPassword);
-router.put('/resetpassword/:resettoken', authController.resetPassword);
+router.post('/register', register);
+router.post('/login', login);
+router.get('/logout', logout);
+router.get('/me', protect, getMe);
+router.put('/updatedetails', protect, updateDetails);
+router.put('/updatepassword', protect, updatePassword);
+router.post('/forgotpassword', forgotPassword);
+router.put('/resetpassword/:resettoken', resetPassword);
 
 module.exports = router;

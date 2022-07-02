@@ -1,28 +1,42 @@
 const express = require('express');
 const Job = require('../models/Job');
-const jobController = require('../controllers/jobController');
-const { protect, authorize } = require('../middleware/auth');
+const {
+  getJobs,
+  getJob,
+  updateJob,
+  deleteJob,
+  createJob,
+  deleteAllJobs
+} = require('../controllers/job');
+const {
+  protect,
+  authorize
+} = require('../middleware/auth');
 
-const router = express.Router({ mergeParams: true });
+const router = express.Router({
+  mergeParams: true
+});
 const advancedResults = require('../middleware/advancedResults');
 
 // Nest route
 const companyRouter = require('./companies');
 
-router.use('/:jobId/companies', companyRouter);
+// Re-router into other 
+// get all jobs for a specific company
+// /api/v1/jobs/compayId/jobs
+router.use('/:companyId/jobs', companyRouter);
+
 
 router
   .route('/')
-  .get(advancedResults(Job), jobController.getJobs)
-  .post(protect, authorize('user', 'admin'), jobController.createJob)
-  .delete(protect, authorize('admin'), jobController.deleteAllJobs);
+  .get(advancedResults(Job , 'companies'), getJobs)
+  .post(protect, authorize('user', 'admin'), createJob)
+  .delete(protect, authorize('admin'), deleteAllJobs);
 
 router
-  .route('/:id')
-  .get(jobController.getJob)
-  .put(jobController.updateJob)
-  .delete(protect, jobController.deleteJob);
+  .route('/:jobId')
+  .get(getJob)
+  .put(protect,updateJob)
+  .delete(protect, deleteJob);
 
 module.exports = router;
-
-

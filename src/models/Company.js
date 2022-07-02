@@ -49,7 +49,7 @@ const CompanySchema = new mongoose.Schema(
       ],
     },
 
-    user: {
+    userId: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'User field cannot be empty'],
@@ -57,5 +57,23 @@ const CompanySchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+
+// Delete all company when user is deleted
+CompanySchema.pre('remove', async function (next) {
+  try {
+    await this.model('Job').deleteMany({ companyId: this._id });
+    next();
+  } catch (err) {
+    next(err);
+  }
+})
+
+CompanySchema.virtual('jobs', {
+  ref: 'Job',
+  localField: '_id',
+  foreignField: 'companyId',
+  justOne: false,
+})
 
 module.exports = mongoose.model('Company', CompanySchema);
