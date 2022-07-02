@@ -52,6 +52,12 @@ const JobSchema = new mongoose.Schema(
       default: false,
     },
 
+    companyId: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Company',
+      required: [true, 'Company field cannot be empty'],
+    },
+
     userId: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',

@@ -49,8 +49,9 @@ exports.getJob = asyncHandler(async (req, res, next) => {
 exports.createJob = asyncHandler(async (req, res) => {
   // Add user to req,body
   // req.user.id = is coming from protect middleware
+  req.body.companyId = req.user.id;
+  // req.body.companyId = req.params.companyId;
   req.body.userId = req.user.id;
-
   const job = await Job.create(req.body);
 
   return res.status(201).json({
