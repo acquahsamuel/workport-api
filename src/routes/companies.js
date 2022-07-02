@@ -19,22 +19,23 @@ const advancedResults = require('../middleware/advancedResults');
 const router = express.Router( { mergeParams: true } );
 
 // Nested route
-const jobRouter = require('./jobs');
+// const jobRouter = require('./jobs');
 // router.use('/:jobId', jobRouter);
 
 
 router
   .route('/')
-  .get(advancedResults(Company), getCompanies)
+  .get(advancedResults(Company , 'jobs'), getCompanies)
   .post(protect, authorize('user', 'admin'), createCompany)
   .delete(protect, authorize('admin'), deleteAllCompanies);
 
 
 router
-  .route('/companiesListing').get(protect , authorize('user' , 'admin'), getMyCompany);
+  .route('/companiesListing')
+  .get(protect , authorize('user' , 'admin'), getMyCompany);
 
 router
-  .route('/:id')
+  .route('/:companyId')
   .get(getCompany)
   .put(protect, authorize('user', 'admin'), updateCompany)
   .delete(protect, authorize('user', 'admin'), deleteCompany);

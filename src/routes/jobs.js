@@ -27,17 +27,16 @@ const companyRouter = require('./companies');
 router.use('/:companyId/jobs', companyRouter);
 
 
-
 router
   .route('/')
-  .get(advancedResults(Job), getJobs)
+  .get(advancedResults(Job , 'companies'), getJobs)
   .post(protect, authorize('user', 'admin'), createJob)
   .delete(protect, authorize('admin'), deleteAllJobs);
 
 router
-  .route('/:id')
+  .route('/:jobId')
   .get(getJob)
-  .put(updateJob)
+  .put(protect,updateJob)
   .delete(protect, deleteJob);
 
 module.exports = router;
