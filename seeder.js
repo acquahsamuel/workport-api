@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config({path: '.env'});
 
 // Load models
-// const Job = require('./src/models/Job');
+const Job = require('./src/models/Job');
 const User = require('./src/models/User');
 // const Review = require('./models/Review');
 
@@ -20,11 +20,9 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 // Read JSON files
-// const jobs = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/jobs.json`, 'utf-8')
-// );
-
-
+const jobs = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/jobs.json`, 'utf-8')
+);
 const users = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
 );
@@ -35,7 +33,7 @@ const users = JSON.parse(
 const importData = async () => {
   try {
     await User.create(users);
-    // await Job.create(jobs);
+    await Job.create(jobs);
     console.log('Data Imported...'.green.inverse);
     process.exit();
   } catch (err) {
@@ -46,7 +44,7 @@ const importData = async () => {
 // Delete data
 const deleteData = async () => {
   try {
-    // await Job.deleteMany();
+    await Job.deleteMany();
     await User.deleteMany();
     console.log('Data Destroyed...'.red.inverse);
     process.exit();

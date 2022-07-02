@@ -2,7 +2,7 @@ const crypto = require ('crypto');
 const ErrorResponse = require ('../utils/errorResponse');
 const asyncHandler = require ('../middleware/async');
 const sendEmail = require ('../utils/sendEmail');
-// const sendSMS = require('../utils/sendSMS');
+const sendSMS = require('../utils/sendSMS');
 const User = require ('../models/User');
 
 /**

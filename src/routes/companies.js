@@ -6,7 +6,8 @@ const {
   deleteAllCompanies,
   updateCompany,
   deleteCompany,
-  getCompany
+  getCompany,
+  getMyCompany,
 } = require('../controllers/company');
 const {
   protect,
@@ -15,17 +16,22 @@ const {
 
 const advancedResults = require('../middleware/advancedResults');
 
-const router = express.Router();
+const router = express.Router( { mergeParams: true } );
 
 // Nested route
-// const jobRouter = require('./jobs');
-// router.use('/:companyId/jobs', jobRouter);
+const jobRouter = require('./jobs');
+// router.use('/:jobId', jobRouter);
+
 
 router
   .route('/')
   .get(advancedResults(Company), getCompanies)
   .post(protect, authorize('user', 'admin'), createCompany)
   .delete(protect, authorize('admin'), deleteAllCompanies);
+
+
+router
+  .route('/companiesListing').get(protect , authorize('user' , 'admin'), getMyCompany);
 
 router
   .route('/:id')

@@ -21,7 +21,12 @@ const advancedResults = require('../middleware/advancedResults');
 // Nest route
 const companyRouter = require('./companies');
 
-router.use('/:jobId/companies', companyRouter);
+// Re-router into other 
+// get all jobs for a specific company
+// /api/v1/jobs/compayId/jobs
+router.use('/:companyId/jobs', companyRouter);
+
+
 
 router
   .route('/')

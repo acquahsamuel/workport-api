@@ -26,7 +26,7 @@ exports.getCompanies = asyncHandler(async (req, res, next) => {
 // @access    Public
 exports.createCompany = asyncHandler(async (req, res) => {
   if (!req.body.user) req.body.user = req.user;
-  if (!req.body.job) req.body.job = req.params.jobId;
+  if (!req.body.job) req.body.job = req.params.job;
 
   const company = await Company.create(req.body);
 
@@ -75,6 +75,23 @@ exports.getCompany = asyncHandler(async (req, res, next) => {
     data: company,
   });
 });
+
+
+// @desc      Get my company listing
+exports.getMyCompany = asyncHandler(async (req, res, next) => {
+  const company = await Company.find({ user: req.user.id });
+  if (!company) {
+    return next(
+      new ErrorResponse(`Company with ${req.params.id} not found `, 400)
+    );
+  }
+
+  res.status(200).json({
+    success: true,
+    data: company,
+  });
+})
+
 
 // @desc      Delete job
 // @route     GET /api/v1/job/:jobId

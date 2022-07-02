@@ -49,11 +49,16 @@ const CompanySchema = new mongoose.Schema(
       ],
     },
 
-    user: {
+    userId: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'User field cannot be empty'],
     },
+    jobId: {
+      type : mongoose.Schema.ObjectId,
+      ref : 'Job',
+      required : [true, 'Job must be related to a company'],
+    }
   },
   { timestamps: true }
 );
