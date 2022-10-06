@@ -11,14 +11,14 @@ const errorHandler = (err, req, res) => {
   if (err.name === 'CastError') {
     const message = `Resources not found with id  ${err.value}`;
     error = new ErrorResponse(message, 404);
-    console.log(error);
+    // console.log(error);
   }
 
   // @Error           Duplicate field
   if (err.name === 'MongoError' && err.code === 11000) {
     const message = `Duplicate field value entered`;
     error = new ErrorResponse(message, 400);
-    console.log(error);
+    // console.log(error);
   }
 
   // @Error           Empty fields

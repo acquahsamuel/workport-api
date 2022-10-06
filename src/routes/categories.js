@@ -17,6 +17,7 @@ const router = express.Router();
 
 router.use(protect);
 router.use(authorize('admin'));
+
 router.route('/').get(getCategories).post(createCategory);
 
 router

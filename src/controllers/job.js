@@ -22,7 +22,9 @@ exports.getJobs = asyncHandler(async (req, res) => {
   //   count: jobs.length,
   //   data: jobs,
   // });
+
   await res.status(200).json(res.advancedResults);
+  
 })
 
 
