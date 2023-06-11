@@ -6,7 +6,7 @@ const connectDB = require('./config/db');
 /**
  *  Connect to port
  */
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4200;
 const server = app.listen(port, () => {
   console.log(`${os.platform()}~${os.version()}`);
   console.log(`Server started on port ${port}`);

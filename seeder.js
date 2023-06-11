@@ -9,7 +9,7 @@ dotenv.config({path: '.env'});
 // Load models
 const Job = require('./src/models/Job');
 const User = require('./src/models/User');
-// const Review = require('./models/Review');
+const Review = require('./models/Review');
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
